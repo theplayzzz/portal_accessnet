@@ -32,8 +32,8 @@ const Hero = ({
         />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-28">
-        <div className="flex flex-col-reverse lg:flex-row items-center gap-10 lg:gap-16">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-12 md:py-24 lg:py-28">
+        <div className="flex flex-col-reverse lg:flex-row items-center gap-4 sm:gap-8 lg:gap-16">
           {/* Text Column */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -42,8 +42,8 @@ const Hero = ({
             className="flex-1 text-center lg:text-left"
           >
             {/* Badge with shimmer */}
-            <div className="mb-6">
-              <span className="relative inline-flex items-center overflow-hidden bg-[#FFA500]/20 border border-[#FFA500]/30 text-[#FFD700] text-xs sm:text-sm font-semibold px-4 py-2 rounded-full">
+            <div className="mb-3 sm:mb-6">
+              <span className="relative inline-flex items-center overflow-hidden bg-[#FFA500]/20 border border-[#FFA500]/30 text-[#FFD700] text-[10px] sm:text-sm font-semibold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full">
                 <span className="relative z-10">✦ 12 anos conectando o Maranhao</span>
                 <span className="absolute inset-0 z-0 animate-shimmer">
                   <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg]" />
@@ -52,7 +52,7 @@ const Hero = ({
             </div>
 
             {/* Heading */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-[1.1] tracking-tight mb-6 font-[family-name:var(--font-heading)]">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-[1.1] tracking-tight mb-3 sm:mb-6 font-[family-name:var(--font-heading)]">
               {locale.title1}{" "}
               <span className="relative inline-block">
                 <span className="relative z-10 text-[#FFA500]">{locale.title2}</span>
@@ -62,26 +62,30 @@ const Hero = ({
             </h1>
 
             {/* Description */}
-            <p className="text-lg sm:text-xl text-white/70 max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+            {/* Short copy on mobile, full on desktop */}
+            <p className="sm:hidden text-sm text-white/70 mx-auto mb-4 leading-relaxed">
+              Velocidade real, sem queda. Planos a partir de R$ 109,90/mes com WiFi Premium.
+            </p>
+            <p className="hidden sm:block text-xl text-white/70 max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
               {locale.description}
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
-              <ShinyButton href="https://wa.me/5508004491021?text=Quero%20contratar%20internet%20fibra%20AccessNet" className="text-lg px-8 py-4">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-4 sm:mb-10">
+              <ShinyButton href="https://wa.me/5508004491021?text=Quero%20contratar%20internet%20fibra%20AccessNet" className="text-base sm:text-lg px-6 py-3 sm:px-8 sm:py-4">
                 <FaWhatsapp size={22} />
                 Assine Agora pelo WhatsApp
               </ShinyButton>
               <Link
                 href="#Planos"
-                className="inline-flex items-center justify-center text-white border-2 border-white/30 hover:border-white/60 font-semibold text-lg px-8 py-4 rounded-xl transition-all hover:bg-white/10"
+                className="hidden sm:inline-flex items-center justify-center text-white border-2 border-white/30 hover:border-white/60 font-semibold text-lg px-8 py-4 rounded-xl transition-all hover:bg-white/10"
               >
                 Ver Planos
               </Link>
             </div>
 
-            {/* Trust Indicators */}
-            <div className="flex flex-wrap gap-6 justify-center lg:justify-start">
+            {/* Trust Indicators — hidden on small mobile, visible from sm+ */}
+            <div className="hidden sm:flex flex-wrap gap-6 justify-center lg:justify-start">
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
                 <HiUsers className="text-[#FFA500]" size={18} />
                 <span className="text-white/90 text-sm font-medium">+10.000 clientes</span>
@@ -102,7 +106,7 @@ const Hero = ({
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex-shrink-0 w-64 sm:w-80 lg:w-96"
+            className="flex-shrink-0 w-56 sm:w-72 lg:w-96"
           >
             <Image
               src="/images/mascot-speed.webp"

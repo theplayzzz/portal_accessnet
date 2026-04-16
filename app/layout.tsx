@@ -3,7 +3,7 @@ import { TailwindIndicator } from "@/components/TailwindIndicator";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
-import WhatsAppFloating from "@/components/home/WhatsAppFloating";
+
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
@@ -60,7 +60,6 @@ export default async function RootLayout({
           <Header />
           <main className="flex flex-col w-full">{children}</main>
           <Footer />
-          <WhatsAppFloating />
           <Analytics />
           <TailwindIndicator />
         </ThemeProvider>

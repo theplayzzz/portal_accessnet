@@ -33,7 +33,7 @@ const Header = () => {
       }`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <nav className="flex items-center justify-between h-16 md:h-20">
+        <nav className="flex items-center justify-between h-12 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <Image
@@ -41,7 +41,7 @@ const Header = () => {
               alt="AccessNet"
               width={160}
               height={40}
-              className="h-10 w-auto"
+              className="h-8 md:h-10 w-auto"
               priority
             />
           </Link>
@@ -80,13 +80,13 @@ const Header = () => {
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-center gap-3 lg:hidden">
+          {/* Mobile: WhatsApp + Hamburger */}
+          <div className="flex items-center gap-2 lg:hidden">
             <a
               href={`https://wa.me/${siteConfig.whatsappNumber}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 bg-[#25D366] text-white font-semibold text-xs px-3 py-2 rounded-xl"
+              className="flex items-center gap-1.5 bg-[#25D366] text-white font-semibold text-xs px-3 py-1.5 rounded-xl"
             >
               <FaWhatsapp size={14} />
               Assine
