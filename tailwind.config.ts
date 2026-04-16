@@ -90,12 +90,17 @@ const config = {
           from: { transform: "translateY(0)" },
           to: { transform: "translateY(calc(-50% - var(--gap)/2))" },
         },
+        shimmer: {
+          "0%": { transform: "translateX(-150%)" },
+          "100%": { transform: "translateX(150%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "scrolling-banner": "scrolling-banner var(--duration) linear infinite",
         "scrolling-banner-vertical": "scrolling-banner-vertical var(--duration) linear infinite",
+        shimmer: "shimmer 2.5s ease-in-out infinite",
       },
     },
   },

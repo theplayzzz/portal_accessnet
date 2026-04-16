@@ -3,6 +3,7 @@ import { TIERS_PT } from "@/config/tiers";
 import { Tier } from "@/types/pricing";
 import { FaCheck, FaWhatsapp } from "react-icons/fa";
 import { motion } from "framer-motion";
+import ShinyButton from "@/components/ui/ShinyBadge";
 
 const PricingCard = ({ tier, index }: { tier: Tier; index: number }) => {
   const isPopular = tier.mostPopular;
@@ -54,15 +55,10 @@ const PricingCard = ({ tier, index }: { tier: Tier; index: number }) => {
       </ul>
 
       {/* CTA Button */}
-      <a
-        href={tier.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#20BD5B] text-white font-bold py-3 rounded-full transition-all hover:scale-105 hover:shadow-lg"
-      >
+      <ShinyButton href={tier.href} className="w-full">
         <FaWhatsapp size={18} />
         {tier.buttonText}
-      </a>
+      </ShinyButton>
     </motion.div>
   );
 };

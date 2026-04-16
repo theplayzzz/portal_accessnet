@@ -73,7 +73,7 @@ const Header = () => {
               href={`https://wa.me/${siteConfig.whatsappNumber}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-[#25D366] hover:bg-[#20BD5B] text-white font-semibold text-sm px-5 py-2.5 rounded-full transition-all hover:scale-105"
+              className="flex items-center gap-2 bg-[#25D366] hover:bg-[#20BD5B] text-white font-semibold text-sm px-5 py-2.5 rounded-xl transition-all hover:scale-105"
             >
               <FaWhatsapp size={18} />
               Assine Ja
@@ -86,7 +86,7 @@ const Header = () => {
               href={`https://wa.me/${siteConfig.whatsappNumber}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 bg-[#25D366] text-white font-semibold text-xs px-3 py-2 rounded-full"
+              className="flex items-center gap-1.5 bg-[#25D366] text-white font-semibold text-xs px-3 py-2 rounded-xl"
             >
               <FaWhatsapp size={14} />
               Assine
@@ -129,7 +129,7 @@ const Header = () => {
                 href={`https://wa.me/${siteConfig.whatsappNumber}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-[#25D366] text-white font-bold text-base w-full py-3 rounded-full"
+                className="flex items-center justify-center gap-2 bg-[#25D366] text-white font-bold text-base w-full py-3 rounded-xl"
               >
                 <FaWhatsapp size={20} />
                 Assine Agora pelo WhatsApp

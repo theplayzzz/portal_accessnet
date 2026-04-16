@@ -4,6 +4,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaWhatsapp } from "react-icons/fa";
 import { HiUsers, HiLocationMarker, HiPhone } from "react-icons/hi";
+import DotsShader from "@/components/ui/DotsShader";
+import ShinyButton from "@/components/ui/ShinyBadge";
 
 const Hero = ({
   locale,
@@ -15,12 +17,19 @@ const Hero = ({
 }) => {
   return (
     <section className="relative bg-gradient-to-br from-[#1E3A5F] via-[#162d4a] to-[#0B1828] overflow-hidden">
-      {/* Subtle pattern overlay */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: "radial-gradient(circle at 25% 25%, white 1px, transparent 1px), radial-gradient(circle at 75% 75%, white 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }} />
+      {/* Animated dots shader overlay */}
+      <div className="absolute inset-0 opacity-30">
+        <DotsShader
+          colors={[
+            [30, 58, 95],    // Navy blue (brand)
+            [0, 102, 255],   // Bright blue (mascot)
+            [0, 188, 212],   // Turquoise (stores)
+          ]}
+          opacities={[0.3, 0.3, 0.4, 0.4, 0.5, 0.5, 0.6, 0.6, 0.7, 0.8]}
+          totalSize={4}
+          dotSize={2}
+          maxFps={24}
+        />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-28">
@@ -32,10 +41,15 @@ const Hero = ({
             transition={{ duration: 0.6 }}
             className="flex-1 text-center lg:text-left"
           >
-            {/* Badge */}
-            <span className="inline-block bg-[#FFA500]/20 text-[#FFD700] text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
-              12 anos conectando o Maranhao
-            </span>
+            {/* Badge with shimmer */}
+            <div className="mb-6">
+              <span className="relative inline-flex items-center overflow-hidden bg-[#FFA500]/20 border border-[#FFA500]/30 text-[#FFD700] text-xs sm:text-sm font-semibold px-4 py-2 rounded-full">
+                <span className="relative z-10">✦ 12 anos conectando o Maranhao</span>
+                <span className="absolute inset-0 z-0 animate-shimmer">
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg]" />
+                </span>
+              </span>
+            </div>
 
             {/* Heading */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-[1.1] tracking-tight mb-6 font-[family-name:var(--font-heading)]">
@@ -54,18 +68,13 @@ const Hero = ({
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
-              <a
-                href="https://wa.me/5508004491021?text=Quero%20contratar%20internet%20fibra%20AccessNet"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20BD5B] text-white font-bold text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 animate-pulse-slow"
-              >
+              <ShinyButton href="https://wa.me/5508004491021?text=Quero%20contratar%20internet%20fibra%20AccessNet" className="text-lg px-8 py-4">
                 <FaWhatsapp size={22} />
                 Assine Agora pelo WhatsApp
-              </a>
+              </ShinyButton>
               <Link
                 href="#Planos"
-                className="inline-flex items-center justify-center text-white border-2 border-white/30 hover:border-white/60 font-semibold text-lg px-8 py-4 rounded-full transition-all hover:bg-white/10"
+                className="inline-flex items-center justify-center text-white border-2 border-white/30 hover:border-white/60 font-semibold text-lg px-8 py-4 rounded-xl transition-all hover:bg-white/10"
               >
                 Ver Planos
               </Link>

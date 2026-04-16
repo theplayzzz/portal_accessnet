@@ -2,16 +2,25 @@
 import Image from "next/image";
 import { FaWhatsapp } from "react-icons/fa";
 import { motion } from "framer-motion";
+import DotsShader from "@/components/ui/DotsShader";
+import ShinyButton from "@/components/ui/ShinyBadge";
 
 const CTA = ({ locale }: { locale: any; CTALocale?: any }) => {
   return (
     <section className="relative bg-gradient-to-br from-[#1E3A5F] to-[#0B1828] overflow-hidden">
-      {/* Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-        }} />
+      {/* Animated dots shader */}
+      <div className="absolute inset-0 opacity-20">
+        <DotsShader
+          colors={[
+            [30, 58, 95],
+            [0, 102, 255],
+            [0, 188, 212],
+          ]}
+          opacities={[0.3, 0.3, 0.4, 0.4, 0.5, 0.5, 0.6, 0.6, 0.7, 0.8]}
+          totalSize={4}
+          dotSize={2}
+          maxFps={24}
+        />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
@@ -47,15 +56,10 @@ const CTA = ({ locale }: { locale: any; CTALocale?: any }) => {
             <p className="text-lg text-white/70 max-w-lg mb-8">
               {locale.description}
             </p>
-            <a
-              href="https://wa.me/5508004491021?text=Quero%20contratar%20internet%20fibra%20AccessNet"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#20BD5B] text-white font-bold text-lg px-10 py-4 rounded-full shadow-2xl hover:scale-105 transition-all duration-300"
-            >
+            <ShinyButton href="https://wa.me/5508004491021?text=Quero%20contratar%20internet%20fibra%20AccessNet" className="text-lg px-10 py-4">
               <FaWhatsapp size={24} />
               {locale.button}
-            </a>
+            </ShinyButton>
             <p className="text-white/50 text-sm mt-4">{locale.phone}</p>
           </motion.div>
         </div>
