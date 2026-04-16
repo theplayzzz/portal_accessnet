@@ -94,6 +94,14 @@ const config = {
           "0%": { transform: "translateX(-150%)" },
           "100%": { transform: "translateX(150%)" },
         },
+        "marquee-left": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(calc(-100% - var(--gap)))" },
+        },
+        "marquee-right": {
+          from: { transform: "translateX(calc(-100% - var(--gap)))" },
+          to: { transform: "translateX(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -101,6 +109,8 @@ const config = {
         "scrolling-banner": "scrolling-banner var(--duration) linear infinite",
         "scrolling-banner-vertical": "scrolling-banner-vertical var(--duration) linear infinite",
         shimmer: "shimmer 2.5s ease-in-out infinite",
+        "marquee-left": "marquee-left var(--duration, 30s) linear infinite",
+        "marquee-right": "marquee-right var(--duration, 30s) linear infinite",
       },
     },
   },

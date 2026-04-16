@@ -6,6 +6,7 @@ import Hero from "@/components/home/Hero";
 import Pricing from "@/components/home/Pricing";
 import SocialProof from "@/components/home/SocialProof";
 import StoreCarousel from "@/components/home/StoreCarousel";
+import AppShowcase from "@/components/home/AppShowcase";
 import Testimonials from "@/components/home/Testimonials";
 import { getDictionary } from "@/lib/i18n";
 
@@ -29,6 +30,9 @@ export default async function HomeIndex({ lang }: { lang: string }) {
 
       {/* Our Stores */}
       <StoreCarousel locale={dict.Stores} />
+
+      {/* App Showcase */}
+      <AppShowcase locale={dict.AppShowcase} />
 
       {/* Social Proof */}
       <Testimonials id="Depoimentos" locale={dict.Testimonials} />

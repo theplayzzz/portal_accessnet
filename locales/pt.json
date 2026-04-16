@@ -36,6 +36,11 @@
     "titleHighlight": "Lojas",
     "description": "Visite uma de nossas lojas e conheça de perto a AccessNet"
   },
+  "AppShowcase": {
+    "title": "Conheça Nosso",
+    "titleHighlight": "Aplicativo",
+    "description": "Gerencie seu plano, emita 2ª via de boleto, abra chamados e muito mais. Tudo na palma da sua mão."
+  },
   "Testimonials": {
     "title": "O que nossos clientes",
     "titleHighlight": "dizem"
