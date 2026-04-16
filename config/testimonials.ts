@@ -2,16 +2,16 @@ export const TestimonialsData = [
   {
     user: {
       name: "Arnaldo Felix",
-      role: "Empresario",
+      role: "Empresário",
     },
-    content: "Na minha empresa usamos a AccessNet ha alguns anos, sao nossos parceiros de confianca. Internet estavel e suporte sempre rapido quando precisamos.",
+    content: "Na minha empresa usamos a AccessNet há alguns anos, são nossos parceiros de confiança. Internet estável e suporte sempre rápido quando precisamos.",
   },
   {
     user: {
-      name: "Maria da Conceicao",
+      name: "Maria da Conceição",
       role: "Cliente Residencial",
     },
-    content: "A melhor internet! Assisto minhas series sem interrupcoes. A familia toda conectada ao mesmo tempo sem travamento nenhum.",
+    content: "A melhor internet! Assisto minhas séries sem interrupções. A família toda conectada ao mesmo tempo sem travamento nenhum.",
   },
   {
     user: {
@@ -25,20 +25,20 @@ export const TestimonialsData = [
       name: "Ana Paula Santos",
       role: "Professora",
     },
-    content: "Dou aulas online todos os dias e preciso de internet estavel. Com a AccessNet nunca tive problema de queda durante uma aula. Excelente servico!",
+    content: "Dou aulas online todos os dias e preciso de internet estável. Com a AccessNet nunca tive problema de queda durante uma aula. Excelente serviço!",
   },
   {
     user: {
       name: "Roberto Mendes",
-      role: "Empresario",
+      role: "Empresário",
     },
-    content: "Tenho 3 lojas conectadas com AccessNet. O suporte 24h faz toda a diferenca quando voce depende da internet pra trabalhar. Muito satisfeito.",
+    content: "Tenho 3 lojas conectadas com AccessNet. O suporte 24h faz toda a diferença quando você depende da internet pra trabalhar. Muito satisfeito.",
   },
   {
     user: {
       name: "Juliana Costa",
       role: "Estudante",
     },
-    content: "Uso pra estudar, assistir aulas e fazer downloads pesados. A velocidade e real, nao tem aquela historia de velocidade so no papel. AccessNet entrega de verdade.",
+    content: "Uso pra estudar, assistir aulas e fazer downloads pesados. A velocidade é real, não tem aquela história de velocidade só no papel. AccessNet entrega de verdade.",
   },
 ];

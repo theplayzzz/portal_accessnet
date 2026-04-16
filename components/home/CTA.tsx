@@ -9,15 +9,15 @@ const CTA = ({ locale }: { locale: any; CTALocale?: any }) => {
   return (
     <section className="relative bg-gradient-to-br from-[#1E3A5F] to-[#0B1828] overflow-hidden">
       {/* Animated dots shader */}
-      <div className="absolute inset-0 opacity-20">
+      <div className="absolute inset-0 opacity-35">
         <DotsShader
           colors={[
-            [30, 58, 95],
-            [0, 102, 255],
-            [0, 188, 212],
+            [50, 100, 180],
+            [0, 120, 230],
+            [0, 190, 220],
           ]}
-          opacities={[0.3, 0.3, 0.4, 0.4, 0.5, 0.5, 0.6, 0.6, 0.7, 0.8]}
-          totalSize={4}
+          opacities={[0.4, 0.4, 0.5, 0.5, 0.6, 0.6, 0.7, 0.7, 0.8, 0.9]}
+          totalSize={5}
           dotSize={2}
           maxFps={24}
         />

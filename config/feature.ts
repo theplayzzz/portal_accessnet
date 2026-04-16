@@ -3,8 +3,8 @@ import { FaWifi, FaClock, FaShieldAlt, FaRocket, FaMobileAlt, FaHeadset } from "
 
 export const FEATURES_PT = [
   {
-    title: "Fibra Optica Real",
-    content: "Conexao 100% fibra ate a sua casa. Download e upload na mesma velocidade, sem gargalos.",
+    title: "Fibra Óptica Real",
+    content: "Conexão 100% fibra até a sua casa. Download e upload na mesma velocidade, sem gargalos.",
     icon: FaRocket,
   },
   {
@@ -14,12 +14,12 @@ export const FEATURES_PT = [
   },
   {
     title: "Suporte 24 Horas",
-    content: "Equipe tecnica disponivel 24h por dia, 7 dias por semana. Voce nunca fica sem assistencia.",
+    content: "Equipe técnica disponível 24h por dia, 7 dias por semana. Você nunca fica sem assistência.",
     icon: FaHeadset,
   },
   {
-    title: "Instalacao Rapida",
-    content: "Agendamento flexivel. Nossa equipe instala no melhor horario para voce.",
+    title: "Instalação Rápida",
+    content: "Agendamento flexível. Nossa equipe instala no melhor horário para você.",
     icon: FaClock,
   },
   {
@@ -29,7 +29,7 @@ export const FEATURES_PT = [
   },
   {
     title: "Estabilidade Garantida",
-    content: "12 anos de experiencia garantindo conexao estavel sem quedas. +10.000 clientes confiam em nos.",
+    content: "12 anos de experiência garantindo conexão estável sem quedas. +10.000 clientes confiam em nós.",
     icon: FaShieldAlt,
   },
 ];

@@ -2,13 +2,13 @@ import { SiteConfig } from "@/types/siteConfig";
 import { FaFacebook, FaInstagram, FaYoutube, FaWhatsapp } from "react-icons/fa";
 
 const baseSiteConfig = {
-  name: "AccessNet - Internet Fibra Optica",
-  description: "Internet fibra optica de verdade no Maranhao. Planos a partir de R$ 109,90/mes. 13 cidades atendidas. WiFi Premium incluso. Suporte 24h.",
+  name: "AccessNet - Internet Fibra Óptica",
+  description: "Internet fibra óptica de verdade no Maranhão. Planos a partir de R$ 109,90/mês. 13 cidades atendidas. WiFi Premium incluso. Suporte 24h.",
   url: "https://accessnet.com.br",
   ogImage: "https://accessnet.com.br/og.png",
   metadataBase: new URL("https://accessnet.com.br"),
-  keywords: ["internet fibra optica", "internet maranhao", "accessnet", "fibra optica pinheiro", "internet rapida", "provedor internet maranhao", "wifi premium"],
-  authors: [{ name: "AccessNet Telecomunicacoes", url: "https://accessnet.com.br" }],
+  keywords: ["internet fibra óptica", "internet maranhão", "accessnet", "fibra óptica pinheiro", "internet rápida", "provedor internet maranhão", "wifi premium"],
+  authors: [{ name: "AccessNet Telecomunicações", url: "https://accessnet.com.br" }],
   creator: "AccessNet",
   whatsappNumber: "5508004491021",
   phone: "0800 449 1021",

@@ -18,15 +18,15 @@ const Hero = ({
   return (
     <section className="relative bg-gradient-to-br from-[#1E3A5F] via-[#162d4a] to-[#0B1828] overflow-hidden">
       {/* Animated dots shader overlay */}
-      <div className="absolute inset-0 opacity-30">
+      <div className="absolute inset-0 opacity-40">
         <DotsShader
           colors={[
-            [30, 58, 95],    // Navy blue (brand)
-            [0, 102, 255],   // Bright blue (mascot)
-            [0, 188, 212],   // Turquoise (stores)
+            [50, 100, 180],  // Steel blue
+            [0, 120, 230],   // Blue
+            [0, 190, 220],   // Cyan
           ]}
-          opacities={[0.3, 0.3, 0.4, 0.4, 0.5, 0.5, 0.6, 0.6, 0.7, 0.8]}
-          totalSize={4}
+          opacities={[0.4, 0.4, 0.5, 0.5, 0.6, 0.6, 0.7, 0.7, 0.8, 0.9]}
+          totalSize={5}
           dotSize={2}
           maxFps={24}
         />
@@ -44,7 +44,7 @@ const Hero = ({
             {/* Badge with shimmer */}
             <div className="mb-3 sm:mb-6">
               <span className="relative inline-flex items-center overflow-hidden bg-[#FFA500]/20 border border-[#FFA500]/30 text-[#FFD700] text-[10px] sm:text-sm font-semibold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full">
-                <span className="relative z-10">✦ 12 anos conectando o Maranhao</span>
+                <span className="relative z-10">✦ 12 anos conectando o Maranhão</span>
                 <span className="absolute inset-0 z-0 animate-shimmer">
                   <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg]" />
                 </span>
@@ -64,7 +64,7 @@ const Hero = ({
             {/* Description */}
             {/* Short copy on mobile, full on desktop */}
             <p className="sm:hidden text-sm text-white/70 mx-auto mb-4 leading-relaxed">
-              Velocidade real, sem queda. Planos a partir de R$ 109,90/mes com WiFi Premium.
+              Velocidade real, sem queda. Planos a partir de R$ 109,90/mês com WiFi Premium.
             </p>
             <p className="hidden sm:block text-xl text-white/70 max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
               {locale.description}
