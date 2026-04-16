@@ -1,6 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  // output: "standalone", // for create docker image
-};
+const nextConfig = {};
 
 export default nextConfig;

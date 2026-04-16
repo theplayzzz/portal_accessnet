@@ -1,21 +1,26 @@
-import BaiDuAnalytics from "@/app/BaiDuAnalytics";
 import GoogleAnalytics from "@/app/GoogleAnalytics";
 import { TailwindIndicator } from "@/components/TailwindIndicator";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
+import WhatsAppFloating from "@/components/home/WhatsAppFloating";
 import { siteConfig } from "@/config/site";
-import { defaultLocale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
 import "@/styles/loading.css";
 import { Analytics } from "@vercel/analytics/react";
 import { Viewport } from "next";
-import { Inter as FontSans } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 
-export const fontSans = FontSans({
+export const fontSans = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
+});
+
+export const fontHeading = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  weight: ["600", "700", "800"],
 });
 
 export const metadata = {
@@ -35,28 +40,27 @@ export const viewport: Viewport = {
 
 export default async function RootLayout({
   children,
-  params: { lang },
 }: {
   children: React.ReactNode;
-  params: { lang: string | undefined };
 }) {
   return (
-    <html lang={lang || defaultLocale} suppressHydrationWarning>
+    <html lang="pt-BR" suppressHydrationWarning>
       <head />
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
+          fontSans.variable,
+          fontHeading.variable
         )}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme={siteConfig.nextThemeColor}
-          enableSystem
+          defaultTheme="light"
         >
           <Header />
-          <main className="flex flex-col items-center py-6">{children}</main>
+          <main className="flex flex-col w-full">{children}</main>
           <Footer />
+          <WhatsAppFloating />
           <Analytics />
           <TailwindIndicator />
         </ThemeProvider>
@@ -65,7 +69,6 @@ export default async function RootLayout({
         ) : (
           <>
             <GoogleAnalytics />
-            <BaiDuAnalytics />
           </>
         )}
       </body>

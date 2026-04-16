@@ -1,28 +1,26 @@
-import { Makers } from "@/config/makers";
-import Image from "next/image";
-
 const SocialProof = ({ locale }: { locale: any }) => {
+  const stats = [
+    { number: locale.years, label: locale.yearsLabel },
+    { number: locale.customers, label: locale.customersLabel },
+    { number: locale.cities, label: locale.citiesLabel },
+    { number: locale.team, label: locale.teamLabel },
+  ];
+
   return (
-    <section className="flex flex-col items-center justify-center gap-20 pt-16">
-      <div className="flex flex-col items-center gap-5">
-        <div className="flex items-center justify-center">
-          {Makers.map((user, index) => {
-            return (
-              <Image
-                key={index}
-                src={user.image}
-                alt="User"
-                height={40}
-                width={40}
-                className="rounded-full -m-[5px] border border-white"
-              />
-            );
-          })}
+    <section className="bg-white py-10 border-b border-gray-100">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {stats.map((stat, i) => (
+            <div key={i} className="text-center">
+              <div className="text-3xl sm:text-4xl font-extrabold text-[#FFA500] font-[family-name:var(--font-heading)]">
+                {stat.number}
+              </div>
+              <div className="text-sm text-gray-500 mt-1 font-medium">
+                {stat.label}
+              </div>
+            </div>
+          ))}
         </div>
-        <p className="text-sm text-slate-700 dark:text-slate-400">
-          <span className="text-primary font-semibold text-base">1000+</span>{" "}
-          {locale.maker}
-        </p>
       </div>
     </section>
   );

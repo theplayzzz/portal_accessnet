@@ -3,7 +3,6 @@ import { IconType } from "react-icons"
 export type AuthorsConfig = {
   name: string
   url: string
-  twitter?: string
 }
 export type ProductLink = {
   url: string
@@ -25,12 +24,13 @@ export type SiteConfig = {
   keywords: string[]
   authors: AuthorsConfig[]
   creator: string
-  openSourceURL?: string
+  whatsappNumber: string
+  phone: string
   ogImage: string
   headerLinks: Link[]
-  footerLinks: Link[],
+  footerLinks: Link[]
   footerProducts: ProductLink[]
-  metadataBase: URL | string
+  metadataBase: URL
   themeColors?: string | ThemeColor[]
   nextThemeColor?: string
   icons: {
@@ -46,7 +46,7 @@ export type SiteConfig = {
     description: string
     siteName: string
     images?: string[]
-  },
+  }
   twitter: {
     card: string
     site: string
@@ -54,5 +54,5 @@ export type SiteConfig = {
     description: string
     images?: string[]
     creator: string
-  },
+  }
 }

@@ -1,54 +1,53 @@
-import { ALL_FEATURES } from "@/config/feature";
+"use client";
+import { FEATURES_PT } from "@/config/feature";
 import React from "react";
-import { RoughNotation } from "react-rough-notation";
+import { motion } from "framer-motion";
 
 const Feature = ({
   id,
   locale,
-  langName,
 }: {
   id: string;
   locale: any;
-  langName: string;
+  langName?: string;
 }) => {
-  const FEATURES = ALL_FEATURES[`FEATURES_${langName.toUpperCase()}`];
   return (
-    <section
-      id={id}
-      className="flex flex-col justify-center lg:max-w-7xl md:max-w-5xl w-[95%] mx-auto md:gap-14 pt-16"
-    >
-      <h2 className="text-center text-white">
-        <RoughNotation type="highlight" show={true} color="#2563EB">
-          {locale.title}
-        </RoughNotation>
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {FEATURES?.map((feature, index) => (
-          <div
-            key={feature.title}
-            className={`
-              flex flex-col items-center text-center px-8 py-6 border-b
-              ${index === 0 ? "md:border-r" : ""}
-              ${index === 1 ? "lg:border-r" : ""}
-              ${index === 2 ? "md:border-r lg:border-r-0" : ""}
-              ${index === 3 ? "lg:border-b-0 lg:border-r" : ""}
-              ${index === 4 ? "md:border-b-0 md:border-r" : ""}
-              ${index === 5 ? "border-b-0 border-r-0" : ""}
-            `}
-          >
-            <div className="p-4 w-16 h-16 dark:text-white rounded-full flex items-center justify-center">
-              {feature.icon && typeof feature.icon === "string" ? (
-                <span className="text-2xl">{feature.icon}</span>
-              ) : (
-                React.createElement(feature.icon, { className: "text-2xl" })
-              )}
-            </div>
-            <h2 className={"text-xl font-semibold mb-2"}>{feature.title}</h2>
-            <p className="text-slate-700 dark:text-slate-400">
-              {feature.content}
-            </p>
-          </div>
-        ))}
+    <section id={id} className="bg-white py-20 md:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-14">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#1E3A5F] font-[family-name:var(--font-heading)]">
+            {locale.title}{" "}
+            <span className="text-[#FFA500]">{locale.titleHighlight}</span>
+          </h2>
+        </div>
+
+        {/* Features Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {FEATURES_PT.map((feature, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="flex flex-col items-start p-6 rounded-2xl hover:bg-slate-50 transition-colors group"
+            >
+              <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-[#FFA500]/10 mb-5 group-hover:bg-[#FFA500]/20 transition-colors">
+                {React.createElement(feature.icon, {
+                  className: "text-[#FFA500]",
+                  size: 26,
+                })}
+              </div>
+              <h3 className="text-xl font-bold text-[#1E3A5F] mb-2 font-[family-name:var(--font-heading)]">
+                {feature.title}
+              </h3>
+              <p className="text-gray-500 leading-relaxed">
+                {feature.content}
+              </p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

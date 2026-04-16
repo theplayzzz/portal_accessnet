@@ -1,149 +1,143 @@
 "use client";
-import HeaderLinks from "@/components/header/HeaderLinks";
-import { LangSwitcher } from "@/components/header/LangSwitcher";
 import { siteConfig } from "@/config/site";
-import { MenuIcon } from "lucide-react";
+import { MenuIcon, Phone, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import { useState } from "react";
-import { CgClose } from "react-icons/cg";
-import { ThemedButton } from "../ThemedButton";
+import { useState, useEffect } from "react";
+import { FaWhatsapp } from "react-icons/fa";
 
-const links = [
-  { label: "Features", href: "#Features" },
-  { label: "Pricing", href: "#Pricing" },
-  { label: "Testimonials", href: "#Testimonials" },
-  { label: "FAQ", href: "#FAQ" },
+const navLinks = [
+  { label: "Planos", href: "#Planos" },
+  { label: "Beneficios", href: "#Beneficios" },
+  { label: "Cobertura", href: "#Cobertura" },
+  { label: "Depoimentos", href: "#Depoimentos" },
+  { label: "Duvidas", href: "#Duvidas" },
 ];
 
 const Header = () => {
-  const params = useParams();
-  const lang = params.lang;
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="py-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <nav className="relative z-50 flex justify-between items-center">
-        {/* Left section */}
-        <div className="flex items-center md:gap-x-12 flex-1">
-          <Link
-            href="/"
-            aria-label="Landing Page Boilerplate"
-            title="Landing Page Boilerplate"
-            className="flex items-center space-x-1 font-bold"
-          >
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-white/90 backdrop-blur-lg shadow-sm border-b border-gray-100"
+          : "bg-white"
+      }`}
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <nav className="flex items-center justify-between h-16 md:h-20">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2">
             <Image
-              alt="Logo"
-              src="/logo.svg"
-              className="w-8 h-8"
-              width={32}
-              height={32}
+              src="/images/logo-accessnet.png"
+              alt="AccessNet"
+              width={160}
+              height={40}
+              className="h-10 w-auto"
+              priority
             />
-            <span className="text-gray-950 dark:text-gray-300 hidden md:block">
-              {siteConfig.name}
-            </span>
           </Link>
-        </div>
 
-        {/* Center section - Navigation */}
-        <ul className="hidden md:flex items-center justify-center gap-6 flex-1">
-          {links.map((link) => (
-            <li key={link.label}>
-              <Link
-                href={`/${lang === "en" ? "" : lang}${link.href}`}
-                aria-label={link.label}
-                title={link.label}
-                className="tracking-wide transition-colors duration-200 font-normal"
+          {/* Desktop Nav */}
+          <ul className="hidden lg:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <li key={link.label}>
+                <Link
+                  href={link.href}
+                  className="text-sm font-medium text-gray-600 hover:text-[#1E3A5F] transition-colors"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* Desktop Right */}
+          <div className="hidden lg:flex items-center gap-4">
+            <a
+              href={`tel:${siteConfig.phone}`}
+              className="flex items-center gap-2 text-sm font-medium text-[#1E3A5F]"
+            >
+              <Phone size={16} />
+              {siteConfig.phone}
+            </a>
+            <a
+              href={`https://wa.me/${siteConfig.whatsappNumber}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-[#25D366] hover:bg-[#20BD5B] text-white font-semibold text-sm px-5 py-2.5 rounded-full transition-all hover:scale-105"
+            >
+              <FaWhatsapp size={18} />
+              Assine Ja
+            </a>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="flex items-center gap-3 lg:hidden">
+            <a
+              href={`https://wa.me/${siteConfig.whatsappNumber}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 bg-[#25D366] text-white font-semibold text-xs px-3 py-2 rounded-full"
+            >
+              <FaWhatsapp size={14} />
+              Assine
+            </a>
+            <button
+              aria-label="Menu"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2"
+            >
+              {isMenuOpen ? <X size={24} /> : <MenuIcon size={24} />}
+            </button>
+          </div>
+        </nav>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="lg:hidden pb-6 border-t border-gray-100">
+            <ul className="space-y-1 pt-4">
+              {navLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-lg"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-4 px-4 space-y-3">
+              <a
+                href={`tel:${siteConfig.phone}`}
+                className="flex items-center justify-center gap-2 text-sm font-medium text-[#1E3A5F] py-2"
               >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        {/* Right section */}
-        <div className="hidden md:flex items-center justify-end gap-x-6 flex-1">
-          <HeaderLinks />
-          <ThemedButton />
-          <LangSwitcher />
-        </div>
-
-        {/* Mobile menu button */}
-        <div className="md:hidden">
-          <button
-            aria-label="Open Menu"
-            title="Open Menu"
-            className="p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-purple-50 focus:bg-deep-purple-50"
-            onClick={() => setIsMenuOpen(true)}
-          >
-            <MenuIcon />
-          </button>
-          {isMenuOpen && (
-            <div className="absolute top-0 left-0 w-full z-50">
-              <div className="p-5 bg-background border rounded shadow-sm">
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <Link
-                      href="/"
-                      aria-label="Landing Page Boilerplate"
-                      title="Landing Page Boilerplate"
-                      className="inline-flex items-center"
-                    >
-                      <Image
-                        alt={siteConfig.name}
-                        src="/logo.svg"
-                        className="w-8 h-8"
-                        width={32}
-                        height={32}
-                      />
-                      <span className="ml-2 text-xl font-bold tracking-wide text-gray-950 dark:text-gray-300">
-                        {siteConfig.name}
-                      </span>
-                    </Link>
-                  </div>
-                  <div>
-                    <button
-                      aria-label="Close Menu"
-                      title="Close Menu"
-                      className="tracking-wide transition-colors duration-200 font-normal"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      <CgClose />
-                    </button>
-                  </div>
-                </div>
-                <nav>
-                  <ul className="space-y-4">
-                    {links.map((link) => (
-                      <li key={link.label}>
-                        <Link
-                          href={link.href}
-                          aria-label={link.label}
-                          title={link.label}
-                          className="font-medium tracking-wide transition-colors duration-200 hover:text-deep-purple-accent-400"
-                          onClick={() => setIsMenuOpen(false)}
-                        >
-                          {link.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-                <div className="pt-4">
-                  <div className="flex items-center gap-x-5 justify-between">
-                    <HeaderLinks />
-                    <div className="flex items-center justify-end gap-x-5">
-                      <ThemedButton />
-                      <LangSwitcher />
-                    </div>
-                  </div>
-                </div>
-              </div>
+                <Phone size={16} />
+                {siteConfig.phone}
+              </a>
+              <a
+                href={`https://wa.me/${siteConfig.whatsappNumber}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 bg-[#25D366] text-white font-bold text-base w-full py-3 rounded-full"
+              >
+                <FaWhatsapp size={20} />
+                Assine Agora pelo WhatsApp
+              </a>
             </div>
-          )}
-        </div>
-      </nav>
+          </div>
+        )}
+      </div>
     </header>
   );
 };

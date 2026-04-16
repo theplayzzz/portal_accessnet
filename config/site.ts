@@ -1,64 +1,49 @@
 import { SiteConfig } from "@/types/siteConfig";
-import { BsGithub, BsTwitterX, BsWechat } from "react-icons/bs";
-import { MdEmail } from "react-icons/md";
-import { SiBuymeacoffee, SiJuejin } from "react-icons/si";
-
-const OPEN_SOURCE_URL = 'https://github.com/weijunext/landing-page-boilerplate'
+import { FaFacebook, FaInstagram, FaYoutube, FaWhatsapp } from "react-icons/fa";
 
 const baseSiteConfig = {
-  name: "Landing page boilerplate",
-  description:
-    "A free, open-source, and powerful landing page boilerplate, ideal for various projects, enabling you to create a landing page in under an hour.",
-  url: "https://landingpage.weijunext.com",
-  ogImage: "https://landingpage.weijunext.com/og.png",
-  metadataBase: '/',
-  keywords: ["landing page boilerplate", "landing page template", "awesome landing page", "next.js landing page"],
-  authors: [
-    {
-      name: "weijunext",
-      url: "https://weijunext.com",
-      twitter: 'https://twitter.com/weijunext',
-    }
-  ],
-  creator: '@weijunext',
-  openSourceURL: 'https://github.com/weijunext/landing-page-boilerplate',
-  themeColors: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
-  ],
-  nextThemeColor: 'dark', // next-theme option: system | dark | light
+  name: "AccessNet - Internet Fibra Optica",
+  description: "Internet fibra optica de verdade no Maranhao. Planos a partir de R$ 109,90/mes. 13 cidades atendidas. WiFi Premium incluso. Suporte 24h.",
+  url: "https://accessnet.com.br",
+  ogImage: "https://accessnet.com.br/og.png",
+  metadataBase: new URL("https://accessnet.com.br"),
+  keywords: ["internet fibra optica", "internet maranhao", "accessnet", "fibra optica pinheiro", "internet rapida", "provedor internet maranhao", "wifi premium"],
+  authors: [{ name: "AccessNet Telecomunicacoes", url: "https://accessnet.com.br" }],
+  creator: "AccessNet",
+  whatsappNumber: "5508004491021",
+  phone: "0800 449 1021",
+  themeColors: [{ media: "(prefers-color-scheme: light)", color: "#1E3A5F" }],
+  nextThemeColor: "light",
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
-    apple: "/logo.png",
+    apple: "/apple-touch-icon.png",
   },
   headerLinks: [
-    { name: 'repo', href: OPEN_SOURCE_URL, icon: BsGithub },
-    { name: 'twitter', href: "https://twitter.com/weijunext", icon: BsTwitterX },
-    { name: 'buyMeCoffee', href: "https://www.buymeacoffee.com/weijunext", icon: SiBuymeacoffee }
+    { name: "instagram", href: "https://instagram.com/accessnet", icon: FaInstagram },
+    { name: "facebook", href: "https://facebook.com/accessnettelecom", icon: FaFacebook },
+    { name: "whatsapp", href: "https://wa.me/5508004491021", icon: FaWhatsapp },
   ],
   footerLinks: [
-    { name: 'email', href: "mailto:weijunext@gmail.com", icon: MdEmail },
-    { name: 'twitter', href: "https://twitter.com/weijunext", icon: BsTwitterX },
-    { name: 'github', href: "https://github.com/weijunext/", icon: BsGithub },
-    { name: 'buyMeCoffee', href: "https://www.buymeacoffee.com/weijunext", icon: SiBuymeacoffee },
-    { name: 'juejin', href: "https://juejin.cn/user/26044008768029", icon: SiJuejin },
-    { name: 'weChat', href: "https://weijunext.com/make-a-friend", icon: BsWechat }
+    { name: "instagram", href: "https://instagram.com/accessnet", icon: FaInstagram },
+    { name: "facebook", href: "https://facebook.com/accessnettelecom", icon: FaFacebook },
+    { name: "youtube", href: "https://youtube.com/@accessnetpho", icon: FaYoutube },
+    { name: "whatsapp", href: "https://wa.me/5508004491021", icon: FaWhatsapp },
   ],
   footerProducts: [
-    { url: 'https://nexty.dev/', name: 'SaaS Starter' },
-    { url: 'https://landingpage.weijunext.com/', name: 'Landing Page Boilerplate' },
-    { url: 'https://weijunext.com/', name: 'J实验室' },
-    { url: 'https://nextjscn.org/', name: 'Next.js 中文文档' },
-    { url: 'https://github.com/weijunext/indie-hacker-tools', name: 'Indie Hacker Tools' },
-  ]
-}
+    { url: "https://ixc.accessnet.com.br", name: "Central do Assinante" },
+    { url: "https://ixc.accessnet.com.br", name: "2a Via de Boleto" },
+    { url: "https://velocidade.accessnet.com.br", name: "Teste de Velocidade" },
+    { url: "https://play.google.com/store/apps/details?id=br.com.accessnet.appclientes", name: "App Android" },
+    { url: "https://apps.apple.com/br/app/accessnet/id6503640632", name: "App iOS" },
+  ],
+};
 
 export const siteConfig: SiteConfig = {
   ...baseSiteConfig,
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "pt_BR",
     url: baseSiteConfig.url,
     title: baseSiteConfig.name,
     images: [`${baseSiteConfig.url}/og.png`],
@@ -73,4 +58,4 @@ export const siteConfig: SiteConfig = {
     images: [`${baseSiteConfig.url}/og.png`],
     creator: baseSiteConfig.creator,
   },
-}
+};

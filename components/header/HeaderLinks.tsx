@@ -1,26 +1,23 @@
 import { siteConfig } from "@/config/site";
-import Link from "next/link";
 import React from "react";
 
 const HeaderLinks = () => {
-  const links = siteConfig.headerLinks;
-
   return (
-    <div className="flex flex-row items-center gap-6">
-      {links.map((link, index) => (
-        <Link
+    <div className="flex items-center gap-3">
+      {siteConfig.headerLinks.map((link) => (
+        <a
           key={link.name}
-          aria-label={link.name}
           href={link.href}
           target="_blank"
-          rel="noopener norefferer nofollow"
-          className={` flex max-w-[24px] flex-col items-center justify-center`}
+          rel="noopener noreferrer"
+          aria-label={link.name}
+          className="text-gray-500 hover:text-[#1E3A5F] transition-colors"
         >
-          {link.icon &&
-            React.createElement(link.icon, { className: "text-lg" })}
-        </Link>
+          {React.createElement(link.icon, { className: "w-5 h-5" })}
+        </a>
       ))}
     </div>
   );
 };
+
 export default HeaderLinks;

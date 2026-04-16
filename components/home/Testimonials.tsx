@@ -1,71 +1,51 @@
-/* eslint-disable react/no-unescaped-entities */
-import { TwitterX } from "@/components/social-icons/icons";
-import { siteConfig } from "@/config/site";
+"use client";
 import { TestimonialsData } from "@/config/testimonials";
-import Image from "next/image";
-import Link from "next/link";
-import { RoughNotation } from "react-rough-notation";
+import { motion } from "framer-motion";
+import { FaQuoteLeft } from "react-icons/fa";
 
 const Testimonials = ({ id, locale }: { id: string; locale: any }) => {
   return (
-    <section
-      id={id}
-      className="flex flex-col justify-center items-center pt-16 gap-12 max-w-[88%]"
-    >
-      <div className="flex flex-col text-center max-w-xl gap-4">
-        <h2 className="text-center text-white">
-          <RoughNotation type="highlight" show={true} color="#2563EB">
-            {locale.title}
-          </RoughNotation>
-        </h2>
-        <p className="text-large text-default-500">
-          {/* Don't take our word for it. Here's what they have to say. */}
-          {locale.description1}{" "}
-          <Link
-            href={siteConfig.authors[0].twitter as string}
-            target="_blank"
-            rel="noopener noreferrer nofollow"
-            className="text-primary underline"
-          >
-            {locale.description2}
-          </Link>
-          {locale.description3}
-        </p>
-      </div>
-      <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 overflow-hidden relative transition-all">
-        {TestimonialsData.map((testimonial, index) => (
-          <div className="mb-4 z-0 break-inside-avoid-column" key={index}>
-            <div className="border border-slate/10 rounded-lg p-4 flex flex-col items-start gap-3 h-fit">
-              <div className="flex items-start justify-between w-full">
-                <div className="flex items-start gap-2">
-                  <Image
-                    src={testimonial.user.image}
-                    alt="maker"
-                    height={40}
-                    width={40}
-                    className="w-12 h-12 rounded-full object-cover object-top"
-                  />
-                  <div className="flex flex-col items-start">
-                    <p className="font-bold">{testimonial.user.name}</p>
-                    <p className="dark:text-zinc-400">
-                      @{testimonial.user.username}
-                    </p>
-                  </div>
-                </div>
-                <Link
-                  href={`https://twitter.com/${testimonial.user.username}`}
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                >
-                  <TwitterX className="w-8 h-8" />
-                </Link>
-              </div>
-              <p className="dark:text-zinc-200 text-[14px]">
+    <section id={id} className="bg-white py-20 md:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-14">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#1E3A5F] font-[family-name:var(--font-heading)]">
+            {locale.title}{" "}
+            <span className="text-[#FFA500]">{locale.titleHighlight}</span>
+          </h2>
+        </div>
+
+        {/* Testimonials Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {TestimonialsData.map((testimonial, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="bg-slate-50 rounded-2xl p-6 sm:p-8 hover:shadow-md transition-all"
+            >
+              <FaQuoteLeft className="text-[#FFA500]/30 mb-4" size={24} />
+              <p className="text-gray-600 leading-relaxed mb-6">
                 {testimonial.content}
               </p>
-            </div>
-          </div>
-        ))}
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#1E3A5F] flex items-center justify-center text-white font-bold text-sm">
+                  {testimonial.user.name.charAt(0)}
+                </div>
+                <div>
+                  <p className="font-semibold text-[#1E3A5F] text-sm">
+                    {testimonial.user.name}
+                  </p>
+                  <p className="text-gray-400 text-xs">
+                    {testimonial.user.role}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

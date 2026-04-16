@@ -1,0 +1,65 @@
+{
+  "Hero": {
+    "title1": "Internet Fibra de",
+    "title2": "Verdade",
+    "title3": "para sua Casa",
+    "description": "Velocidade real, sem queda, sem enrolacao. Planos a partir de R$ 109,90/mes com WiFi Premium incluso. Presente em 13 cidades do Maranhao."
+  },
+  "SocialProof": {
+    "years": "12",
+    "yearsLabel": "anos de experiencia",
+    "customers": "10.000+",
+    "customersLabel": "clientes satisfeitos",
+    "cities": "13",
+    "citiesLabel": "cidades atendidas",
+    "team": "200",
+    "teamLabel": "profissionais"
+  },
+  "Feature": {
+    "title": "Por que escolher a",
+    "titleHighlight": "AccessNet?"
+  },
+  "Pricing": {
+    "title": "Nossos",
+    "titleHighlight": "Planos",
+    "description": "Todos os planos com download e upload simetricos. Instalacao rapida. WiFi Premium incluso.",
+    "note": "Consulte valores e condicoes. Fidelidade de 12 meses."
+  },
+  "Coverage": {
+    "title": "Onde",
+    "titleHighlight": "Estamos",
+    "description": "Presente em 13 cidades do Maranhao. Verifique se atendemos sua regiao.",
+    "notFound": "Nao encontrou sua cidade? Ligue 0800 449 1021"
+  },
+  "Stores": {
+    "title": "Nossas",
+    "titleHighlight": "Lojas",
+    "description": "Visite uma de nossas lojas e conheca de perto a AccessNet"
+  },
+  "Testimonials": {
+    "title": "O que nossos clientes",
+    "titleHighlight": "dizem"
+  },
+  "FAQ": {
+    "title": "Duvidas",
+    "titleHighlight": "Frequentes",
+    "description": "Tire suas duvidas sobre nossos servicos"
+  },
+  "CTA": {
+    "title": "Nao perca mais tempo com internet lenta",
+    "description": "Fale agora com um consultor e tenha a melhor internet fibra do Maranhao na sua casa hoje mesmo.",
+    "button": "Falar com Consultor no WhatsApp",
+    "phone": "0800 449 1021 - Ligacao gratuita"
+  },
+  "CTAButton": {
+    "title": "Assine Agora"
+  },
+  "Footer": {
+    "linksTitle": "Links Uteis",
+    "socialTitle": "Redes Sociais",
+    "copyright": "© 2026 AccessNet Telecomunicacoes LTDA - CNPJ: 09.171.603/0001-20",
+    "address": "Av. Castelo Branco, 3176 - Pinheiro/MA - CEP 65200-000",
+    "phone": "0800 449 1021",
+    "hours": "Seg-Sex: 8h-18h | Sab: 8h-12h e 14h-17h | Dom: 9h-12h"
+  }
+}

@@ -50,16 +50,6 @@ npm run dev
 
 [![使用 Vercel 部署](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/weijunext/landing-page-boilerplate&project-name=&repository-name=landing-page-boilerplate&demo-title=LandingPageBoilerplate&demo-description=Landing%20page%20boilerplate.&demo-url=https://landingpage.weijunext.com&demo-image=https://landingpage.weijunext.com/og.png)
 
-## 生成 Docker 镜像部署到服务器
-
-运行下面的命令
-
-```bash
-npm run docker
-```
-
-会在根目录生成 Docker 镜像——landing-page-boilerplate.tar 文件，然后使用 Docker 命令将镜像部署到服务器上。
-
 ## 关于我
 
 **Full-Stack Engineer, Open-Source Next.js Artist & AI Enthusiast.**

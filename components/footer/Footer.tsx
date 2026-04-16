@@ -1,30 +1,81 @@
-import Badges from "@/components/footer/Badges";
-import FooterLinks from "@/components/footer/FooterLinks";
-import FooterProducts from "@/components/footer/FooterProducts";
-import LangLinks from "@/components/footer/LangLinks";
 import { siteConfig } from "@/config/site";
+import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 
-const Footer = () => {
-  const d = new Date();
-  const currentYear = d.getFullYear();
-  const { authors } = siteConfig;
-
+const Footer = async () => {
   return (
-    <footer>
-      <div className="mt-16 space-y-2 pt-6 pb-4 flex flex-col items-center bg-black text-sm text-gray-400 border-t">
-        <FooterLinks />
-        <FooterProducts />
-        <LangLinks />
-        <div className="flex space-x-2">
-          <div>{`©${currentYear}`}</div>{" "}
-          <Link href={authors[0].twitter || authors[0].url} target="_blank">
-            {authors[0].name}
-          </Link>{" "}
-          <div>All rights reserved.</div>
+    <footer className="bg-[#0B1828] text-white">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {/* Column 1: Brand & Contact */}
+          <div>
+            <Image
+              src="/images/logo-accessnet-dark.png"
+              alt="AccessNet"
+              width={160}
+              height={40}
+              className="h-10 w-auto mb-6"
+            />
+            <div className="space-y-2 text-white/60 text-sm">
+              <p>Av. Castelo Branco, 3176 - Pinheiro/MA</p>
+              <p>CEP 65200-000</p>
+              <p className="text-white font-semibold text-base mt-3">{siteConfig.phone}</p>
+              <p>Seg-Sex: 8h-18h | Sab: 8h-12h e 14h-17h</p>
+              <p>Dom: 9h-12h</p>
+            </div>
+          </div>
+
+          {/* Column 2: Useful Links */}
+          <div>
+            <h3 className="font-bold text-white mb-6 font-[family-name:var(--font-heading)]">
+              Links Uteis
+            </h3>
+            <ul className="space-y-3">
+              {siteConfig.footerProducts.map((product) => (
+                <li key={product.name}>
+                  <a
+                    href={product.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/60 hover:text-[#FFA500] transition-colors text-sm"
+                  >
+                    {product.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3: Social */}
+          <div>
+            <h3 className="font-bold text-white mb-6 font-[family-name:var(--font-heading)]">
+              Redes Sociais
+            </h3>
+            <div className="flex gap-4">
+              {siteConfig.footerLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.name}
+                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/60 hover:text-[#FFA500] hover:bg-white/20 transition-all"
+                >
+                  {React.createElement(link.icon, { size: 18 })}
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
-        <div>
-          <Badges />
+      </div>
+
+      {/* Copyright bar */}
+      <div className="border-t border-white/10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+          <p className="text-center text-white/40 text-sm">
+            © 2026 AccessNet Telecomunicacoes LTDA - CNPJ: 09.171.603/0001-20
+          </p>
         </div>
       </div>
     </footer>

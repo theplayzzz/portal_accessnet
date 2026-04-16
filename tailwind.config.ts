@@ -32,7 +32,7 @@ const config = {
         // },
         primary: {
           foreground: "#FFFFFF",
-          DEFAULT: "#3B82F6",
+          DEFAULT: "#1E3A5F",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -47,8 +47,17 @@ const config = {
           foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "#FFA500",
+          foreground: "#FFFFFF",
+        },
+        brand: {
+          blue: "#0066FF",
+          turquoise: "#00BCD4",
+          navy: "#1E3A5F",
+          "navy-dark": "#0B1828",
+          orange: "#FFA500",
+          gold: "#FFD700",
+          whatsapp: "#25D366",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",

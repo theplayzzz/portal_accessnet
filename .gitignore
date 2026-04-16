@@ -129,5 +129,3 @@ dist
 */sitemap*.xml
 */robots.txt
 
-# ignore docker saved images
-*.tar

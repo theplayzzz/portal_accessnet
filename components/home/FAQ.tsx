@@ -1,65 +1,54 @@
 "use client";
-import { ALL_FAQS } from "@/config/faqs";
+import { FAQS_PT } from "@/config/faqs";
 import { Accordion, AccordionItem } from "@nextui-org/react";
-import { PlusIcon } from "lucide-react";
-import { RoughNotation } from "react-rough-notation";
-
-// update rough notation highlight
-function triggerResizeEvent() {
-  const event = new Event("resize");
-  window.dispatchEvent(event);
-}
+import { FaPlus } from "react-icons/fa";
 
 const FAQ = ({
   id,
   locale,
-  langName,
 }: {
   id: string;
   locale: any;
-  langName: string;
+  langName?: string;
 }) => {
-  const FAQS = ALL_FAQS[`FAQS_${langName.toUpperCase()}`];
-
   return (
-    <section
-      id={id}
-      className="flex flex-col justify-center max-w-[88%] items-center py-16 gap-12"
-    >
-      <div className="flex flex-col text-center gap-4">
-        <h2 className="text-center text-white">
-          <RoughNotation type="highlight" show={true} color="#2563EB">
-            {locale.title}
-          </RoughNotation>
-        </h2>
-        <p className="text-large text-default-500">{locale.description}</p>
+    <section id={id} className="bg-slate-50 py-20 md:py-24">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-14">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#1E3A5F] font-[family-name:var(--font-heading)]">
+            {locale.title}{" "}
+            <span className="text-[#FFA500]">{locale.titleHighlight}</span>
+          </h2>
+          <p className="mt-4 text-lg text-gray-500">
+            {locale.description}
+          </p>
+        </div>
+
+        {/* FAQ Accordion */}
+        <Accordion
+          selectionMode="multiple"
+          className="gap-4"
+          itemClasses={{
+            base: "bg-white rounded-xl shadow-sm mb-3 px-6",
+            title: "text-[#1E3A5F] font-semibold text-base",
+            content: "text-gray-500 pb-4",
+            trigger: "py-5",
+            indicator: "text-[#FFA500]",
+          }}
+        >
+          {FAQS_PT.map((faq, index) => (
+            <AccordionItem
+              key={index}
+              aria-label={faq.title}
+              title={faq.title}
+              indicator={<FaPlus size={12} />}
+            >
+              {faq.content}
+            </AccordionItem>
+          ))}
+        </Accordion>
       </div>
-      <Accordion
-        fullWidth
-        keepContentMounted
-        className="gap-3"
-        itemClasses={{
-          base: "px-6 !bg-default-100 !shadow-none hover:!bg-default-200/50",
-          title: "font-medium",
-          trigger: "py-6",
-          content: "pt-0 pb-6 text-base text-default-500",
-        }}
-        items={FAQS}
-        selectionMode="multiple"
-        variant="splitted"
-        onSelectionChange={triggerResizeEvent}
-      >
-        {FAQS?.map((item) => (
-          <AccordionItem
-            key={item.title}
-            indicator={<PlusIcon />}
-            title={item.title}
-            HeadingComponent="h3"
-          >
-            {item.content}
-          </AccordionItem>
-        ))}
-      </Accordion>
     </section>
   );
 };

@@ -51,16 +51,6 @@ Deploy the example using Vercel or Zeabur:
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/weijunext/landing-page-boilerplate&project-name=&repository-name=landing-page-boilerplate&demo-title=LandingPageBoilerplate&demo-description=Landing%20page%20boilerplate.&demo-url=https://landingpage.weijunext.com&demo-image=https://landingpage.weijunext.com/og.png)
 
-## Generate a Docker image and deploy it to the server
-
-Generate a Docker image and deploy it to the server
-
-```bash
-npm run docker
-```
-
-A Docker image named landing-page-boilerplate.tar will be generated in the root directory, and then the image will be deployed to the server using Docker commands.
-
 ## About Me
 
 **Full-Stack Engineer, Open-Source Next.js Artist & AI Enthusiast.**

@@ -1,105 +1,104 @@
 "use client";
+import { TIERS_PT } from "@/config/tiers";
+import { Tier } from "@/types/pricing";
+import { FaCheck, FaWhatsapp } from "react-icons/fa";
+import { motion } from "framer-motion";
 
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Divider,
-  Link,
-  Spacer,
-} from "@nextui-org/react";
+const PricingCard = ({ tier, index }: { tier: Tier; index: number }) => {
+  const isPopular = tier.mostPopular;
 
-import { siteConfig } from "@/config/site";
-import { ALL_TIERS } from "@/config/tiers";
-import { FaCheck } from "react-icons/fa";
-import { RoughNotation } from "react-rough-notation";
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+      className={`relative flex flex-col rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
+        isPopular
+          ? "bg-white ring-2 ring-[#FFA500] shadow-lg scale-[1.02]"
+          : "bg-white shadow-md"
+      }`}
+    >
+      {isPopular && (
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+          <span className="bg-gradient-to-r from-[#FFA500] to-[#FFD700] text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-md">
+            Mais Popular
+          </span>
+        </div>
+      )}
+
+      {/* Plan Name */}
+      <h3 className="text-lg font-bold text-[#1E3A5F] font-[family-name:var(--font-heading)]">
+        {tier.title}
+      </h3>
+
+      {/* Speed */}
+      <p className="text-sm text-gray-500 mt-1">{tier.description}</p>
+
+      {/* Price */}
+      <div className="mt-4 mb-6">
+        <span className="text-4xl font-extrabold text-[#FFA500] font-[family-name:var(--font-heading)]">
+          {tier.price}
+        </span>
+        <span className="text-gray-500 text-sm ml-1">{tier.priceSuffix}</span>
+      </div>
+
+      {/* Features */}
+      <ul className="space-y-3 mb-8 flex-1">
+        {tier.features?.map((feature, i) => (
+          <li key={i} className="flex items-start gap-2">
+            <FaCheck className="text-[#25D366] mt-0.5 flex-shrink-0" size={14} />
+            <span className="text-sm text-gray-600">{feature}</span>
+          </li>
+        ))}
+      </ul>
+
+      {/* CTA Button */}
+      <a
+        href={tier.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#20BD5B] text-white font-bold py-3 rounded-full transition-all hover:scale-105 hover:shadow-lg"
+      >
+        <FaWhatsapp size={18} />
+        {tier.buttonText}
+      </a>
+    </motion.div>
+  );
+};
 
 const Pricing = ({
   id,
   locale,
-  langName,
 }: {
   id: string;
   locale: any;
-  langName: string;
+  langName?: string;
 }) => {
-  const TIERS = ALL_TIERS[`TIERS_${langName.toUpperCase()}`];
   return (
-    <section
-      id={id}
-      className="flex flex-col justify-center max-w-4xl items-center pt-16"
-    >
-      <div className="flex flex-col text-center max-w-xl">
-        <h2 className="text-center text-white">
-          <RoughNotation type="highlight" show={true} color="#2563EB">
-            {locale.title}
-          </RoughNotation>
-        </h2>
-        <h3 className="text-4xl font-medium tracking-tight mt-2">
-          {locale.title2}
-        </h3>
-        <Spacer y={4} />
-        <p className="text-large text-default-500">{locale.description}</p>
-      </div>
-      <Spacer y={8} />
-      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 justify-items-center">
-        {TIERS?.map((tier) => (
-          <Card key={tier.key} className="p-3 flex-1 w-[90%]" shadow="md">
-            <CardHeader className="flex flex-col items-start gap-2 pb-6">
-              <h2 className="text-large font-medium">{tier.title}</h2>
-              <p className="text-medium text-default-500">{tier.description}</p>
-            </CardHeader>
-            <Divider />
-            <CardBody className="gap-8">
-              <p className="flex items-baseline gap-1 pt-2">
-                <span className="inline bg-gradient-to-br from-foreground to-foreground-600 bg-clip-text text-2xl font-semibold leading-7 tracking-tight text-transparent">
-                  {tier.price}
-                </span>
-                {typeof tier.price !== "string" ? (
-                  <span className="text-small font-medium text-default-400">
-                    {tier.price}
-                  </span>
-                ) : null}
-              </p>
-              <ul className="flex flex-col gap-2">
-                {tier.features?.map((feature) => (
-                  <li key={feature} className="flex items-center gap-2">
-                    <FaCheck className="text-blue-500" />
-                    <p className="text-default-500">{feature}</p>
-                  </li>
-                ))}
-              </ul>
-            </CardBody>
-            <CardFooter>
-              <Button
-                fullWidth
-                as={Link}
-                color={tier.buttonColor}
-                href={tier.href}
-                variant={tier.buttonVariant}
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-              >
-                {tier.buttonText}
-              </Button>
-            </CardFooter>
-          </Card>
-        ))}
-      </div>
-      <Spacer y={12} />
-      <div className="flex py-2">
-        <p className="text-default-400 text-center">
-          {locale.doYouLike}&nbsp;
-          <Link
-            color="foreground"
-            href={siteConfig.authors[0].twitter}
-            underline="always"
-            rel="noopener noreferrer nofollow"
-          >
-            {locale.follow}
-          </Link>
+    <section id={id} className="bg-slate-50 py-20 md:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#1E3A5F] font-[family-name:var(--font-heading)]">
+            {locale.title}{" "}
+            <span className="text-[#FFA500]">{locale.titleHighlight}</span>
+          </h2>
+          <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
+            {locale.description}
+          </p>
+        </div>
+
+        {/* Plans Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-5">
+          {TIERS_PT.map((tier, index) => (
+            <PricingCard key={tier.key} tier={tier} index={index} />
+          ))}
+        </div>
+
+        {/* Note */}
+        <p className="text-center text-sm text-gray-400 mt-8">
+          {locale.note}
         </p>
       </div>
     </section>
