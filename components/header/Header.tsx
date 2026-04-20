@@ -7,11 +7,10 @@ import { useState, useEffect } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 
 const navLinks = [
-  { label: "Planos", href: "#Planos" },
-  { label: "Beneficios", href: "#Beneficios" },
-  { label: "Cobertura", href: "#Cobertura" },
-  { label: "Depoimentos", href: "#Depoimentos" },
-  { label: "Duvidas", href: "#Duvidas" },
+  { label: "Planos", href: "/#Planos" },
+  { label: "Cobertura", href: "/#Cobertura" },
+  { label: "Rede Móvel", href: "/rede-movel" },
+  { label: "Dúvidas", href: "/#Duvidas" },
 ];
 
 const Header = () => {
@@ -37,7 +36,7 @@ const Header = () => {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/images/logo-accessnet.png"
+              src="/api/blob-img/accessnet/logo-accessnet.png"
               alt="AccessNet"
               width={160}
               height={40}

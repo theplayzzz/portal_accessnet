@@ -11,7 +11,7 @@ const Footer = async () => {
           {/* Column 1: Brand & Contact */}
           <div>
             <Image
-              src="/images/logo-accessnet-dark.png"
+              src="/api/blob-img/accessnet/logo-accessnet-dark.png"
               alt="AccessNet"
               width={160}
               height={40}

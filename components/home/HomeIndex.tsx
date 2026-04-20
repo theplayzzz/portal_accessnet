@@ -7,6 +7,7 @@ import Pricing from "@/components/home/Pricing";
 import SocialProof from "@/components/home/SocialProof";
 import StoreCarousel from "@/components/home/StoreCarousel";
 import AppShowcase from "@/components/home/AppShowcase";
+import MobilePromo from "@/components/home/MobilePromo";
 import Testimonials from "@/components/home/Testimonials";
 import { getDictionary } from "@/lib/i18n";
 
@@ -39,6 +40,9 @@ export default async function HomeIndex({ lang }: { lang: string }) {
 
       {/* FAQ */}
       <FAQ id="Duvidas" locale={dict.FAQ} />
+
+      {/* Mobile plans cross-promo */}
+      <MobilePromo />
 
       {/* Final CTA */}
       <CTA locale={dict.CTA} />

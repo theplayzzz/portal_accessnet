@@ -24,6 +24,10 @@ export const FAQS_PT = [
     content: "Atendemos 13 cidades no Maranhão: Pinheiro, Bequimão, Goiabal Alcântara, Peri Mirim, Palmeirândia, São Bento, Santa Helena, Turilândia, Gov. Nunes Freire, Maracaçumé, Central do Maranhão, Cururupu e Pres. Sarney.",
   },
   {
+    title: "Vocês têm planos de celular ou internet móvel?",
+    content: "Sim! Além da fibra óptica, oferecemos planos de celular com alta franquia, WhatsApp, Waze e Moovit ilimitados, chamadas sem limite e cobertura nacional 5G na rede Vivo. Conheça em /rede-movel ou clique no botão 'Cobertura Rede Móvel' no menu.",
+  },
+  {
     title: "Como entro em contato com a AccessNet?",
     content: "Ligue ou envie mensagem para o nosso 0800 449 1021. Atendemos por telefone e WhatsApp. Horário: Seg-Sex 8h-18h, Sáb 8h-12h e 14h-17h, Dom 9h-12h.",
   },

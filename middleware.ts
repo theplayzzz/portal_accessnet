@@ -2,8 +2,12 @@ import { locales } from "./lib/i18n";
 
 import { NextRequest } from "next/server";
 
+const allowedPaths = ["/rede-movel"];
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  if (allowedPaths.includes(pathname)) return;
 
   const isExit = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`

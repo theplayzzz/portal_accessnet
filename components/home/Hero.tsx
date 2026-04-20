@@ -109,7 +109,7 @@ const Hero = ({
             className="flex-shrink-0 w-56 sm:w-72 lg:w-96"
           >
             <Image
-              src="/images/mascot-speed.webp"
+              src="/api/blob-img/accessnet/mascot-speed.webp"
               alt="Mascote AccessNet"
               width={500}
               height={500}

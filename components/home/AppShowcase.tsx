@@ -6,11 +6,11 @@ import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import { FaGooglePlay, FaApple } from "react-icons/fa";
 
 const APP_SCREENSHOTS = [
-  { src: "/images/app/app-1.png", alt: "Tela principal do app AccessNet" },
-  { src: "/images/app/app-2.png", alt: "Tela de login do app AccessNet" },
-  { src: "/images/app/app-3.png", alt: "Endereço de instalação" },
-  { src: "/images/app/app-4.png", alt: "Escolha o contrato" },
-  { src: "/images/app/app-5.png", alt: "Minhas faturas" },
+  { src: "/api/blob-img/accessnet/app/app-1.png", alt: "Tela principal do app AccessNet" },
+  { src: "/api/blob-img/accessnet/app/app-2.png", alt: "Tela de login do app AccessNet" },
+  { src: "/api/blob-img/accessnet/app/app-3.png", alt: "Endereço de instalação" },
+  { src: "/api/blob-img/accessnet/app/app-4.png", alt: "Escolha o contrato" },
+  { src: "/api/blob-img/accessnet/app/app-5.png", alt: "Minhas faturas" },
 ];
 
 const slideVariants = {

@@ -5,10 +5,9 @@ import { motion } from "framer-motion";
 import DotsShader from "@/components/ui/DotsShader";
 import ShinyButton from "@/components/ui/ShinyBadge";
 
-const CTA = ({ locale }: { locale: any; CTALocale?: any }) => {
+const MobileCTA = () => {
   return (
     <section className="relative bg-gradient-to-br from-[#1E3A5F] to-[#0B1828] overflow-hidden">
-      {/* Animated dots shader */}
       <div className="absolute inset-0 opacity-35">
         <DotsShader
           colors={[
@@ -25,7 +24,6 @@ const CTA = ({ locale }: { locale: any; CTALocale?: any }) => {
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
         <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
-          {/* Mascot */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -42,7 +40,6 @@ const CTA = ({ locale }: { locale: any; CTALocale?: any }) => {
             />
           </motion.div>
 
-          {/* Text + CTA */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -51,16 +48,22 @@ const CTA = ({ locale }: { locale: any; CTALocale?: any }) => {
             className="text-center lg:text-left"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-4 font-[family-name:var(--font-heading)]">
-              {locale.title}
+              Pronto para contratar seu plano de celular?
             </h2>
             <p className="text-lg text-white/70 max-w-lg mb-8">
-              {locale.description}
+              Fale agora com um consultor pelo WhatsApp e garanta o chip grátis.
+              Atendimento rápido e sem burocracia.
             </p>
-            <ShinyButton href="https://wa.me/5508004491021?text=Quero%20contratar%20internet%20fibra%20AccessNet" className="text-lg px-10 py-4">
+            <ShinyButton
+              href="https://wa.me/5508004491021?text=Quero%20contratar%20um%20plano%20de%20celular%20AccessNet"
+              className="text-lg px-10 py-4"
+            >
               <FaWhatsapp size={24} />
-              {locale.button}
+              Falar com Consultor
             </ShinyButton>
-            <p className="text-white/50 text-sm mt-4">{locale.phone}</p>
+            <p className="text-white/50 text-sm mt-4">
+              0800 449 1021 - Ligação gratuita
+            </p>
           </motion.div>
         </div>
       </div>
@@ -68,4 +71,4 @@ const CTA = ({ locale }: { locale: any; CTALocale?: any }) => {
   );
 };
 
-export default CTA;
+export default MobileCTA;

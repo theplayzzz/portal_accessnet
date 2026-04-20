@@ -132,3 +132,7 @@ dist
 # Playwright screenshots
 screenshots/
 
+# Images served from Vercel Blob (see scripts/blob-upload.mjs)
+/public/images/
+/imagens/
+
