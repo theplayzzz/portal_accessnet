@@ -219,6 +219,24 @@ export function LeadModal() {
                 </Field>
 
                 <Field
+                  label="Email"
+                  error={errors.email?.message}
+                  htmlFor="lead-email"
+                >
+                  <Input
+                    id="lead-email"
+                    type="email"
+                    inputMode="email"
+                    autoComplete="email"
+                    placeholder="seu@email.com"
+                    disabled={state === "submitting"}
+                    invalid={!!errors.email}
+                    data-testid="lead-field-email"
+                    {...register("email")}
+                  />
+                </Field>
+
+                <Field
                   label="WhatsApp"
                   error={errors.telefone?.message}
                   htmlFor="lead-telefone"
@@ -234,24 +252,6 @@ export function LeadModal() {
                     invalid={!!errors.telefone}
                     data-testid="lead-field-telefone"
                     {...register("telefone")}
-                  />
-                </Field>
-
-                <Field
-                  label="Email"
-                  error={errors.email?.message}
-                  htmlFor="lead-email"
-                >
-                  <Input
-                    id="lead-email"
-                    type="email"
-                    inputMode="email"
-                    autoComplete="email"
-                    placeholder="seu@email.com"
-                    disabled={state === "submitting"}
-                    invalid={!!errors.email}
-                    data-testid="lead-field-email"
-                    {...register("email")}
                   />
                 </Field>
 
