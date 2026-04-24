@@ -140,9 +140,14 @@ export async function sendLeadTemplate(
   }
 
   // 3. Envia template
+  // `variaveis` é posicional: posição N = N-ésimo placeholder na ordem em que
+  // aparecem no texto do template. Para `lead_viabilidade_site`: [nome, endereco].
   const sendBody: OpaTemplateSendInput = {
     contato: { canalCliente: input.telefoneE164 },
-    template: { _id: OPA_TEMPLATE_LEAD_ID },
+    template: {
+      _id: OPA_TEMPLATE_LEAD_ID,
+      variaveis: [input.nome, input.endereco],
+    },
     canal: OPA_CANAL_WHATSAPP_ID,
     metadata: {
       leadId: input.leadId,
