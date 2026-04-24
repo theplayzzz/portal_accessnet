@@ -4,8 +4,10 @@ import { FaWhatsapp } from "react-icons/fa";
 import { motion } from "framer-motion";
 import DotsShader from "@/components/ui/DotsShader";
 import ShinyButton from "@/components/ui/ShinyBadge";
+import { useLeadModal } from "@/components/lead/useLeadModal";
 
 const CTA = ({ locale }: { locale: any; CTALocale?: any }) => {
+  const { openLeadModal } = useLeadModal();
   return (
     <section className="relative bg-gradient-to-br from-[#1E3A5F] to-[#0B1828] overflow-hidden">
       {/* Animated dots shader */}
@@ -56,7 +58,11 @@ const CTA = ({ locale }: { locale: any; CTALocale?: any }) => {
             <p className="text-lg text-white/70 max-w-lg mb-8">
               {locale.description}
             </p>
-            <ShinyButton href="https://wa.me/5508004491021?text=Quero%20contratar%20internet%20fibra%20AccessNet" className="text-lg px-10 py-4">
+            <ShinyButton
+              onClick={() => openLeadModal({ source: "cta-fibra" })}
+              data-testid="cta-fibra"
+              className="text-lg px-10 py-4"
+            >
               <FaWhatsapp size={24} />
               {locale.button}
             </ShinyButton>

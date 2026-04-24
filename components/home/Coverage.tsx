@@ -3,6 +3,7 @@ import { COVERAGE_CITIES } from "@/config/coverage";
 import { motion } from "framer-motion";
 import { HiLocationMarker } from "react-icons/hi";
 import { FaWhatsapp } from "react-icons/fa";
+import { WhatsAppCTA } from "@/components/lead/WhatsAppCTA";
 
 const Coverage = ({ id, locale }: { id: string; locale: any }) => {
   return (
@@ -57,15 +58,13 @@ const Coverage = ({ id, locale }: { id: string; locale: any }) => {
         {/* Not found CTA */}
         <div className="text-center mt-10">
           <p className="text-gray-500 mb-4">{locale.notFound}</p>
-          <a
-            href="https://wa.me/5508004491021?text=Quero%20saber%20se%20a%20AccessNet%20atende%20minha%20cidade"
-            target="_blank"
-            rel="noopener noreferrer"
+          <WhatsAppCTA
+            source="coverage-check"
             className="inline-flex items-center gap-2 text-[#25D366] hover:text-[#20BD5B] font-semibold transition-colors"
           >
             <FaWhatsapp size={18} />
             Consultar disponibilidade
-          </a>
+          </WhatsAppCTA>
         </div>
       </div>
     </section>

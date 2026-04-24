@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { FaWhatsapp } from "react-icons/fa";
+import { WhatsAppCTA } from "@/components/lead/WhatsAppCTA";
 
 const navLinks = [
   { label: "Planos", href: "/#Planos" },
@@ -68,28 +69,26 @@ const Header = () => {
               <Phone size={16} />
               {siteConfig.phone}
             </a>
-            <a
-              href={`https://wa.me/${siteConfig.whatsappNumber}`}
-              target="_blank"
-              rel="noopener noreferrer"
+            <WhatsAppCTA
+              source="header-desktop"
+              data-testid="header-desktop-cta"
               className="flex items-center gap-2 bg-[#25D366] hover:bg-[#20BD5B] text-white font-semibold text-sm px-5 py-2.5 rounded-xl transition-all hover:scale-105"
             >
               <FaWhatsapp size={18} />
               Assine Ja
-            </a>
+            </WhatsAppCTA>
           </div>
 
           {/* Mobile: WhatsApp + Hamburger */}
           <div className="flex items-center gap-2 lg:hidden">
-            <a
-              href={`https://wa.me/${siteConfig.whatsappNumber}`}
-              target="_blank"
-              rel="noopener noreferrer"
+            <WhatsAppCTA
+              source="header-mobile"
+              data-testid="header-mobile-cta"
               className="flex items-center gap-1.5 bg-[#25D366] text-white font-semibold text-xs px-3 py-1.5 rounded-xl"
             >
               <FaWhatsapp size={14} />
               Assine
-            </a>
+            </WhatsAppCTA>
             <button
               aria-label="Menu"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -124,15 +123,15 @@ const Header = () => {
                 <Phone size={16} />
                 {siteConfig.phone}
               </a>
-              <a
-                href={`https://wa.me/${siteConfig.whatsappNumber}`}
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsAppCTA
+                source="header-mobile-menu"
+                data-testid="header-mobile-menu-cta"
                 className="flex items-center justify-center gap-2 bg-[#25D366] text-white font-bold text-base w-full py-3 rounded-xl"
+                onClick={() => setIsMenuOpen(false)}
               >
                 <FaWhatsapp size={20} />
                 Assine Agora pelo WhatsApp
-              </a>
+              </WhatsAppCTA>
             </div>
           </div>
         )}

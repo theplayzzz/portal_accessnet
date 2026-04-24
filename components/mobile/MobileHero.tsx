@@ -6,8 +6,10 @@ import { HiSignal } from "react-icons/hi2";
 import { BsPhoneVibrate } from "react-icons/bs";
 import DotsShader from "@/components/ui/DotsShader";
 import ShinyButton from "@/components/ui/ShinyBadge";
+import { useLeadModal } from "@/components/lead/useLeadModal";
 
 const MobileHero = () => {
+  const { openLeadModal } = useLeadModal();
   return (
     <section className="relative bg-gradient-to-br from-[#1E3A5F] via-[#162d4a] to-[#0B1828] overflow-hidden">
       <div className="absolute inset-0 opacity-40">
@@ -52,7 +54,8 @@ const MobileHero = () => {
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-10">
             <ShinyButton
-              href="https://wa.me/5508004491021?text=Quero%20conhecer%20os%20planos%20de%20celular%20AccessNet"
+              onClick={() => openLeadModal({ source: "hero-mobile-plans" })}
+              data-testid="hero-mobile-plans-cta"
               className="text-base sm:text-lg px-6 py-3 sm:px-8 sm:py-4"
             >
               <FaWhatsapp size={22} />

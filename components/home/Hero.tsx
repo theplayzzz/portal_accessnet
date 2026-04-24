@@ -6,6 +6,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import { HiUsers, HiLocationMarker, HiPhone } from "react-icons/hi";
 import DotsShader from "@/components/ui/DotsShader";
 import ShinyButton from "@/components/ui/ShinyBadge";
+import { useLeadModal } from "@/components/lead/useLeadModal";
 
 const Hero = ({
   locale,
@@ -15,6 +16,7 @@ const Hero = ({
   langName?: string;
   CTALocale: any;
 }) => {
+  const { openLeadModal } = useLeadModal();
   return (
     <section className="relative bg-gradient-to-br from-[#1E3A5F] via-[#162d4a] to-[#0B1828] overflow-hidden">
       {/* Animated dots shader overlay */}
@@ -72,7 +74,11 @@ const Hero = ({
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-4 sm:mb-10">
-              <ShinyButton href="https://wa.me/5508004491021?text=Quero%20contratar%20internet%20fibra%20AccessNet" className="text-base sm:text-lg px-6 py-3 sm:px-8 sm:py-4">
+              <ShinyButton
+                onClick={() => openLeadModal({ source: "hero-fibra" })}
+                data-testid="hero-fibra-cta"
+                className="text-base sm:text-lg px-6 py-3 sm:px-8 sm:py-4"
+              >
                 <FaWhatsapp size={22} />
                 Assine Agora pelo WhatsApp
               </ShinyButton>

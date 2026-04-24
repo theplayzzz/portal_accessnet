@@ -4,8 +4,10 @@ import { FaWhatsapp } from "react-icons/fa";
 import { motion } from "framer-motion";
 import DotsShader from "@/components/ui/DotsShader";
 import ShinyButton from "@/components/ui/ShinyBadge";
+import { useLeadModal } from "@/components/lead/useLeadModal";
 
 const MobileCTA = () => {
+  const { openLeadModal } = useLeadModal();
   return (
     <section className="relative bg-gradient-to-br from-[#1E3A5F] to-[#0B1828] overflow-hidden">
       <div className="absolute inset-0 opacity-35">
@@ -55,7 +57,8 @@ const MobileCTA = () => {
               Atendimento rápido e sem burocracia.
             </p>
             <ShinyButton
-              href="https://wa.me/5508004491021?text=Quero%20contratar%20um%20plano%20de%20celular%20AccessNet"
+              onClick={() => openLeadModal({ source: "cta-mobile-plans" })}
+              data-testid="cta-mobile-plans"
               className="text-lg px-10 py-4"
             >
               <FaWhatsapp size={24} />

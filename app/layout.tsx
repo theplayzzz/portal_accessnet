@@ -3,6 +3,8 @@ import { TailwindIndicator } from "@/components/TailwindIndicator";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
+import { LeadModalProvider } from "@/components/lead/LeadModalProvider";
+import WhatsAppFloating from "@/components/home/WhatsAppFloating";
 
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
@@ -57,11 +59,14 @@ export default async function RootLayout({
           attribute="class"
           defaultTheme="light"
         >
-          <Header />
-          <main className="flex flex-col w-full">{children}</main>
-          <Footer />
-          <Analytics />
-          <TailwindIndicator />
+          <LeadModalProvider>
+            <Header />
+            <main className="flex flex-col w-full">{children}</main>
+            <Footer />
+            <WhatsAppFloating />
+            <Analytics />
+            <TailwindIndicator />
+          </LeadModalProvider>
         </ThemeProvider>
         {process.env.NODE_ENV === "development" ? (
           <></>

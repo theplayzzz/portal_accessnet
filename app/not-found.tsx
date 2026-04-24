@@ -1,6 +1,6 @@
-import { siteConfig } from "@/config/site";
 import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa";
+import { WhatsAppCTA } from "@/components/lead/WhatsAppCTA";
 
 export default function NotFound() {
   return (
@@ -18,15 +18,13 @@ export default function NotFound() {
         >
           Voltar ao Inicio
         </Link>
-        <a
-          href={`https://wa.me/${siteConfig.whatsappNumber}`}
-          target="_blank"
-          rel="noopener noreferrer"
+        <WhatsAppCTA
+          source="404"
           className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#25D366] text-white font-semibold rounded-full hover:bg-[#20BD5B] transition-colors"
         >
           <FaWhatsapp size={18} />
           Fale Conosco
-        </a>
+        </WhatsAppCTA>
       </div>
     </div>
   );

@@ -1,0 +1,541 @@
+"use client";
+
+import * as React from "react";
+import { useForm, type Resolver } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { AnimatePresence, motion } from "framer-motion";
+import { FaWhatsapp } from "react-icons/fa";
+import { Check, Loader2, MapPin } from "lucide-react";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
+import { useLeadModal } from "./useLeadModal";
+import { captureUtms } from "@/lib/utm";
+
+type FormState = "form" | "submitting" | "success";
+
+// Schema dedicado do modal (client). O schema do backend adiciona UTM/source.
+const clientSchema = z.object({
+  nome: z
+    .string()
+    .trim()
+    .min(2, "Informe seu nome completo")
+    .max(120, "Nome muito longo"),
+  telefone: z
+    .string()
+    .trim()
+    .refine((v) => {
+      const d = v.replace(/\D/g, "");
+      return d.length >= 10 && d.length <= 13;
+    }, "Telefone inválido"),
+  email: z.string().trim().toLowerCase().email("Email inválido"),
+  endereco: z
+    .string()
+    .trim()
+    .min(5, "Endereço muito curto")
+    .max(500, "Endereço muito longo"),
+  website: z.string().max(0, "bot detected"),
+});
+type ClientFormValues = z.infer<typeof clientSchema>;
+
+export function LeadModal() {
+  const { open, source, planContext, closeLeadModal } = useLeadModal();
+  const [state, setState] = React.useState<FormState>("form");
+  const [submittedName, setSubmittedName] = React.useState<string>("");
+  const [submittedPhone, setSubmittedPhone] = React.useState<string>("");
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<ClientFormValues>({
+    resolver: zodResolver(clientSchema) as unknown as Resolver<ClientFormValues>,
+    defaultValues: {
+      nome: "",
+      telefone: "",
+      email: "",
+      endereco: "",
+      website: "",
+    },
+  });
+
+  // Reset estado quando o modal reabre
+  React.useEffect(() => {
+    if (open) {
+      setState("form");
+      reset({
+        nome: "",
+        telefone: "",
+        email: "",
+        endereco: "",
+        website: "",
+      });
+    }
+  }, [open, reset]);
+
+  async function submitToApi(
+    values: ClientFormValues,
+    attempt = 1
+  ): Promise<Response | null> {
+    try {
+      const utm = captureUtms();
+      const payload = {
+        ...values,
+        sourceCta: source ?? "unknown",
+        sourcePage:
+          typeof window !== "undefined" ? window.location.pathname : undefined,
+        referrer:
+          typeof document !== "undefined" ? document.referrer : undefined,
+        planContext,
+        utm,
+      };
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      return res;
+    } catch (err) {
+      if (attempt < 2) {
+        // 1 retry após 1s em erro de rede
+        await new Promise((r) => setTimeout(r, 1000));
+        return submitToApi(values, attempt + 1);
+      }
+      // Desistiu — reporta via beacon (best-effort) e retorna null
+      try {
+        if (typeof navigator !== "undefined" && "sendBeacon" in navigator) {
+          const blob = new Blob(
+            [JSON.stringify({ sourceCta: source, err: String(err) })],
+            { type: "application/json" }
+          );
+          navigator.sendBeacon("/api/lead/client-error", blob);
+        }
+      } catch {
+        /* ignore */
+      }
+      return null;
+    }
+  }
+
+  async function onSubmit(values: ClientFormValues) {
+    setState("submitting");
+    setSubmittedName(values.nome.split(" ")[0] || values.nome);
+    setSubmittedPhone(values.telefone);
+
+    const res = await submitToApi(values);
+
+    if (res && res.status === 429) {
+      // Rate limit — volta pro form pra retry manual
+      setState("form");
+      alert("Muitas requisições em pouco tempo. Aguarde um instante e tente novamente.");
+      return;
+    }
+
+    // Mesmo que Opa! falhe no background ou o backend tenha dado 5xx,
+    // o usuário sempre vê sucesso — DB é source of truth.
+    setState("success");
+  }
+
+  function handleOpenChange(next: boolean) {
+    if (!next) closeLeadModal();
+  }
+
+  return (
+    <Dialog open={open} onOpenChange={handleOpenChange}>
+      <DialogContent
+        showClose
+        className="sm:max-w-[480px] p-0"
+        data-testid="lead-modal"
+      >
+        <AnimatePresence mode="wait" initial={false}>
+          {state === "success" ? (
+            <motion.div
+              key="success"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+            >
+              <SuccessPanel
+                nome={submittedName}
+                telefone={submittedPhone}
+                onClose={closeLeadModal}
+              />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="form"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <FormHeader planContext={planContext} />
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="px-6 pb-6 pt-5 sm:px-7 sm:pb-7 space-y-4"
+                noValidate
+              >
+                {/* Honeypot — bots preenchem, humanos não */}
+                <div
+                  aria-hidden="true"
+                  style={{ position: "absolute", left: "-9999px", top: "auto", width: 1, height: 1, overflow: "hidden" }}
+                >
+                  <label>
+                    Website
+                    <input
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      {...register("website")}
+                    />
+                  </label>
+                </div>
+
+                <Field
+                  label="Nome completo"
+                  error={errors.nome?.message}
+                  htmlFor="lead-nome"
+                >
+                  <Input
+                    id="lead-nome"
+                    autoComplete="name"
+                    placeholder="Como devemos te chamar?"
+                    disabled={state === "submitting"}
+                    invalid={!!errors.nome}
+                    data-testid="lead-field-nome"
+                    {...register("nome")}
+                  />
+                </Field>
+
+                <Field
+                  label="WhatsApp"
+                  error={errors.telefone?.message}
+                  htmlFor="lead-telefone"
+                  hint="Vamos chamar nesse número pra dar sequência"
+                >
+                  <Input
+                    id="lead-telefone"
+                    type="tel"
+                    inputMode="tel"
+                    autoComplete="tel"
+                    placeholder="(98) 9 9999-9999"
+                    disabled={state === "submitting"}
+                    invalid={!!errors.telefone}
+                    data-testid="lead-field-telefone"
+                    {...register("telefone")}
+                  />
+                </Field>
+
+                <Field
+                  label="Email"
+                  error={errors.email?.message}
+                  htmlFor="lead-email"
+                >
+                  <Input
+                    id="lead-email"
+                    type="email"
+                    inputMode="email"
+                    autoComplete="email"
+                    placeholder="seu@email.com"
+                    disabled={state === "submitting"}
+                    invalid={!!errors.email}
+                    data-testid="lead-field-email"
+                    {...register("email")}
+                  />
+                </Field>
+
+                <Field
+                  label="Endereço de instalação"
+                  error={errors.endereco?.message}
+                  htmlFor="lead-endereco"
+                  hint="Rua, número, bairro e cidade — pra checar a viabilidade"
+                >
+                  <Textarea
+                    id="lead-endereco"
+                    rows={2}
+                    autoComplete="street-address"
+                    placeholder="Ex: Rua das Flores, 123, Centro, São Luís-MA"
+                    disabled={state === "submitting"}
+                    invalid={!!errors.endereco}
+                    data-testid="lead-field-endereco"
+                    {...register("endereco")}
+                  />
+                </Field>
+
+                <button
+                  type="submit"
+                  disabled={state === "submitting" || isSubmitting}
+                  data-testid="lead-submit"
+                  className={cn(
+                    "group relative w-full overflow-hidden rounded-xl px-6 py-3.5 mt-2",
+                    "font-bold text-white text-[15px] tracking-wide",
+                    "transition-all duration-200",
+                    "disabled:opacity-70 disabled:cursor-not-allowed",
+                    "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFA500] focus-visible:ring-offset-2"
+                  )}
+                  style={{
+                    background:
+                      "linear-gradient(135deg, #FFA500 0%, #FF8A00 50%, #FFA500 100%)",
+                    boxShadow:
+                      "0 8px 20px -6px rgba(255,138,0,0.5), 0 2px 4px rgba(30,58,95,0.08)",
+                  }}
+                >
+                  {/* shimmer sweep on hover */}
+                  <span
+                    className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    aria-hidden="true"
+                  >
+                    <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[-20deg]" />
+                  </span>
+
+                  <span className="relative z-10 inline-flex items-center justify-center gap-2">
+                    {state === "submitting" ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        Enviando...
+                      </>
+                    ) : (
+                      <>
+                        Quero ser contatado pelo WhatsApp
+                        <FaWhatsapp className="h-5 w-5" />
+                      </>
+                    )}
+                  </span>
+                </button>
+
+                <p className="text-[11px] text-slate-500 text-center leading-relaxed pt-1">
+                  🔒 Seus dados ficam só com a AccessNet.
+                  Resposta em minutos, de segunda a sábado das 8h às 20h.
+                </p>
+              </form>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+/* ---------------- Form Header ---------------- */
+
+function FormHeader({
+  planContext,
+}: {
+  planContext: {
+    planName?: string;
+    planSpeed?: string;
+    planGB?: string;
+  } | null;
+}) {
+  const planLabel = planContext?.planName ?? planContext?.planSpeed ?? planContext?.planGB;
+
+  return (
+    <div
+      className="relative px-6 pt-8 pb-6 sm:px-7 sm:pt-9 sm:pb-7 overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(135deg, #1E3A5F 0%, #142845 55%, #0B1828 100%)",
+      }}
+    >
+      {/* Decorative glow */}
+      <div
+        className="pointer-events-none absolute -top-20 -right-10 h-52 w-52 rounded-full opacity-30 blur-3xl"
+        style={{ background: "radial-gradient(circle, #FFA500 0%, transparent 70%)" }}
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute -bottom-24 -left-16 h-48 w-48 rounded-full opacity-20 blur-3xl"
+        style={{ background: "radial-gradient(circle, #25D366 0%, transparent 70%)" }}
+        aria-hidden="true"
+      />
+      {/* Subtle grid dots */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.07]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+          backgroundSize: "16px 16px",
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="relative z-10">
+        {planLabel && (
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-[#FFA500]/15 border border-[#FFA500]/30 px-2.5 py-1 mb-3">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#FFA500]" />
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-[#FFD27A]">
+              Plano {planLabel}
+            </span>
+          </div>
+        )}
+        <DialogTitle className="text-white font-heading text-[26px] leading-[1.15] tracking-tight mb-2">
+          Fale com a gente.
+          <span className="block text-[#FFA500]">Sem complicação.</span>
+        </DialogTitle>
+        <DialogDescription className="text-slate-300 text-[14px] leading-relaxed max-w-[90%]">
+          Preencha seus dados e nosso time comercial chama no seu WhatsApp em poucos minutos.
+        </DialogDescription>
+      </div>
+    </div>
+  );
+}
+
+/* ---------------- Field wrapper ---------------- */
+
+function Field({
+  label,
+  htmlFor,
+  error,
+  hint,
+  children,
+}: {
+  label: string;
+  htmlFor: string;
+  error?: string;
+  hint?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="space-y-1.5">
+      <div className="flex items-baseline justify-between">
+        <Label htmlFor={htmlFor}>{label}</Label>
+        {hint && !error && (
+          <span className="text-[11px] text-slate-400 font-normal">{hint}</span>
+        )}
+      </div>
+      {children}
+      {error && (
+        <p
+          role="alert"
+          className="text-[12px] text-red-600 font-medium flex items-center gap-1"
+        >
+          <span aria-hidden="true">⚠</span>
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}
+
+/* ---------------- Success panel ---------------- */
+
+function SuccessPanel({
+  nome,
+  telefone,
+  onClose,
+}: {
+  nome: string;
+  telefone: string;
+  onClose: () => void;
+}) {
+  const maskedPhone = React.useMemo(() => {
+    const digits = telefone.replace(/\D/g, "");
+    if (digits.length < 8) return telefone;
+    const last = digits.slice(-4);
+    const mid = digits.slice(-8, -4);
+    return `(${digits.slice(-11, -9) || "  "}) ${mid.slice(0, 1)} ${mid.slice(1)}-${last}`;
+  }, [telefone]);
+
+  return (
+    <div className="relative overflow-hidden">
+      {/* Header verde "mensagem enviada" */}
+      <div
+        className="relative px-6 pt-10 pb-8 text-center overflow-hidden"
+        style={{
+          background:
+            "linear-gradient(135deg, #1eba58 0%, #25D366 50%, #1eba58 100%)",
+        }}
+      >
+        {/* Decorative */}
+        <div
+          className="pointer-events-none absolute -top-16 left-1/2 -translate-x-1/2 h-40 w-40 rounded-full opacity-25 blur-3xl"
+          style={{ background: "radial-gradient(circle, white 0%, transparent 70%)" }}
+          aria-hidden="true"
+        />
+        <motion.div
+          initial={{ scale: 0, rotate: -90 }}
+          animate={{ scale: 1, rotate: 0 }}
+          transition={{ type: "spring", stiffness: 260, damping: 18, delay: 0.1 }}
+          className="relative inline-flex items-center justify-center h-16 w-16 rounded-full bg-white/95 shadow-xl mb-4"
+        >
+          <Check className="h-8 w-8 text-[#1eba58]" strokeWidth={3} />
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.22 }}
+        >
+          <DialogTitle className="text-white text-[24px] font-heading font-bold leading-tight mb-1">
+            Tudo certo, {nome}! 🎉
+          </DialogTitle>
+          <DialogDescription className="text-white/90 text-[14px]">
+            Cadastro recebido com sucesso.
+          </DialogDescription>
+        </motion.div>
+      </div>
+
+      {/* Instruções */}
+      <div className="px-6 py-6 sm:px-7 sm:py-7 space-y-5 bg-white">
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35 }}
+          className="flex gap-3 items-start rounded-xl border border-slate-200 bg-slate-50/50 p-4"
+        >
+          <div className="flex-shrink-0 h-9 w-9 rounded-full bg-[#25D366]/10 flex items-center justify-center">
+            <FaWhatsapp className="h-4 w-4 text-[#1eba58]" />
+          </div>
+          <div className="text-[13px] text-slate-700 leading-relaxed">
+            <p className="font-semibold text-[#1E3A5F] mb-0.5">
+              Mensagem enviada pro seu WhatsApp
+            </p>
+            <p className="text-slate-600">
+              Verifique seu WhatsApp em <span className="font-semibold text-[#1E3A5F]">{maskedPhone}</span>. Se não aparecer em 2 minutos, olhe em conversas arquivadas.
+            </p>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.45 }}
+          className="flex gap-3 items-start rounded-xl border border-slate-200 bg-slate-50/50 p-4"
+        >
+          <div className="flex-shrink-0 h-9 w-9 rounded-full bg-[#FFA500]/10 flex items-center justify-center">
+            <MapPin className="h-4 w-4 text-[#FFA500]" />
+          </div>
+          <div className="text-[13px] text-slate-700 leading-relaxed">
+            <p className="font-semibold text-[#1E3A5F] mb-0.5">
+              Viabilidade em análise
+            </p>
+            <p className="text-slate-600">
+              Nosso time comercial já vai confirmar a disponibilidade no seu endereço e retornar no seu WhatsApp com os próximos passos.
+            </p>
+          </div>
+        </motion.div>
+
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.55 }}
+          type="button"
+          onClick={onClose}
+          className="w-full rounded-xl border-2 border-[#1E3A5F] bg-transparent text-[#1E3A5F] font-semibold py-3 text-[14px] hover:bg-[#1E3A5F] hover:text-white transition-colors duration-200"
+        >
+          Fechar
+        </motion.button>
+      </div>
+    </div>
+  );
+}

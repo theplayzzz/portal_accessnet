@@ -132,6 +132,16 @@ dist
 # Playwright screenshots
 screenshots/
 
+# Playwright test artifacts
+/playwright-report/
+/test-results/
+/playwright/.cache/
+/tests/e2e/.auth/
+
+# Prisma local db / journal
+/prisma/*.db
+/prisma/*.db-journal
+
 # Images served from Vercel Blob (see scripts/blob-upload.mjs)
 /public/images/
 /imagens/

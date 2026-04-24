@@ -1,7 +1,6 @@
 import { siteConfig } from "@/config/site";
 import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+import { FooterSocialLink } from "./FooterSocialLink";
 
 const Footer = async () => {
   return (
@@ -54,16 +53,10 @@ const Footer = async () => {
             </h3>
             <div className="flex gap-4">
               {siteConfig.footerLinks.map((link) => (
-                <a
+                <FooterSocialLink
                   key={link.name}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={link.name}
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/60 hover:text-[#FFA500] hover:bg-white/20 transition-all"
-                >
-                  {React.createElement(link.icon, { size: 18 })}
-                </a>
+                  link={{ name: link.name, href: link.href }}
+                />
               ))}
             </div>
           </div>
