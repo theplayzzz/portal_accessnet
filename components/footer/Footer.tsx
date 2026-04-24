@@ -14,7 +14,7 @@ const Footer = async () => {
               alt="AccessNet"
               width={160}
               height={40}
-              className="h-10 w-auto mb-6"
+              className="h-10 w-auto mb-6 mix-blend-screen"
             />
             <div className="space-y-2 text-white/60 text-sm">
               <p>Av. Castelo Branco, 3176 - Pinheiro/MA</p>

@@ -11,6 +11,7 @@ const navLinks = [
   { label: "Planos", href: "/#Planos" },
   { label: "Cobertura", href: "/#Cobertura" },
   { label: "Rede Móvel", href: "/rede-movel" },
+  { label: "Central do Assinante", href: "https://ixc.accessnet.com.br", external: true },
   { label: "Dúvidas", href: "/#Duvidas" },
 ];
 
@@ -52,6 +53,7 @@ const Header = () => {
               <li key={link.label}>
                 <Link
                   href={link.href}
+                  {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   className="text-sm font-medium text-gray-600 hover:text-[#1E3A5F] transition-colors"
                 >
                   {link.label}
@@ -107,6 +109,7 @@ const Header = () => {
                 <li key={link.label}>
                   <Link
                     href={link.href}
+                    {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     onClick={() => setIsMenuOpen(false)}
                     className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-lg"
                   >
