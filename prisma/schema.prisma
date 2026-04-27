@@ -36,16 +36,23 @@ model Lead {
   // Estado da integração Opa!
   opaContatoId      String?   @map("opa_contato_id")
   opaTemplateSentId String?   @map("opa_template_sent_id")
-  opaStatus         String?   @map("opa_status") // 'pending' | 'sent' | 'failed' | 'retry_scheduled'
+  opaStatus         String?   @map("opa_status") // 'pending' | 'sent' | 'delivered' | 'read' | 'replied' | 'failed' | 'retry_scheduled'
   opaError          String?   @map("opa_error")
   opaAttempts       Int       @default(0) @map("opa_attempts")
   opaLastAttemptAt  DateTime? @map("opa_last_attempt_at") @db.Timestamptz(6)
+
+  // Timestamps de eventos vindos via webhook do Opa!
+  opaDeliveredAt   DateTime? @map("opa_delivered_at") @db.Timestamptz(6)
+  opaReadAt        DateTime? @map("opa_read_at") @db.Timestamptz(6)
+  opaRepliedAt     DateTime? @map("opa_replied_at") @db.Timestamptz(6)
+  opaLastWebhookAt DateTime? @map("opa_last_webhook_at") @db.Timestamptz(6)
 
   logs DataTransferLog[]
 
   @@index([telefone])
   @@index([createdAt])
   @@index([opaStatus])
+  @@index([opaTemplateSentId])
   @@map("leads")
 }
 
