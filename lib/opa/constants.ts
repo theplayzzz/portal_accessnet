@@ -17,18 +17,25 @@
 /**
  * ID do template de mensagem enviado ao lead após cadastro.
  *
- * Atual: `lead_viabilidade_site` — categoria UTILIDADE, 2 variáveis nomeadas
+ * Atual: `lead_viabilidade_site_v2` — categoria UTILIDADE, 2 variáveis nomeadas
  * (`{{nome_cliente}}`, `{{variavel_vazia}}` = endereço), aprovado pela Meta.
- * Texto: "Oi {{nome_cliente}}! Recebemos seu cadastro... 📍 *{{variavel_vazia}}*..."
+ * Texto: "Olá! 👋 Aqui é da AccessNet. Recebemos uma solicitação...
+ *         👤 {{nome_cliente}} 📍 {{variavel_vazia}} Essas informações estão corretas?"
  *
  * As variáveis são enviadas via `variaveis: [nome, endereco]` — Opa! substitui
  * por ordem de aparição no texto, não pelo nome do placeholder.
+ *
+ * Histórico:
+ *   v1 (`lead_viabilidade_site`, _id 69ebd1865b824a461b7bc130) — texto era
+ *   monológico ("Em breve um consultor entra em contato"). Substituído pelo v2
+ *   pra induzir resposta do lead (pergunta direta), aumentando conversão e
+ *   abrindo atendimento mais rápido.
  *
  * PENDÊNCIA (Fase 2, só UI): criar fluxo "Leads Site" e amarrar ao template
  * via "Editar informações → Fluxo de comunicação" pra resposta cair direto no
  * Comercial em vez do 1-Entrada.
  */
-export const OPA_TEMPLATE_LEAD_ID = "69ebd1865b824a461b7bc130";
+export const OPA_TEMPLATE_LEAD_ID = "69efb3e28a18ecfccb538ada";
 
 /**
  * ID do departamento "Comercial" no Opa! Suite.

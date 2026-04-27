@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaWhatsapp } from "react-icons/fa";
-import { Check, Loader2, MapPin } from "lucide-react";
+import { ArrowRight, Check, Loader2 } from "lucide-react";
 
 import {
   Dialog,
@@ -17,6 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { useLeadModal } from "./useLeadModal";
 import { captureUtms } from "@/lib/utm";
@@ -447,94 +448,183 @@ function SuccessPanel({
     return `(${digits.slice(-11, -9) || "  "}) ${mid.slice(0, 1)} ${mid.slice(1)}-${last}`;
   }, [telefone]);
 
+  const firstName = nome?.trim().split(" ")[0] ?? "";
+  const fallbackHref = `https://wa.me/${siteConfig.whatsappNumber}`;
+
   return (
     <div className="relative overflow-hidden">
-      {/* Header verde "mensagem enviada" */}
+      {/* Header verde compacto — confirmação calma */}
       <div
-        className="relative px-6 pt-10 pb-8 text-center overflow-hidden"
+        className="relative px-6 pt-7 pb-6 sm:px-7 sm:pt-8 sm:pb-7 overflow-hidden"
         style={{
           background:
-            "linear-gradient(135deg, #1eba58 0%, #25D366 50%, #1eba58 100%)",
+            "linear-gradient(135deg, #15a847 0%, #1eba58 45%, #25D366 100%)",
         }}
       >
-        {/* Decorative */}
         <div
-          className="pointer-events-none absolute -top-16 left-1/2 -translate-x-1/2 h-40 w-40 rounded-full opacity-25 blur-3xl"
+          className="pointer-events-none absolute -top-16 left-1/3 -translate-x-1/2 h-40 w-40 rounded-full opacity-25 blur-3xl"
           style={{ background: "radial-gradient(circle, white 0%, transparent 70%)" }}
           aria-hidden="true"
         />
-        <motion.div
-          initial={{ scale: 0, rotate: -90 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ type: "spring", stiffness: 260, damping: 18, delay: 0.1 }}
-          className="relative inline-flex items-center justify-center h-16 w-16 rounded-full bg-white/95 shadow-xl mb-4"
-        >
-          <Check className="h-8 w-8 text-[#1eba58]" strokeWidth={3} />
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 6 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.22 }}
-        >
-          <DialogTitle className="text-white text-[24px] font-heading font-bold leading-tight mb-1">
-            Tudo certo, {nome}! 🎉
-          </DialogTitle>
-          <DialogDescription className="text-white/90 text-[14px]">
-            Cadastro recebido com sucesso.
-          </DialogDescription>
-        </motion.div>
+        <div
+          className="pointer-events-none absolute -bottom-20 -right-12 h-44 w-44 rounded-full opacity-20 blur-3xl"
+          style={{ background: "radial-gradient(circle, #e7ffe9 0%, transparent 70%)" }}
+          aria-hidden="true"
+        />
+
+        <div className="relative z-10 flex items-start gap-4">
+          <motion.div
+            initial={{ scale: 0, rotate: -180 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ type: "spring", stiffness: 220, damping: 16, delay: 0.05 }}
+            className="flex-shrink-0 inline-flex items-center justify-center h-12 w-12 rounded-full bg-white/95 shadow-lg shadow-emerald-900/20"
+          >
+            <Check className="h-6 w-6 text-[#15a847]" strokeWidth={3.5} />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: -6 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.18, duration: 0.3 }}
+            className="pt-0.5 min-w-0"
+          >
+            <DialogTitle className="text-white text-[19px] sm:text-[20px] font-heading font-bold leading-tight">
+              {firstName
+                ? `${firstName}, te mandamos um WhatsApp.`
+                : "Te mandamos um WhatsApp."}
+            </DialogTitle>
+            <DialogDescription className="text-white/85 text-[13px] mt-1 leading-snug">
+              Confira o seu celular em{" "}
+              <span className="font-semibold text-white whitespace-nowrap">
+                {maskedPhone}
+              </span>
+            </DialogDescription>
+          </motion.div>
+        </div>
       </div>
 
-      {/* Instruções */}
-      <div className="px-6 py-6 sm:px-7 sm:py-7 space-y-5 bg-white">
+      {/* Body */}
+      <div className="px-6 py-6 sm:px-7 sm:py-6 bg-white">
+        {/* Preview do que ele vai ver no WhatsApp */}
         <motion.div
-          initial={{ opacity: 0, y: 8 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.35 }}
-          className="flex gap-3 items-start rounded-xl border border-slate-200 bg-slate-50/50 p-4"
+          transition={{ delay: 0.28, duration: 0.35 }}
         >
-          <div className="flex-shrink-0 h-9 w-9 rounded-full bg-[#25D366]/10 flex items-center justify-center">
-            <FaWhatsapp className="h-4 w-4 text-[#1eba58]" />
+          <div className="flex items-center gap-2 mb-2.5">
+            <FaWhatsapp className="h-3.5 w-3.5 text-[#25D366]" />
+            <span className="text-[10.5px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+              O que vai chegar
+            </span>
+            <div className="flex-1 h-px bg-gradient-to-r from-slate-200 to-transparent" />
           </div>
-          <div className="text-[13px] text-slate-700 leading-relaxed">
-            <p className="font-semibold text-[#1E3A5F] mb-0.5">
-              Mensagem enviada pro seu WhatsApp
+
+          <div
+            className="relative rounded-2xl rounded-tl-md p-4 shadow-sm overflow-hidden"
+            style={{ backgroundColor: "#202C33" }}
+          >
+            {/* Sutil noise pra simular fundo do WhatsApp */}
+            <div
+              className="pointer-events-none absolute inset-0 opacity-[0.04]"
+              style={{
+                backgroundImage:
+                  "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+                backgroundSize: "12px 12px",
+              }}
+              aria-hidden="true"
+            />
+
+            <p className="relative text-white text-[13px] leading-[1.55] mb-3">
+              Olá! 👋 Aqui é da AccessNet.
+              <br />
+              <br />
+              Recebemos uma solicitação em nosso site para consulta de
+              viabilidade. Essas informações estão corretas?
             </p>
-            <p className="text-slate-600">
-              Verifique seu WhatsApp em <span className="font-semibold text-[#1E3A5F]">{maskedPhone}</span>. Se não aparecer em 2 minutos, olhe em conversas arquivadas.
+            <div className="relative grid grid-cols-2 gap-1.5 -mx-1 -mb-1 pt-2 border-t border-white/[0.07]">
+              <div
+                className="flex items-center justify-center gap-1.5 rounded-lg py-2.5 px-3 text-[13px] font-semibold"
+                style={{ color: "#53bdeb", backgroundColor: "rgba(255,255,255,0.04)" }}
+              >
+                <Check className="h-3.5 w-3.5" strokeWidth={3} />
+                Sou eu
+              </div>
+              <div
+                className="flex items-center justify-center rounded-lg py-2.5 px-3 text-[13px] font-semibold"
+                style={{ color: "#53bdeb", backgroundColor: "rgba(255,255,255,0.04)" }}
+              >
+                Não sou eu
+              </div>
+            </div>
+          </div>
+
+          {/* Ação requerida */}
+          <div className="mt-3.5 flex items-start gap-2.5">
+            <span
+              className="flex-shrink-0 inline-flex items-center justify-center h-5 w-5 rounded-full text-[#FF8A00] mt-[1px]"
+              style={{ backgroundColor: "rgba(255,165,0,0.14)" }}
+              aria-hidden="true"
+            >
+              <span className="text-[11px] font-black leading-none">!</span>
+            </span>
+            <p className="text-[13px] text-slate-700 leading-relaxed">
+              Toque em{" "}
+              <span className="font-bold text-[#1E3A5F]">Sou eu</span> pra
+              confirmar — um consultor te chama em seguida.
             </p>
           </div>
         </motion.div>
 
-        <motion.div
+        {/* Divisor narrativo */}
+        <div className="relative my-5">
+          <div className="absolute inset-0 flex items-center" aria-hidden="true">
+            <div className="w-full h-px bg-slate-200" />
+          </div>
+          <div className="relative flex justify-center">
+            <span className="bg-white px-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+              Não chegou?
+            </span>
+          </div>
+        </div>
+
+        {/* Fallback CTA — atendimento direto */}
+        <motion.a
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.45 }}
-          className="flex gap-3 items-start rounded-xl border border-slate-200 bg-slate-50/50 p-4"
+          transition={{ delay: 0.42 }}
+          href={fallbackHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={cn(
+            "group relative flex items-center justify-between gap-3 w-full rounded-xl px-4 py-3.5 transition-all duration-200",
+            "border border-slate-200 bg-gradient-to-br from-slate-50 to-white",
+            "hover:border-[#1E3A5F] hover:shadow-md hover:shadow-[#1E3A5F]/8",
+            "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1E3A5F] focus-visible:ring-offset-2"
+          )}
         >
-          <div className="flex-shrink-0 h-9 w-9 rounded-full bg-[#FFA500]/10 flex items-center justify-center">
-            <MapPin className="h-4 w-4 text-[#FFA500]" />
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="flex-shrink-0 h-10 w-10 rounded-lg bg-[#25D366]/10 group-hover:bg-[#25D366] transition-colors flex items-center justify-center">
+              <FaWhatsapp className="h-[18px] w-[18px] text-[#1eba58] group-hover:text-white transition-colors" />
+            </div>
+            <div className="text-left min-w-0">
+              <p className="text-[14px] font-bold text-[#1E3A5F] leading-tight">
+                Não recebi a mensagem
+              </p>
+              <p className="text-[11.5px] text-slate-500 leading-tight mt-0.5">
+                Falar agora com a central {siteConfig.phone}
+              </p>
+            </div>
           </div>
-          <div className="text-[13px] text-slate-700 leading-relaxed">
-            <p className="font-semibold text-[#1E3A5F] mb-0.5">
-              Viabilidade em análise
-            </p>
-            <p className="text-slate-600">
-              Nosso time comercial já vai confirmar a disponibilidade no seu endereço e retornar no seu WhatsApp com os próximos passos.
-            </p>
-          </div>
-        </motion.div>
+          <ArrowRight className="flex-shrink-0 h-4 w-4 text-slate-400 group-hover:text-[#1E3A5F] group-hover:translate-x-0.5 transition-all" />
+        </motion.a>
 
-        <motion.button
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.55 }}
+        {/* Close — exit terciário */}
+        <button
           type="button"
           onClick={onClose}
-          className="w-full rounded-xl border-2 border-[#1E3A5F] bg-transparent text-[#1E3A5F] font-semibold py-3 text-[14px] hover:bg-[#1E3A5F] hover:text-white transition-colors duration-200"
+          className="mt-2 w-full text-center text-[12.5px] text-slate-400 hover:text-slate-600 transition-colors py-2 focus:outline-none focus-visible:underline"
         >
           Fechar
-        </motion.button>
+        </button>
       </div>
     </div>
   );
