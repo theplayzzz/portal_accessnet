@@ -142,6 +142,11 @@ export async function sendLeadTemplate(
   // 3. Envia template
   // `variaveis` é posicional: posição N = N-ésimo placeholder na ordem em que
   // aparecem no texto do template. Para `lead_viabilidade_site`: [nome, endereco].
+  //
+  // `allowSendingToStartedCustomerService: true` cobre o caso em que o lead
+  // já tem atendimento aberto (ex: respondeu o template anterior) — sem isso,
+  // o Opa! responde 400 "Este contato já está em atendimento com X" e o user
+  // que cadastrou de novo nunca vê a mensagem prometida na tela de sucesso.
   const sendBody: OpaTemplateSendInput = {
     contato: { canalCliente: input.telefoneE164 },
     template: {
@@ -149,6 +154,7 @@ export async function sendLeadTemplate(
       variaveis: [input.nome, input.endereco],
     },
     canal: OPA_CANAL_WHATSAPP_ID,
+    allowSendingToStartedCustomerService: true,
     metadata: {
       leadId: input.leadId,
       correlationId: input.correlationId,

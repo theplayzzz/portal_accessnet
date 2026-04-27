@@ -449,7 +449,10 @@ function SuccessPanel({
   }, [telefone]);
 
   const firstName = nome?.trim().split(" ")[0] ?? "";
-  const fallbackHref = `https://wa.me/${siteConfig.whatsappNumber}`;
+  const fallbackText = encodeURIComponent(
+    "Olá! Preenchi meus dados no site e quero continuar o atendimento."
+  );
+  const fallbackHref = `https://wa.me/${siteConfig.whatsappNumber}?text=${fallbackText}`;
 
   return (
     <div className="relative overflow-hidden">
@@ -586,7 +589,7 @@ function SuccessPanel({
           </div>
         </div>
 
-        {/* Fallback CTA — atendimento direto */}
+        {/* Fallback CTA — atendimento direto, alto contraste */}
         <motion.a
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -595,26 +598,40 @@ function SuccessPanel({
           target="_blank"
           rel="noopener noreferrer"
           className={cn(
-            "group relative flex items-center justify-between gap-3 w-full rounded-xl px-4 py-3.5 transition-all duration-200",
-            "border border-slate-200 bg-gradient-to-br from-slate-50 to-white",
-            "hover:border-[#1E3A5F] hover:shadow-md hover:shadow-[#1E3A5F]/8",
-            "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1E3A5F] focus-visible:ring-offset-2"
+            "group relative flex items-center justify-between gap-3 w-full overflow-hidden rounded-xl px-4 py-3.5 transition-all duration-200",
+            "text-white shadow-lg",
+            "hover:shadow-xl hover:-translate-y-[1px]",
+            "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFA500] focus-visible:ring-offset-2"
           )}
+          style={{
+            background:
+              "linear-gradient(135deg, #FFA500 0%, #FF8A00 55%, #F77F00 100%)",
+            boxShadow:
+              "0 8px 20px -6px rgba(255,138,0,0.45), 0 2px 4px rgba(30,58,95,0.08)",
+          }}
         >
-          <div className="flex items-center gap-3 min-w-0">
-            <div className="flex-shrink-0 h-10 w-10 rounded-lg bg-[#25D366]/10 group-hover:bg-[#25D366] transition-colors flex items-center justify-center">
-              <FaWhatsapp className="h-[18px] w-[18px] text-[#1eba58] group-hover:text-white transition-colors" />
+          {/* Shimmer no hover */}
+          <span
+            className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            aria-hidden="true"
+          >
+            <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/25 to-transparent skew-x-[-20deg]" />
+          </span>
+
+          <div className="relative flex items-center gap-3 min-w-0">
+            <div className="flex-shrink-0 h-10 w-10 rounded-lg bg-white flex items-center justify-center shadow-sm">
+              <FaWhatsapp className="h-[19px] w-[19px] text-[#1eba58]" />
             </div>
             <div className="text-left min-w-0">
-              <p className="text-[14px] font-bold text-[#1E3A5F] leading-tight">
+              <p className="text-[14.5px] font-extrabold leading-tight tracking-tight">
                 Não recebi a mensagem
               </p>
-              <p className="text-[11.5px] text-slate-500 leading-tight mt-0.5">
-                Falar agora com a central {siteConfig.phone}
+              <p className="text-[12px] text-white/85 leading-tight mt-0.5 font-medium">
+                Falar com a central pelo WhatsApp
               </p>
             </div>
           </div>
-          <ArrowRight className="flex-shrink-0 h-4 w-4 text-slate-400 group-hover:text-[#1E3A5F] group-hover:translate-x-0.5 transition-all" />
+          <ArrowRight className="relative flex-shrink-0 h-[18px] w-[18px] text-white group-hover:translate-x-0.5 transition-transform" />
         </motion.a>
 
         {/* Close — exit terciário */}
