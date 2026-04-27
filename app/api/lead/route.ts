@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { after } from "next/server";
 import { randomUUID } from "node:crypto";
 
 import { prisma } from "@/lib/db";
@@ -156,11 +157,11 @@ export async function POST(req: NextRequest) {
     leadId,
   });
 
-  // 7. Dispara Opa! em "background" (best-effort). Não bloqueia a resposta.
-  //    No runtime nodejs do Next.js, o await é permitido após o response,
-  //    mas usamos uma promise que não é awaitada para não atrasar o cliente.
-  //    Usamos waitUntil-like com Promise.resolve().then(...)
-  const opaPromise = (async () => {
+  // 7. Dispara Opa! em background, mantendo o lambda vivo via `after()`.
+  //    Em produção (Vercel), fire-and-forget puro morre quando o lambda
+  //    encerra após o response — `after()` garante execução até o fim.
+  //    Em E2E (E2E_AWAIT_OPA=1) rodamos sync pra poder validar na mesma request.
+  const runOpaPipeline = async () => {
     try {
       const result = await sendLeadTemplate({
         leadId,
@@ -196,7 +197,6 @@ export async function POST(req: NextRequest) {
         });
       }
     } catch (err) {
-      // Blindagem: qualquer erro inesperado é logado e segue
       await logEvent({
         eventType: "opa.pipeline.unexpected_error",
         direction: "internal",
@@ -219,15 +219,12 @@ export async function POST(req: NextRequest) {
         /* ignore */
       }
     }
-  })();
+  };
 
-  // Em ambiente de teste/E2E aguardamos pra poder verificar os resultados na mesma request.
-  // Em produção deixamos o pipeline rodar em background — user já tem 200 na mão.
   if (process.env.E2E_AWAIT_OPA === "1") {
-    await opaPromise;
+    await runOpaPipeline();
   } else {
-    // Fire-and-forget
-    opaPromise.catch(() => { /* já logado acima */ });
+    after(runOpaPipeline);
   }
 
   return NextResponse.json(
