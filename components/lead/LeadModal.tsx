@@ -21,6 +21,7 @@ import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { useLeadModal } from "./useLeadModal";
 import { captureUtms } from "@/lib/utm";
+import { reportLeadConversion } from "@/gtag.js";
 
 type FormState = "form" | "submitting" | "success";
 
@@ -140,6 +141,13 @@ export function LeadModal() {
       setState("form");
       alert("Muitas requisições em pouco tempo. Aguarde um instante e tente novamente.");
       return;
+    }
+
+    // Conversão Google Ads: dispara só quando o backend confirmou o lead (2xx).
+    // Em 5xx/timeout o usuário ainda vê sucesso (DB é source of truth pro UX),
+    // mas evitamos inflar conversões com submits que não chegaram ao DB.
+    if (res && res.ok) {
+      reportLeadConversion();
     }
 
     // Mesmo que Opa! falhe no background ou o backend tenha dado 5xx,

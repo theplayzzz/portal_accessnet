@@ -64,3 +64,16 @@ To update copy or add plans/cities/stores, edit these config files — component
 - WhatsApp is the primary CTA channel — the floating button and plan CTAs link to `wa.me/5508004491021`
 - Pricing section is placed before features intentionally (high-intent ad traffic)
 - Animations use Framer Motion
+
+## OPA! Suite API (integration in `lib/opa/`)
+
+Docs: **https://api.opasuite.com.br/** is a Postman documenter site (custom subdomain pointing at `documenter.gw.postman.com` infra). The HTML page often 403s to scrapers, but the **raw collection JSON** is reachable at `https://api.opasuite.com.br/api/collections/21046266/UyxnEkBh?segregateAuth=true&versionTag=latest` — that's where every endpoint, body schema, and example response lives. Always consult that JSON before guessing parameter names; the API conventions aren't intuitive. (General pattern: when any vendor's docs are hosted on Postman, grab `ownerId` and `publishedId` from the page's `<meta>` tags and hit `/api/collections/{ownerId}/{publishedId}` on the same host to get the full collection.)
+
+Things to know that aren't in the docs:
+
+- **Auth requires a custom "Grupo de permissões da API" with "Grupo exclusivo para API" enabled.** The default `ixc_opa` profile is too narrow for analytics. Even with a broad API role, some endpoints (`/atendente`, `/motivo-atendimento`, `/relatorio`, `/dashboard`) are panel-only and respond `302 → /auth/login` — the API does not expose them. Use `/usuario` instead of `/atendente` for agent names.
+- **`GET /atendimento` requires a JSON body for filters** (per the docs) — pass `-X GET` to curl explicitly, otherwise curl converts to POST and gets 302'd. Node's native `fetch` rejects GET-with-body too; `lib/opa/client.ts` uses `undici` to work around this.
+- **No body = the *oldest* 1000 tickets**, not the latest. Always send at least a date filter. `options.limit` caps at 1000/page; paginate via `options.skip`.
+- **For sales/outcome metrics, use the `ADESÃO` tag, not the `setor`.** Setor is just where the bot's flow routed the ticket, and routing is unreliable (~80% of sales close in Suporte/Financeiro, not Comercial). The OPA tag taxonomy has multiple co-existing generations — when measuring conversion, match against both `ADESÃO` (uppercase, current, ID `69d7efea75adc269f9874849`) and `Adesão` (lowercase, older, ID `670d5ffb2afcb606af05580e`). Resolve tag names via `GET /etiqueta/`.
+- **Don't use `id_cliente` presence as a sale proxy** — contacts get linked to ERP customers for many reasons unrelated to this specific ticket.
+- **ObjectId timestamp trick**: the first 4 bytes of any Mongo `_id` are a Unix timestamp (`new Date(parseInt(id.slice(0,8), 16) * 1000)`) — useful when records lack a `createdAt` field.

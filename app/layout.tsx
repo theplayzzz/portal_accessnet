@@ -5,6 +5,7 @@ import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
 import { LeadModalProvider } from "@/components/lead/LeadModalProvider";
 import WhatsAppFloating from "@/components/home/WhatsAppFloating";
+import { StructuredData } from "@/components/seo/StructuredData";
 
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
@@ -35,6 +36,25 @@ export const metadata = {
   metadataBase: siteConfig.metadataBase,
   openGraph: siteConfig.openGraph,
   twitter: siteConfig.twitter,
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  formatDetection: {
+    telephone: true,
+    email: true,
+    address: true,
+  },
 };
 export const viewport: Viewport = {
   themeColor: siteConfig.themeColors,
@@ -47,7 +67,9 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <head />
+      <head>
+        <StructuredData />
+      </head>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
