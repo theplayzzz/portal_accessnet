@@ -81,6 +81,10 @@ export function opaPost<T>(path: string, body: unknown) {
   return opaCall<T>("POST", path, body);
 }
 
+export function opaPut<T>(path: string, body: unknown) {
+  return opaCall<T>("PUT", path, body);
+}
+
 export function opaDelete<T>(path: string) {
   return opaCall<T>("DELETE", path);
 }

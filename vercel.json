@@ -3,5 +3,11 @@
   "framework": "nextjs",
   "buildCommand": "next build",
   "devCommand": "next dev",
-  "installCommand": "pnpm install"
+  "installCommand": "pnpm install",
+  "crons": [
+    {
+      "path": "/api/cron/apply-lead-site-tag",
+      "schedule": "*/15 * * * *"
+    }
+  ]
 }

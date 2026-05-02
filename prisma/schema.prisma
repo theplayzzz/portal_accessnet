@@ -60,6 +60,12 @@ model Lead {
   opaRepliedAt     DateTime? @map("opa_replied_at") @db.Timestamptz(6)
   opaLastWebhookAt DateTime? @map("opa_last_webhook_at") @db.Timestamptz(6)
 
+  // Etiqueta "LEAD SITE" aplicada no(s) atendimento(s) que esse lead gerou no
+  // Opa! Suite. NULL enquanto o lead ainda não tiver atendimento associado
+  // (geralmente porque ainda não respondeu ao template). O cron de polling
+  // varre leads NULL e aplica a tag assim que aparecer um atendimento batendo.
+  opaTagAppliedAt DateTime? @map("opa_tag_applied_at") @db.Timestamptz(6)
+
   logs DataTransferLog[]
 
   @@index([telefone])
@@ -68,6 +74,7 @@ model Lead {
   @@index([opaTemplateSentId])
   @@index([gclid])
   @@index([fbclid])
+  @@index([opaTagAppliedAt])
   @@map("leads")
 }
 
