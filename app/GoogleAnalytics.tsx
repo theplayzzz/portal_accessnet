@@ -11,11 +11,15 @@ import * as gtag from "../gtag.js";
  * O componente só é montado fora de development (ver app/layout.tsx).
  */
 const GoogleAnalytics = () => {
+  // allow_enhanced_conversions: true habilita a opção via gtag (Enhanced
+  // Conversions for Leads). Ainda é preciso aceitar os termos de Customer
+  // Data no painel do Google Ads pra começar a atribuir.
+  // https://support.google.com/google-ads/answer/13258081
   const initScript = `
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', '${gtag.GA_ADS_ID}');
+    gtag('config', '${gtag.GA_ADS_ID}', { allow_enhanced_conversions: true });
     ${
       gtag.GA_TRACKING_ID
         ? `gtag('config', '${gtag.GA_TRACKING_ID}', { page_path: window.location.pathname });`

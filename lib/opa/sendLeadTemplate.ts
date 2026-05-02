@@ -44,6 +44,25 @@ function randomPassword() {
   return `L${bytes.replace(/[^a-zA-Z0-9]/g, "x")}@7!`;
 }
 
+/**
+ * Sanitiza parâmetros que vão pra `template.variaveis`.
+ *
+ * A WhatsApp Cloud API rejeita com `(#132018) There's an issue with the
+ * parameters in your template` quando uma variável tem newline, tab ou 4+
+ * espaços consecutivos. Mensagem literal da Meta: "Parameters cannot have
+ * new-line / tab characters or more than 4 consecutive spaces."
+ *
+ * O Opa! repassa o valor cru pro provedor sem sanitizar — então é nossa
+ * responsabilidade limpar antes de enviar. O endereço continua salvo cru no
+ * Lead.endereco do DB (preserva como o usuário digitou, útil pro comercial).
+ */
+export function sanitizeTemplateParam(s: string): string {
+  return s
+    .replace(/[\r\n\t]+/g, " ")
+    .replace(/ {4,}/g, "   ")
+    .trim();
+}
+
 function usernameFor(leadId: string, digits: string) {
   return `lead_${digits}_${leadId.slice(0, 8)}`;
 }
@@ -151,7 +170,10 @@ export async function sendLeadTemplate(
     contato: { canalCliente: input.telefoneE164 },
     template: {
       _id: OPA_TEMPLATE_LEAD_ID,
-      variaveis: [input.nome, input.endereco],
+      variaveis: [
+        sanitizeTemplateParam(input.nome),
+        sanitizeTemplateParam(input.endereco),
+      ],
     },
     canal: OPA_CANAL_WHATSAPP_ID,
     allowSendingToStartedCustomerService: true,

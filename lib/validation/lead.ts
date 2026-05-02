@@ -51,9 +51,26 @@ export const leadSubmitSchema = z.object({
       content: z.string().optional(),
     })
     .optional(),
+  // Click IDs / cookies de pixel — todos opcionais. Cap em 512 chars
+  // pra acomodar gclid/fbclid longos sem virar attack vector.
+  click: z
+    .object({
+      gclid: z.string().max(512).optional(),
+      gbraid: z.string().max(512).optional(),
+      wbraid: z.string().max(512).optional(),
+      gadSource: z.string().max(64).optional(),
+      gadCampaignId: z.string().max(64).optional(),
+      fbclid: z.string().max(512).optional(),
+      fbp: z.string().max(128).optional(),
+      fbc: z.string().max(256).optional(),
+      msclkid: z.string().max(512).optional(),
+      ttclid: z.string().max(512).optional(),
+    })
+    .optional(),
   sourcePage: z.string().optional(),
   sourceCta: z.string().min(1, "sourceCta obrigatório"),
-  referrer: z.string().optional(),
+  referrer: z.string().max(2048).optional(),
+  landingUrl: z.string().max(2048).optional(),
 });
 
 export type LeadSubmitInput = z.infer<typeof leadSubmitSchema>;

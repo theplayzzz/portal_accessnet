@@ -27,11 +27,24 @@ model Lead {
   utmTerm     String? @map("utm_term")
   utmContent  String? @map("utm_content")
 
+  // Click IDs — usados em Enhanced Conversions for Leads e upload offline
+  // (Google Ads / Meta Conversions API). Janela útil: 90 dias.
+  gclid         String? // Google Ads click ID (Search/Display/Shopping)
+  gbraid        String? // iOS web→app sem ATT
+  wbraid        String? // iOS app→web sem ATT
+  gadSource     String? @map("gad_source")
+  gadCampaignId String? @map("gad_campaign_id")
+  fbclid        String? // Meta click ID
+  fbp           String? // cookie _fbp do Meta Pixel
+  fbc           String? // cookie _fbc do Meta Pixel
+
   // Contexto de captura
   sourcePage String? @map("source_page")
   sourceCta  String? @map("source_cta")
   referrer   String?
+  landingUrl String? @map("landing_url")
   userAgent  String? @map("user_agent")
+  ipAddress  String? @map("ip_address")
 
   // Estado da integração Opa!
   opaContatoId      String?   @map("opa_contato_id")
@@ -53,6 +66,8 @@ model Lead {
   @@index([createdAt])
   @@index([opaStatus])
   @@index([opaTemplateSentId])
+  @@index([gclid])
+  @@index([fbclid])
   @@map("leads")
 }
 

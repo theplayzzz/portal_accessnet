@@ -35,3 +35,35 @@ export const reportLeadConversion = (callback) => {
     event_callback: typeof callback === "function" ? callback : undefined,
   });
 };
+
+/**
+ * Enhanced Conversions for Leads: passa email/phone do usuário pro gtag.js
+ * hashear localmente (SHA-256, normalizado) e enviar junto com a próxima
+ * conversão. O Google casa esses hashes com contas Google logadas que
+ * clicaram no anúncio — atribui conversão mesmo sem gclid (cross-device,
+ * cookie expirado por ITP, lead orgânico que tinha clicado antes).
+ *
+ * Requer: ativar "Enhanced conversions for leads" + aceitar termos de
+ * Customer Data no painel do Google Ads (Tools → Conversions).
+ *
+ * Docs: https://support.google.com/google-ads/answer/11021502
+ *
+ * @param {{email?: string, phone_number?: string, address?: {first_name?: string, last_name?: string, street?: string, city?: string, region?: string, postal_code?: string, country?: string}}} userData
+ */
+export const setEnhancedConversionUserData = (userData) => {
+  if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+  if (!userData) return;
+  // Filtra valores vazios — gtag rejeita strings vazias.
+  const clean = {};
+  if (userData.email) clean.email = userData.email;
+  if (userData.phone_number) clean.phone_number = userData.phone_number;
+  if (userData.address) {
+    const addr = {};
+    for (const [k, v] of Object.entries(userData.address)) {
+      if (v) addr[k] = v;
+    }
+    if (Object.keys(addr).length > 0) clean.address = addr;
+  }
+  if (Object.keys(clean).length === 0) return;
+  window.gtag("set", "user_data", clean);
+};

@@ -20,8 +20,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { useLeadModal } from "./useLeadModal";
-import { captureUtms } from "@/lib/utm";
-import { reportLeadConversion } from "@/gtag.js";
+import { captureTracking } from "@/lib/utm";
+import { reportLeadConversion, setEnhancedConversionUserData } from "@/gtag.js";
 
 type FormState = "form" | "submitting" | "success";
 
@@ -90,16 +90,19 @@ export function LeadModal() {
     attempt = 1
   ): Promise<Response | null> {
     try {
-      const utm = captureUtms();
+      const tracking = captureTracking();
       const payload = {
         ...values,
         sourceCta: source ?? "unknown",
         sourcePage:
           typeof window !== "undefined" ? window.location.pathname : undefined,
         referrer:
-          typeof document !== "undefined" ? document.referrer : undefined,
+          tracking?.referrer ??
+          (typeof document !== "undefined" ? document.referrer : undefined),
+        landingUrl: tracking?.landingUrl,
         planContext,
-        utm,
+        utm: tracking?.utm,
+        click: tracking?.click,
       };
       const res = await fetch("/api/lead", {
         method: "POST",
@@ -147,6 +150,21 @@ export function LeadModal() {
     // Em 5xx/timeout o usuário ainda vê sucesso (DB é source of truth pro UX),
     // mas evitamos inflar conversões com submits que não chegaram ao DB.
     if (res && res.ok) {
+      // Enhanced Conversions for Leads: o gtag hashea email/phone (SHA-256
+      // normalizado) localmente antes de enviar — o Google usa pra atribuir
+      // conversões mesmo sem gclid (cross-device, ITP, etc.).
+      // https://support.google.com/google-ads/answer/13262500
+      const [firstName, ...rest] = values.nome.trim().split(/\s+/);
+      setEnhancedConversionUserData({
+        email: values.email,
+        phone_number: values.telefone.replace(/\D/g, "").startsWith("55")
+          ? `+${values.telefone.replace(/\D/g, "")}`
+          : `+55${values.telefone.replace(/\D/g, "")}`,
+        address: {
+          first_name: firstName,
+          last_name: rest.join(" ") || undefined,
+        },
+      });
       reportLeadConversion();
     }
 
@@ -268,7 +286,7 @@ export function LeadModal() {
                   label="Endereço de instalação"
                   error={errors.endereco?.message}
                   htmlFor="lead-endereco"
-                  hint="Rua, número, bairro e cidade — pra checar a viabilidade"
+                  hint="Tudo numa linha, separado por vírgulas"
                 >
                   <Textarea
                     id="lead-endereco"
@@ -278,7 +296,36 @@ export function LeadModal() {
                     disabled={state === "submitting"}
                     invalid={!!errors.endereco}
                     data-testid="lead-field-endereco"
-                    {...register("endereco")}
+                    {...register("endereco", {
+                      // WhatsApp Cloud API rejeita variáveis com newline/tab/4+ espaços
+                      // (erro 132018). Sanitiza no momento em que o RHF lê o valor pra
+                      // submeter — backend também sanitiza como defesa em profundidade.
+                      setValueAs: (v: string) =>
+                        typeof v === "string"
+                          ? v.replace(/[\r\n\t]+/g, ", ").replace(/ {4,}/g, "   ")
+                          : v,
+                    })}
+                    onKeyDown={(e) => {
+                      // Bloqueia Enter — substitui por ", " no cursor.
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        const t = e.currentTarget;
+                        const start = t.selectionStart ?? t.value.length;
+                        const end = t.selectionEnd ?? start;
+                        const next =
+                          t.value.slice(0, start) + ", " + t.value.slice(end);
+                        const setter = Object.getOwnPropertyDescriptor(
+                          window.HTMLTextAreaElement.prototype,
+                          "value"
+                        )?.set;
+                        setter?.call(t, next);
+                        t.dispatchEvent(new Event("input", { bubbles: true }));
+                        const pos = start + 2;
+                        requestAnimationFrame(() => {
+                          t.selectionStart = t.selectionEnd = pos;
+                        });
+                      }
+                    }}
                   />
                 </Field>
 
