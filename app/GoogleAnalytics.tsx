@@ -15,6 +15,9 @@ const GoogleAnalytics = () => {
   // Conversions for Leads). Ainda é preciso aceitar os termos de Customer
   // Data no painel do Google Ads pra começar a atribuir.
   // https://support.google.com/google-ads/answer/13258081
+  // Conversão "Visualização de página" — dispara automaticamente assim que
+  // o gtag termina de inicializar. Equivale ao Event Snippet (Page Load) que
+  // o Google Ads gera quando você escolhe o gatilho "Carregamento da página".
   const initScript = `
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -25,6 +28,11 @@ const GoogleAnalytics = () => {
         ? `gtag('config', '${gtag.GA_TRACKING_ID}', { page_path: window.location.pathname });`
         : ""
     }
+    gtag('event', 'conversion', {
+      'send_to': '${gtag.GA_ADS_PAGEVIEW_CONVERSION_SEND_TO}',
+      'value': 1.0,
+      'currency': 'BRL'
+    });
   `;
 
   return (

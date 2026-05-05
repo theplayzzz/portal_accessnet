@@ -1,11 +1,17 @@
 // Google Analytics 4 (opcional, controlado por env)
 export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GOOGLE_ID || null;
 
-// Google Ads — ID da conta e label da conversão "Formulário de cadastro"
+// Google Ads — ID da conta e labels das conversões configuradas no painel
 // (hardcoded porque é a conta oficial deste site)
 export const GA_ADS_ID = "AW-11076623196";
+// "Formulário de cadastro" — dispara no submit confirmado pelo backend
 export const GA_ADS_LEAD_CONVERSION_SEND_TO =
   "AW-11076623196/cQHkCILwxKQcENy236Ep";
+// "Visualização de página" — dispara no carregamento do site e no clique
+// que abre o modal de formulário (CTA). Tem value=1.0 BRL configurado
+// no painel; mantemos o mesmo aqui pra não conflitar com a conversão.
+export const GA_ADS_PAGEVIEW_CONVERSION_SEND_TO =
+  "AW-11076623196/omGICOfbw6ccENy236Ep";
 
 export const pageview = (url) => {
   if (typeof window === "undefined" || typeof window.gtag !== "function") return;
@@ -20,6 +26,26 @@ export const event = ({ action, category, label, value }) => {
     event_category: category,
     event_label: label,
     value: value,
+  });
+};
+
+// Dispara o evento de conversão "Visualização de página" no Google Ads.
+// Usado em DOIS lugares:
+//   1. Carregamento da página (na init do gtag — ver GoogleAnalytics.tsx).
+//   2. Clique em qualquer CTA que abre o modal de cadastro
+//      (ver LeadModalProvider.openLeadModal).
+// Aceita callback opcional pra encadear redirects no padrão recomendado
+// pelo Google Ads (event snippet com event_callback).
+export const reportPageviewConversion = (callback) => {
+  if (typeof window === "undefined" || typeof window.gtag !== "function") {
+    if (typeof callback === "function") callback();
+    return;
+  }
+  window.gtag("event", "conversion", {
+    send_to: GA_ADS_PAGEVIEW_CONVERSION_SEND_TO,
+    value: 1.0,
+    currency: "BRL",
+    event_callback: typeof callback === "function" ? callback : undefined,
   });
 };
 
