@@ -150,9 +150,14 @@ function hasAnySignal(t: Tracking): boolean {
   return Boolean(t.utm || t.click);
 }
 
+function hasAnyContext(t: Tracking): boolean {
+  return Boolean(t.landingUrl || t.referrer);
+}
+
 /**
  * Lê tracking da URL/cookies atuais. Se houver algum sinal novo, persiste.
- * Caso contrário, devolve o último persistido (válido por 90 dias).
+ * Caso contrário, devolve o último persistido (válido por 90 dias). A primeira
+ * visita também persiste landing/referrer para preservar contexto de origem.
  *
  * Estratégia "first-touch wins": uma vez gravado, não sobrescreve com sessão
  * nova vazia — preserva o anúncio que originalmente trouxe o usuário.
@@ -178,6 +183,10 @@ export function captureTracking(): Tracking | undefined {
   if (stored) {
     const { savedAt: _omit, ...t } = stored;
     return t;
+  }
+
+  if (hasAnyContext(fresh)) {
+    persist(fresh);
   }
 
   return hasAnySignal(fresh) || fresh.landingUrl || fresh.referrer ? fresh : undefined;

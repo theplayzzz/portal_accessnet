@@ -8,10 +8,15 @@ export const GA_ADS_ID = "AW-11076623196";
 export const GA_ADS_LEAD_CONVERSION_SEND_TO =
   "AW-11076623196/cQHkCILwxKQcENy236Ep";
 // "Visualização de página" — dispara no carregamento do site e no clique
-// que abre o modal de formulário (CTA). Tem value=1.0 BRL configurado
-// no painel; mantemos o mesmo aqui pra não conflitar com a conversão.
+// do site. Tem value=1.0 BRL configurado no painel; mantemos o mesmo aqui
+// pra não conflitar com a conversão.
 export const GA_ADS_PAGEVIEW_CONVERSION_SEND_TO =
   "AW-11076623196/omGICOfbw6ccENy236Ep";
+// "Clique no CTA / abertura do formulário" — deve ser uma ação de conversão
+// separada no Google Ads. Não reutilize a label de pageview para clique, senão
+// o relatório mistura intenção com carregamento de página.
+export const GA_ADS_CTA_CLICK_CONVERSION_SEND_TO =
+  process.env.NEXT_PUBLIC_GOOGLE_ADS_CTA_CLICK_SEND_TO || null;
 
 export const pageview = (url) => {
   if (typeof window === "undefined" || typeof window.gtag !== "function") return;
@@ -30,10 +35,7 @@ export const event = ({ action, category, label, value }) => {
 };
 
 // Dispara o evento de conversão "Visualização de página" no Google Ads.
-// Usado em DOIS lugares:
-//   1. Carregamento da página (na init do gtag — ver GoogleAnalytics.tsx).
-//   2. Clique em qualquer CTA que abre o modal de cadastro
-//      (ver LeadModalProvider.openLeadModal).
+// Usado no carregamento da página (na init do gtag — ver GoogleAnalytics.tsx).
 // Aceita callback opcional pra encadear redirects no padrão recomendado
 // pelo Google Ads (event snippet com event_callback).
 export const reportPageviewConversion = (callback) => {
@@ -45,6 +47,32 @@ export const reportPageviewConversion = (callback) => {
     send_to: GA_ADS_PAGEVIEW_CONVERSION_SEND_TO,
     value: 1.0,
     currency: "BRL",
+    event_callback: typeof callback === "function" ? callback : undefined,
+  });
+};
+
+// Dispara clique/intenção como conversão somente quando houver uma conversion
+// label dedicada. Sempre envia um evento GA4 genérico se GA4 estiver ativo.
+export const reportCtaClick = ({ source, callback } = {}) => {
+  if (typeof window === "undefined" || typeof window.gtag !== "function") {
+    if (typeof callback === "function") callback();
+    return;
+  }
+
+  if (GA_TRACKING_ID) {
+    window.gtag("event", "generate_lead_intent", {
+      event_category: "lead",
+      event_label: source,
+    });
+  }
+
+  if (!GA_ADS_CTA_CLICK_CONVERSION_SEND_TO) {
+    if (typeof callback === "function") callback();
+    return;
+  }
+
+  window.gtag("event", "conversion", {
+    send_to: GA_ADS_CTA_CLICK_CONVERSION_SEND_TO,
     event_callback: typeof callback === "function" ? callback : undefined,
   });
 };

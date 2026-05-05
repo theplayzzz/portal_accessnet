@@ -2,7 +2,8 @@
 
 import * as React from "react";
 import { LeadModal } from "./LeadModal";
-import { reportPageviewConversion } from "@/gtag.js";
+import { reportCtaClick } from "@/gtag.js";
+import { captureTracking } from "@/lib/utm";
 
 export type LeadModalPlanContext = {
   planName?: string;
@@ -33,14 +34,17 @@ export function LeadModalProvider({ children }: { children: React.ReactNode }) {
   const [planContext, setPlanContext] =
     React.useState<LeadModalPlanContext | null>(null);
 
+  React.useEffect(() => {
+    captureTracking();
+  }, []);
+
   const openLeadModal = React.useCallback(
     (payload: LeadModalOpenPayload) => {
       setSource(payload.source);
       setPlanContext(payload.planContext ?? null);
       setOpen(true);
-      // Conversão "Visualização de página" — gatilho de clique:
-      // qualquer CTA que abre o modal de cadastro entra como intent.
-      reportPageviewConversion();
+      // Clique/intenção deve usar uma conversion label dedicada no Google Ads.
+      reportCtaClick({ source: payload.source });
     },
     []
   );
