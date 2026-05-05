@@ -7,7 +7,7 @@
   "crons": [
     {
       "path": "/api/cron/apply-lead-site-tag",
-      "schedule": "*/15 * * * *"
+      "schedule": "0 22 * * *"
     }
   ]
 }

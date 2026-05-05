@@ -10,9 +10,10 @@
  * header automaticamente quando o endpoint é invocado pelo agendador da
  * plataforma (ver vercel.json → crons).
  *
- * Schedule: a cada 15 minutos (vercel.json crons). Atendimento normalmente
- * abre minutos depois de o lead responder; 15min é compromisso entre latência
- * percebida e custo de polling.
+ * Schedule: 1x ao dia às 22:00 UTC = 19:00 BRT (vercel.json crons), limitação
+ * do plano Hobby da Vercel. Para polling mais frequente: (a) plano Pro libera
+ * sub-diário, (b) cron externo (ex: cron-job.org) batendo neste endpoint com
+ * o Bearer token, (c) trigger manual via curl quando o time quiser.
  */
 
 import { NextRequest, NextResponse } from "next/server";
