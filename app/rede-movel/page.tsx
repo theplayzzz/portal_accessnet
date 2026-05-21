@@ -1,5 +1,6 @@
 import MobileHero from "@/components/mobile/MobileHero";
 import MobilePricing from "@/components/mobile/MobilePricing";
+import MobileCombos from "@/components/mobile/MobileCombos";
 import MobileBenefits from "@/components/mobile/MobileBenefits";
 import MobileFAQ from "@/components/mobile/MobileFAQ";
 import MobileCTA from "@/components/mobile/MobileCTA";
@@ -15,6 +16,7 @@ export default function RedeMovelPage() {
     <>
       <MobileHero />
       <MobilePricing />
+      <MobileCombos />
       <MobileBenefits />
       <MobileFAQ />
       <MobileCTA />

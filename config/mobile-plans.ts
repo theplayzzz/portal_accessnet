@@ -66,6 +66,66 @@ export const MOBILE_PLANS_PT: MobilePlan[] = [
   },
 ];
 
+export type MobileComboPlan = {
+  key: string;
+  internetSpeed: string;
+  internetUnit: string;
+  gb: string;
+  title: string;
+  price: string;
+  priceSuffix: string;
+  baseData: string;
+  bonusData: string[];
+  mostPopular?: boolean;
+};
+
+export const MOBILE_COMBOS_PT: MobileComboPlan[] = [
+  {
+    key: "c16",
+    internetSpeed: "600",
+    internetUnit: "MEGA",
+    gb: "16GB",
+    title: "Combo Essencial",
+    price: "R$ 149,90",
+    priceSuffix: "/mês",
+    baseData: "10GB de franquia",
+    bonusData: [
+      "+5GB exclusivo para Youtube",
+      "+1GB de bônus (válido por 7 dias)",
+      "Chamadas e SMS ilimitados (com o Código 15)",
+    ],
+  },
+  {
+    key: "c21",
+    internetSpeed: "800",
+    internetUnit: "MEGA",
+    gb: "21GB",
+    title: "Combo Avançado",
+    price: "R$ 184,90",
+    priceSuffix: "/mês",
+    baseData: "20GB de franquia",
+    mostPopular: true,
+    bonusData: [
+      "+1GB de bônus (válido por 7 dias)",
+      "Chamadas e SMS ilimitados (com o Código 15)",
+    ],
+  },
+  {
+    key: "c26",
+    internetSpeed: "1",
+    internetUnit: "GIGA",
+    gb: "26GB",
+    title: "Combo Premium",
+    price: "R$ 264,90",
+    priceSuffix: "/mês",
+    baseData: "25GB de franquia",
+    bonusData: [
+      "+1GB de bônus (válido por 7 dias)",
+      "Chamadas e SMS ilimitados (com o Código 15)",
+    ],
+  },
+];
+
 export const MOBILE_FAQS_PT = [
   {
     title: "Quais apps são ilimitados no plano?",
