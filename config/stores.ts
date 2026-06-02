@@ -1,5 +1,7 @@
 export const STORES = [
   { name: "São Bento", image: "/api/blob-img/accessnet/stores/sao-bento.webp", address: "São Bento - MA" },
+  { name: "Bequimão", image: "/api/blob-img/accessnet/stores/bequimao.webp", address: "Bequimão - MA" },
+  { name: "Peri Mirim", image: "/api/blob-img/accessnet/stores/peri-mirim.webp", address: "Peri Mirim - MA" },
   { name: "Santa Helena", image: "/api/blob-img/accessnet/stores/santa-helena.webp", address: "Santa Helena - MA" },
   { name: "Presidente Sarney", image: "/api/blob-img/accessnet/stores/presidente-sarney.webp", address: "Pres. Sarney - MA" },
   { name: "Cururupu", image: "/api/blob-img/accessnet/stores/cururupu.webp", address: "Cururupu - MA" },
