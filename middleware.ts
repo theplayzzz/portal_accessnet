@@ -1,11 +1,16 @@
 import { locales } from "./lib/i18n";
+import { lookingGlass } from "./config/looking-glass.mjs";
 
 import { NextRequest } from "next/server";
 
-const allowedPaths = ["/rede-movel"];
+const allowedPaths = ["/rede-movel", lookingGlass.page, lookingGlass.document];
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  // Subdomínio do Looking Glass: tudo ali é proxy reverso (ver rewrites em
+  // next.config.mjs), não passa pelo roteamento de locale do site.
+  if (request.headers.get("host") === lookingGlass.subdomain) return;
 
   if (allowedPaths.includes(pathname)) return;
 

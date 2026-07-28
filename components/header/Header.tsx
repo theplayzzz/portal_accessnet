@@ -12,6 +12,7 @@ const navLinks = [
   { label: "Cobertura", href: "/#Cobertura" },
   { label: "Rede Móvel", href: "/rede-movel" },
   { label: "Central do Assinante", href: "https://ixc.accessnet.com.br", external: true },
+  { label: "Looking Glass", href: "/looking-glass" },
   { label: "Dúvidas", href: "/#Duvidas" },
 ];
 
@@ -48,7 +49,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop Nav */}
-          <ul className="hidden lg:flex items-center gap-8">
+          <ul className="hidden lg:flex items-center gap-5 xl:gap-8">
             {navLinks.map((link) => (
               <li key={link.label}>
                 <Link

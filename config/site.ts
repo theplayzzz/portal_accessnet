@@ -34,6 +34,7 @@ const baseSiteConfig = {
     { url: "https://ixc.accessnet.com.br", name: "Central do Assinante" },
     { url: "https://ixc.accessnet.com.br", name: "2a Via de Boleto" },
     { url: "https://velocidade.accessnet.com.br", name: "Teste de Velocidade" },
+    { url: "/looking-glass", name: "Looking Glass" },
     { url: "https://play.google.com/store/apps/details?id=br.com.accessnet.appclientes", name: "App Android" },
     { url: "https://apps.apple.com/br/app/accessnet/id6503640632", name: "App iOS" },
   ],
