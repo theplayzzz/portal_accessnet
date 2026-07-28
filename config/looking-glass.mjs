@@ -33,6 +33,8 @@ export const lookingGlass = {
   document: "/lg.html",
   /** Página do site que embute a ferramenta. */
   page: "/looking-glass",
+  /** Atalho curto pra divulgar de viva voz / no WhatsApp: redireciona pra page. */
+  shortcut: "/lg",
 };
 
 /** Caminho do embed na nossa origem — usado no iframe e no rewrite do subdomínio. */

@@ -18,6 +18,14 @@ export function middleware(request: NextRequest) {
     return Response.redirect(request.nextUrl);
   }
 
+  // Atalho: accessnet.com.br/lg -> a página da ferramenta. Fica aqui, e não em
+  // redirects() do next.config, porque o middleware roda antes dos redirects e
+  // mandaria /lg pra home antes da regra ser avaliada.
+  if (pathname === lookingGlass.shortcut) {
+    request.nextUrl.pathname = lookingGlass.page;
+    return Response.redirect(request.nextUrl, 308);
+  }
+
   // /lg.html só existe como documento do Looking Glass, e só com a nossa chave
   // (o rewrite também exige). Sem a chave certa não é uma rota do site: volta
   // pra home em vez de cair no `[lang]`, que casa qualquer segmento único.
