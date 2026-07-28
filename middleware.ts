@@ -3,7 +3,7 @@ import { lookingGlass } from "./config/looking-glass.mjs";
 
 import { NextRequest } from "next/server";
 
-const allowedPaths = ["/rede-movel", lookingGlass.page, lookingGlass.document];
+const allowedPaths = ["/rede-movel", lookingGlass.page];
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -15,6 +15,16 @@ export function middleware(request: NextRequest) {
   if (request.headers.get("host") === lookingGlass.subdomain) {
     if (pathname === "/") return;
     request.nextUrl.pathname = `/`;
+    return Response.redirect(request.nextUrl);
+  }
+
+  // /lg.html só existe como documento do Looking Glass, e só com a nossa chave
+  // (o rewrite também exige). Sem a chave certa não é uma rota do site: volta
+  // pra home em vez de cair no `[lang]`, que casa qualquer segmento único.
+  if (pathname === lookingGlass.document) {
+    if (request.nextUrl.searchParams.get("key") === lookingGlass.key) return;
+    request.nextUrl.pathname = `/`;
+    request.nextUrl.search = "";
     return Response.redirect(request.nextUrl);
   }
 
@@ -30,11 +40,12 @@ export function middleware(request: NextRequest) {
   return Response.redirect(request.nextUrl);
 }
 
-// `js/` e `lg.html` ficam fora do middleware porque são caminhos do proxy do
-// Looking Glass: a lista de extensões abaixo não cobre .mjs/.wasm/sem extensão,
-// e um asset novo do fornecedor viraria redirect pra `/` só no nosso domínio.
+// `js/` fica fora do middleware porque é caminho de asset do proxy do Looking
+// Glass: a lista de extensões abaixo não cobre .mjs/.wasm/sem extensão, e um
+// asset novo do fornecedor viraria redirect pra `/` só no nosso domínio.
+// `lg.html` continua passando aqui de propósito, pela checagem de chave acima.
 export const config = {
   matcher: [
-    '/((?!api|_next/static|_next/image|terms|js/|lg\\.html|.*\\.(?:txt|xml|ico|png|jpg|jpeg|svg|gif|webp|js|css|woff|woff2|ttf|eot)).*)'
+    '/((?!api|_next/static|_next/image|terms|js/|.*\\.(?:txt|xml|ico|png|jpg|jpeg|svg|gif|webp|js|css|woff|woff2|ttf|eot)).*)'
   ]
 };
