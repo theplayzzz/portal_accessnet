@@ -9,6 +9,11 @@
  * absolutos (/js/*, /api/looking-glass/*) — por isso o proxy espelha esses
  * mesmos caminhos na nossa origem em vez de usar um prefixo tipo /lg/.
  *
+ * O estático passa por rewrite; a API passa por um Route Handler
+ * (app/api/looking-glass/[...path]/route.ts) porque precisa remover o header
+ * `Origin` antes de repassar — a API do fornecedor responde 500 quando ele vem
+ * de um host fora da allowlist dela, e o navegador manda `Origin` em todo POST.
+ *
  * Detalhe que motiva o proxy: o ManagerPro responde
  * `Content-Security-Policy: frame-ancestors 'self' https://accessnet.com.br`.
  * Servindo o LG pela nossa própria origem, o `'self'` passa a ser o nosso

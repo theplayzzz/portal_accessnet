@@ -18,35 +18,41 @@ const nextConfig = {
   images: { unoptimized: true },
   // Proxy reverso do Looking Glass (ver config/looking-glass.mjs). `beforeFiles`
   // roda antes do roteamento do App Router, então nenhuma dessas rotas encosta
-  // nas páginas/route handlers do site.
+  // nas páginas do site.
+  //
+  // Só o conteúdo estático passa por aqui. A API fica no Route Handler
+  // app/api/looking-glass/[...path]/route.ts, que precisa remover o header
+  // `Origin` antes de repassar — a API do fornecedor devolve 500 quando ele vem.
+  //
+  // Todas as regras são explícitas de propósito: um `/:path*` no host do LG
+  // espelharia o painel inteiro do ManagerPro (inclusive a tela de login do NOC)
+  // sob o nosso domínio, e um `/js/:path*` entregaria o namespace /js/ inteiro
+  // do accessnet.com.br pro fornecedor. Se eles publicarem um asset novo, ele
+  // precisa ser adicionado aqui — falha visível é melhor que espelho aberto.
   async rewrites() {
     return {
       beforeFiles: [
-        // lg.accessnet.com.br → raiz do ManagerPro (o proxy_pass que o
-        // fornecedor pediu). A raiz do subdomínio abre direto a ferramenta.
+        // lg.accessnet.com.br → a raiz do subdomínio abre direto a ferramenta.
         {
           source: "/",
           has: lookingGlassHost,
           destination: `${lookingGlass.origin}${lookingGlassEmbedPath}`,
         },
-        {
-          source: "/:path*",
-          has: lookingGlassHost,
-          destination: `${lookingGlass.origin}/:path*`,
-        },
-        // accessnet.com.br → espelha os caminhos que o app do LG usa: o
-        // documento, os scripts versionados e a API pública da ferramenta.
+        // Documento do LG, só com a nossa chave: o domínio não serve de relay
+        // pra outros tenants do ManagerPro.
         {
           source: lookingGlass.document,
+          has: [{ type: "query", key: "key", value: lookingGlass.key }],
           destination: `${lookingGlass.origin}${lookingGlass.document}`,
         },
+        // Assets do LG (versionados por querystring pelo fornecedor).
         {
-          source: "/js/:path*",
-          destination: `${lookingGlass.origin}/js/:path*`,
+          source: "/js/lg.js",
+          destination: `${lookingGlass.origin}/js/lg.js`,
         },
         {
-          source: "/api/looking-glass/:path*",
-          destination: `${lookingGlass.origin}/api/looking-glass/:path*`,
+          source: "/js/lg-graph.js",
+          destination: `${lookingGlass.origin}/js/lg-graph.js`,
         },
       ],
     };
