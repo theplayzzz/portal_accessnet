@@ -41,9 +41,10 @@ const Header = () => {
             <Image
               src="/api/blob-img/accessnet/logo-accessnet.png"
               alt="AccessNet"
-              width={160}
-              height={40}
+              width={200}
+              height={97}
               className="h-8 md:h-10 w-auto"
+              style={{ width: "auto" }}
               priority
             />
           </Link>

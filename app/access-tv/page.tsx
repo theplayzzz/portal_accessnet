@@ -3,7 +3,7 @@ import AccessTVContent from "@/components/access-tv/AccessTVContent";
 export const metadata = {
   title: "Access TV - Mais de 200 canais | AccessNet",
   description:
-    "Conheça o Access TV, benefício para clientes da internet residencial AccessNet com mais de 200 canais em uma plataforma regularizada.",
+    "Access TV com mais de 200 canais, incluso sem custo adicional em todos os planos de internet residencial AccessNet.",
   alternates: {
     canonical: "/access-tv",
   },

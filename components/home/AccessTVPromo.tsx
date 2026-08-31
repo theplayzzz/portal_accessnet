@@ -32,8 +32,8 @@ export default function AccessTVPromo() {
                 Access TV: mais de 200 canais para sua casa
               </h2>
               <p className="max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
-                Um benefício incluído na experiência da internet residencial
-                AccessNet. Consulte disponibilidade e condições.
+                Incluso sem custo adicional em todos os planos de internet
+                residencial AccessNet.
               </p>
             </div>
 

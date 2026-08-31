@@ -13,9 +13,10 @@ const Footer = async () => {
             <Image
               src="/api/blob-img/accessnet/logo-accessnet-dark.png"
               alt="AccessNet"
-              width={160}
-              height={40}
+              width={200}
+              height={97}
               className="h-10 w-auto mb-6 mix-blend-screen"
+              style={{ width: "auto" }}
             />
             <div className="space-y-2 text-white/60 text-sm">
               <p>Av. Castelo Branco, 3176 - Pinheiro/MA</p>

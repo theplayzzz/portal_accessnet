@@ -25,9 +25,9 @@ const benefits = [
   },
   {
     icon: Wifi,
-    title: "Benefício da internet residencial",
+    title: "Incluso em qualquer plano",
     description:
-      "O Access TV faz parte da experiência de quem contrata a internet residencial AccessNet.",
+      "Todo cliente da internet residencial AccessNet tem Access TV sem custo adicional.",
   },
   {
     icon: BadgeCheck,
@@ -39,16 +39,16 @@ const benefits = [
 
 const steps = [
   {
-    icon: MessageCircleMore,
-    title: "Fale com a AccessNet",
+    icon: Wifi,
+    title: "Escolha seu plano",
     description:
-      "Conte para a nossa equipe que você quer conhecer o Access TV.",
+      "Contrate qualquer plano de internet residencial AccessNet: o Access TV já está incluso.",
   },
   {
-    icon: BadgeCheck,
-    title: "Confirme a disponibilidade",
+    icon: MessageCircleMore,
+    title: "Solicite seu acesso",
     description:
-      "Um consultor verifica as condições disponíveis para o seu plano e endereço.",
+      "Fale com a nossa equipe para receber os dados e as orientações de acesso.",
   },
   {
     icon: Clapperboard,
@@ -82,7 +82,7 @@ export default function AccessTVContent() {
           >
             <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#F6C304]/40 bg-[#F6C304]/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-[#F6C304] sm:text-sm">
               <Sparkles size={15} />
-              Benefício residencial AccessNet
+              Incluso em todos os planos
             </div>
 
             <h1 className="mb-5 max-w-3xl font-[family-name:var(--font-heading)] text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
@@ -91,7 +91,8 @@ export default function AccessTVContent() {
 
             <p className="max-w-2xl text-lg leading-relaxed text-white/75 sm:text-xl">
               Com o Access TV, clientes da internet residencial AccessNet têm
-              mais de 200 canais em uma plataforma regularizada.
+              mais de 200 canais em uma plataforma regularizada, sem custo
+              adicional.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -215,7 +216,7 @@ export default function AccessTVContent() {
               Próximos passos
             </span>
             <h2 className="mt-3 font-[family-name:var(--font-heading)] text-3xl font-extrabold text-[#12131A] sm:text-5xl">
-              Consulte em poucos passos
+              Comece a assistir em poucos passos
             </h2>
             <div className="mx-auto mt-4 h-1.5 w-14 rounded-full bg-[#F6C304]" />
           </div>
@@ -246,8 +247,8 @@ export default function AccessTVContent() {
           </div>
 
           <p className="mt-8 text-center text-sm text-slate-500">
-            Disponibilidade e condições podem variar. Consulte a equipe
-            AccessNet.
+            O Access TV está incluso sem custo adicional em qualquer plano de
+            internet residencial AccessNet.
           </p>
         </div>
       </section>
@@ -258,11 +259,11 @@ export default function AccessTVContent() {
           <div className="absolute -bottom-20 -right-12 h-56 w-56 rounded-full bg-[#F6C304]/20 blur-3xl" />
           <div className="relative">
             <h2 className="font-[family-name:var(--font-heading)] text-3xl font-extrabold text-white sm:text-4xl">
-              Quer saber se o Access TV está disponível para você?
+              Já é cliente? Solicite seu acesso ao Access TV.
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-white/75">
-              Fale com a nossa equipe e confira as condições para a sua
-              internet residencial.
+              Fale com a nossa equipe para receber as orientações. O benefício
+              já está incluso no seu plano, sem custo adicional.
             </p>
             <button
               type="button"
@@ -270,7 +271,7 @@ export default function AccessTVContent() {
               className="mt-7 inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-6 py-3.5 font-bold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-[#20bd5b]"
             >
               <FaWhatsapp size={20} />
-              Consultar Access TV
+              Solicitar acesso ao Access TV
             </button>
           </div>
         </div>

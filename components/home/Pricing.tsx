@@ -3,6 +3,7 @@ import { TIERS_PT } from "@/config/tiers";
 import { Tier } from "@/types/pricing";
 import { FaCheck, FaWhatsapp } from "react-icons/fa";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import ShinyButton from "@/components/ui/ShinyBadge";
 import { useLeadModal } from "@/components/lead/useLeadModal";
 
@@ -126,8 +127,14 @@ const Pricing = ({
         </div>
 
         {/* Note */}
-        <p className="text-center text-sm text-gray-400 mt-8">
-          {locale.note}
+        <p className="mt-8 text-center text-sm text-slate-500">
+          {locale.note}{" "}
+          <Link
+            href="/access-tv"
+            className="font-semibold text-[#1510C8] underline decoration-[#F6C304] decoration-2 underline-offset-4 transition-colors hover:text-[#080494] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1510C8] focus-visible:ring-offset-2"
+          >
+            Confira como funciona o Access TV.
+          </Link>
         </p>
       </div>
     </section>

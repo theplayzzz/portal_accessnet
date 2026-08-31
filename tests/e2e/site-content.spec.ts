@@ -23,6 +23,23 @@ test.describe("Atualização comercial AccessNet", () => {
     ).toBeVisible();
     await expect(page.getByText(/mais de 200 canais/i).first()).toBeVisible();
     await expect(page.getByText(/plataforma regularizada/i).first()).toBeVisible();
+    await expect(page.getByText(/sem custo adicional/i).first()).toBeVisible();
+  });
+
+  test("informa o Access TV em todos os planos residenciais", async ({
+    page,
+  }) => {
+    await page.goto("/");
+
+    await expect(
+      page.getByText("Access TV incluso sem custo adicional", { exact: true })
+    ).toHaveCount(4);
+
+    const detailsLink = page.getByRole("link", {
+      name: "Confira como funciona o Access TV.",
+    });
+    await expect(detailsLink).toBeVisible();
+    await expect(detailsLink).toHaveAttribute("href", "/access-tv");
   });
 
   test("leva da chamada na home para a página do Access TV", async ({
