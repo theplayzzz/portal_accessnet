@@ -34,4 +34,38 @@ test.describe("Atualização comercial AccessNet", () => {
     await expect(link).toBeVisible();
     await expect(link).toHaveAttribute("href", "/access-tv");
   });
+
+  test("oferece Home e Access TV no header", async ({ page }) => {
+    await page.goto("/");
+
+    const header = page.locator("header");
+    await expect(
+      header.getByRole("link", { name: "Home", exact: true })
+    ).toHaveAttribute("href", "/");
+    await expect(
+      header.getByRole("link", { name: "Access TV", exact: true })
+    ).toHaveAttribute("href", "/access-tv");
+    await expect(
+      header.getByRole("link", { name: "Planos", exact: true })
+    ).toHaveCount(0);
+    await expect(
+      header.getByRole("link", { name: "Cobertura", exact: true })
+    ).toHaveCount(0);
+  });
+
+  test("mantém uma hierarquia coerente de raios nos benefícios", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 403, height: 1280 });
+    await page.goto("/");
+
+    await expect(page.getByTestId("benefits-panel")).toHaveCSS(
+      "border-radius",
+      "24px"
+    );
+    await expect(page.getByTestId("benefit-card").first()).toHaveCSS(
+      "border-radius",
+      "16px"
+    );
+  });
 });

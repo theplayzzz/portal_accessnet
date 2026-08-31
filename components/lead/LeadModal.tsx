@@ -618,7 +618,7 @@ function SuccessPanel({
           {/* Ação requerida */}
           <div className="mt-3.5 flex items-start gap-2.5">
             <span
-              className="flex-shrink-0 inline-flex items-center justify-center h-5 w-5 rounded-full text-[#9A7600] mt-[1px]"
+              className="flex-shrink-0 inline-flex items-center justify-center h-5 w-5 rounded-full text-[#1510C8] mt-[1px]"
               style={{ backgroundColor: "rgba(246,195,4,0.18)" }}
               aria-hidden="true"
             >

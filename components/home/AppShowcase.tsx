@@ -46,7 +46,7 @@ const AppShowcase = ({ locale }: { locale: any }) => {
   }, []);
 
   return (
-    <section className="bg-gradient-to-b from-gray-50 to-white py-20 md:py-24 overflow-hidden">
+    <section className="bg-gradient-to-b from-brand-surface-soft via-brand-surface-subtle to-white py-20 md:py-24 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           {/* Text Column */}
@@ -57,10 +57,11 @@ const AppShowcase = ({ locale }: { locale: any }) => {
             transition={{ duration: 0.5 }}
             className="flex-1 text-center lg:text-left"
           >
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-[#1510C8] font-[family-name:var(--font-heading)]">
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-[#12131A] font-[family-name:var(--font-heading)]">
               {locale.title}{" "}
-              <span className="text-[#9A7600]">{locale.titleHighlight}</span>
+              <span>{locale.titleHighlight}</span>
             </h2>
+            <div className="mx-auto mt-4 h-1.5 w-14 rounded-full bg-[#F6C304] lg:mx-0" />
             <p className="mt-4 text-lg text-gray-500 max-w-lg mx-auto lg:mx-0">
               {locale.description}
             </p>

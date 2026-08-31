@@ -15,7 +15,7 @@ const MobileCard = ({ plan, index }: { plan: MobilePlan; index: number }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className={`relative flex flex-col rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${
+      className={`relative flex flex-col rounded-brand-panel overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${
         isPopular
           ? "ring-2 ring-[#F6C304] shadow-xl scale-[1.02] bg-white"
           : "shadow-md bg-white"
@@ -46,14 +46,14 @@ const MobileCard = ({ plan, index }: { plan: MobilePlan; index: number }) => {
         <div className="mb-5">
           <p className="text-sm text-gray-500">{plan.baseData}</p>
           {plan.bonusData && (
-            <p className="text-xs text-[#25D366] font-semibold mt-1">
+            <p className="text-xs text-[#1510C8] font-semibold mt-1">
               {plan.bonusData}
             </p>
           )}
         </div>
 
         <div className="mb-6">
-          <span className="text-4xl font-extrabold text-[#9A7600] font-[family-name:var(--font-heading)]">
+          <span className="text-4xl font-extrabold text-[#12131A] font-[family-name:var(--font-heading)]">
             {plan.price}
           </span>
           <span className="text-gray-500 text-sm ml-1">{plan.priceSuffix}</span>
@@ -63,7 +63,7 @@ const MobileCard = ({ plan, index }: { plan: MobilePlan; index: number }) => {
           {plan.highlights.map((item, i) => (
             <li key={i} className="flex items-start gap-2">
               <FaCheck
-                className="text-[#25D366] mt-1 flex-shrink-0"
+                className="text-[#1510C8] mt-1 flex-shrink-0"
                 size={12}
               />
               <span className="text-sm text-gray-600">{item}</span>
@@ -95,13 +95,14 @@ const MobileCard = ({ plan, index }: { plan: MobilePlan; index: number }) => {
 
 const MobilePricing = () => {
   return (
-    <section id="PlanosCelular" className="bg-slate-50 py-20 md:py-24">
+    <section id="PlanosCelular" className="bg-brand-surface-soft py-20 md:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#1510C8] font-[family-name:var(--font-heading)]">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#12131A] font-[family-name:var(--font-heading)]">
             Planos de{" "}
-            <span className="text-[#9A7600]">Celular</span>
+            <span>Celular</span>
           </h2>
+          <div className="mx-auto mt-4 h-1.5 w-14 rounded-full bg-[#F6C304]" />
           <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
             Escolha o plano ideal para você. Todos com chamadas ilimitadas, apps
             essenciais e cobertura nacional 5G na rede Vivo.

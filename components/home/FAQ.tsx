@@ -12,14 +12,15 @@ const FAQ = ({
   langName?: string;
 }) => {
   return (
-    <section id={id} className="bg-slate-50 py-20 md:py-24">
+    <section id={id} className="bg-white py-20 md:py-24">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-14">
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#1510C8] font-[family-name:var(--font-heading)]">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#12131A] font-[family-name:var(--font-heading)]">
             {locale.title}{" "}
-            <span className="text-[#9A7600]">{locale.titleHighlight}</span>
+            <span>{locale.titleHighlight}</span>
           </h2>
+          <div className="mx-auto mt-4 h-1.5 w-14 rounded-full bg-[#F6C304]" />
           <p className="mt-4 text-lg text-gray-500">
             {locale.description}
           </p>
@@ -30,11 +31,11 @@ const FAQ = ({
           selectionMode="multiple"
           className="gap-4"
           itemClasses={{
-            base: "bg-white rounded-xl shadow-sm mb-3 px-6",
+            base: "bg-brand-surface-subtle border border-[#1510C8]/10 rounded-xl shadow-sm mb-3 px-6",
             title: "text-[#1510C8] font-semibold text-base",
             content: "text-gray-500 pb-4",
             trigger: "py-5",
-            indicator: "text-[#9A7600]",
+            indicator: "text-[#1510C8]",
           }}
         >
           {FAQS_PT.map((faq, index) => (

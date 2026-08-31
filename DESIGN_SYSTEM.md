@@ -8,17 +8,25 @@ Documento de referencia para manter consistencia visual em toda a landing page.
 
 | Token | Hex | Uso |
 |-------|-----|-----|
-| **Royal Blue (principal)** | `#1510C8` | Titulos, fundos de destaque e elementos de marca |
+| **Ink (texto principal)** | `#12131A` | Titulos, precos e informacoes principais em fundos claros |
+| **Ink Muted** | `#5F6470` | Descricoes e textos secundarios em fundos claros |
+| **Royal Blue (principal)** | `#1510C8` | Fundos de destaque, links, icones e estados ativos |
 | **Deep Blue** | `#080494` | Footer, gradientes escuros e texto sobre amarelo |
 | **Bright Blue** | `#1847E3` | Gradientes, links e elementos decorativos |
-| **Yellow (accent)** | `#F6C304` | Destaques, precos grandes, icones e badges em fundos azuis |
-| **Yellow Ink** | `#9A7600` | Texto pequeno de destaque sobre fundos claros |
+| **Yellow (accent)** | `#F6C304` | Badges, sublinhados, unidade GB e destaques sobre fundos azuis |
 | **Cyan** | `#00BEDC` | Apoio visual, contornos e detalhes pontuais |
 | **WhatsApp Green** | `#25D366` | Botoes de acao WhatsApp |
 | **Branco** | `#FFFFFF` | Texto sobre fundos escuros, cards |
-| **Surface** | `#F7F8FF` | Background de secoes alternadas |
+| **Surface Subtle** | `#F7F8FF` | Cards e accordions de baixa enfase |
+| **Surface Soft** | `#EEF0FF` | Background azul-claro de secoes alternadas |
+| **Surface Strong** | `#1510C8` | Ilhas de marca, card principal e blocos de alta enfase |
+| **Border Soft** | `#D9DCFF` | Bordas discretas sobre fundos claros |
 
-Proporcao de uso recomendada: 55% branco/neutros, 30% azuis, 10% amarelo e 5% ciano. O verde fica reservado aos pontos de conversao pelo WhatsApp.
+Proporcao visual recomendada: 55% branco/neutros, 25% azul-claro, 15% azul forte e 5% acentos amarelos/ciano. O verde fica reservado aos pontos de conversao pelo WhatsApp.
+
+Em fundos claros, titulos e precos usam Ink. Nao dividir titulos entre azul e amarelo: a identidade aparece em pequenos rotulos azuis, sublinhados amarelos, icones e superficies. Em fundos azuis, titulos e precos usam branco, textos secundarios usam branco com 70-80% de opacidade e checks/destaques podem usar amarelo.
+
+Fundos fortes nunca sao uma substituicao isolada. Todo componente preenchido de azul deve usar uma variante completa com cores `on-brand` para titulo, preco, descricao, icones, bordas e estados interativos.
 
 ---
 
@@ -31,20 +39,23 @@ Proporcao de uso recomendada: 55% branco/neutros, 30% azuis, 10% amarelo e 5% ci
 | Botoes | Inter | 700 | `font-bold` |
 | Badges/labels | Inter | 600 | `font-semibold` |
 
+Titulos de secoes claras usam `#12131A` e um traco curto `#F6C304`. Precos em cards claros tambem usam `#12131A`.
+
 ---
 
 ## Arredondamento de Bordas
 
-Regra geral: **botoes de acao** usam arredondamento moderado. **Elementos informativos** usam arredondamento alto (pill).
+Usar uma escala curta e hierarquica. Quando houver elementos aninhados, cada nivel interno desce um passo na escala: painel `24px` -> card `16px` -> controle/icone `12px`. Isso evita curvas concorrentes ou desconectadas.
 
-| Tipo de Elemento | Classe | Exemplo |
-|-----------------|--------|---------|
-| **Botoes de acao** (CTA, WhatsApp, "Ver Planos") | `rounded-xl` | Todos os botoes clicaveis de conversao |
-| **Elementos informativos** (badges, stats, tags) | `rounded-full` | "12 anos conectando", "+10.000 clientes", "Suporte 24h" |
-| **Pills de cidades** (cobertura) | `rounded-full` | "Pinheiro", "Sao Bento", etc. |
-| **Cards** (planos, features, testimonials) | `rounded-2xl` | Cards de preco, depoimentos |
-| **Header WhatsApp** (desktop e mobile) | `rounded-xl` | Botao "Assine Ja" no header |
-| **WhatsApp flutuante** | `rounded-full` | Botao fixo no canto inferior direito |
+| Papel | Token / Classe | Raio | Exemplos |
+|------|----------------|------|----------|
+| **Painel de marca ou produto** | `rounded-brand-panel` | `24px` | Cards de plano, promos Access TV/Mobile, ilha de beneficios |
+| **Card de conteudo** | `rounded-brand-card` | `16px` | Features internas, lojas, depoimentos, passos e recursos |
+| **Controle ou icone** | `rounded-brand-control` | `12px` | Botoes, accordions, blocos de icones e precos compactos |
+| **Badge ou status** | `rounded-full` | pill | "Mais Popular", cidades, stats e tags |
+| **Acao flutuante** | `rounded-full` | circular | WhatsApp flutuante |
+
+Molduras que representam dispositivos, como o celular do aplicativo e o mockup da TV, podem usar raios personalizados. Nesses casos, as curvas devem ser concentricas e derivadas da espessura da moldura, nao de uma nova escala de cards.
 
 ---
 
@@ -136,12 +147,14 @@ Padrao de alternancia de fundos para ritmo visual:
 |-------|-----------|--------|
 | Hero | Gradient azul profundo | `bg-gradient-to-br from-[#1510C8] via-[#0D0E7E] to-[#080494]` |
 | SocialProof | Branco | `bg-white` |
-| Pricing | Cinza claro | `bg-slate-50` |
-| Features | Branco | `bg-white` |
-| Coverage | Cinza claro | `bg-slate-50` |
+| Pricing | Azul claro; card popular azul forte | `bg-brand-surface-soft` |
+| Features | Branco; conteudo em ilha de marca | `bg-white` + gradient azul |
+| Coverage | Azul claro | `bg-brand-surface-soft` |
 | Stores | Branco | `bg-white` |
-| Testimonials | Branco | `bg-white` |
-| FAQ | Cinza claro | `bg-slate-50` |
+| App Showcase | Gradient azul-claro para branco | `from-brand-surface-soft` |
+| Testimonials | Azul claro com cards brancos | `bg-brand-surface-soft` |
+| FAQ | Branco com accordions azul-claro | `bg-white` |
+| Mobile Promo | Azul claro com card azul forte | `bg-brand-surface-soft` |
 | CTA | Gradient azul profundo | `bg-gradient-to-br from-[#1510C8] to-[#080494]` |
 | Footer | Azul profundo | `bg-[#080494]` |
 

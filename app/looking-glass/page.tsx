@@ -53,7 +53,7 @@ export default function LookingGlassPage() {
         </div>
       </section>
 
-      <section className="bg-gray-50 py-10 sm:py-14">
+      <section className="bg-brand-surface-soft py-10 sm:py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <LookingGlassEmbed />
 
@@ -61,10 +61,10 @@ export default function LookingGlassPage() {
             {resources.map((resource) => (
               <div
                 key={resource.title}
-                className="rounded-2xl border border-gray-200 bg-white p-6"
+                className="rounded-brand-card border border-[#1510C8]/10 border-t-4 border-t-[#1510C8] bg-white p-6 shadow-sm"
               >
-                <resource.icon className="mb-3 text-[#9A7600]" size={24} />
-                <h2 className="mb-2 font-[family-name:var(--font-heading)] text-lg font-bold text-[#1510C8]">
+                <resource.icon className="mb-3 text-[#1510C8]" size={24} />
+                <h2 className="mb-2 font-[family-name:var(--font-heading)] text-lg font-bold text-[#12131A]">
                   {resource.title}
                 </h2>
                 <p className="text-sm leading-relaxed text-gray-600">

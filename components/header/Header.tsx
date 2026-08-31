@@ -8,8 +8,8 @@ import { FaWhatsapp } from "react-icons/fa";
 import { WhatsAppCTA } from "@/components/lead/WhatsAppCTA";
 
 const navLinks = [
-  { label: "Planos", href: "/#Planos" },
-  { label: "Cobertura", href: "/#Cobertura" },
+  { label: "Home", href: "/" },
+  { label: "Access TV", href: "/access-tv" },
   { label: "Rede Móvel", href: "/rede-movel" },
   { label: "Central do Assinante", href: "https://ixc.accessnet.com.br", external: true },
   { label: "Looking Glass", href: "/looking-glass" },

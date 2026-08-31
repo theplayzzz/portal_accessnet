@@ -55,9 +55,14 @@ const config = {
           blue: "#1847E3",
           cyan: "#00BEDC",
           deep: "#080494",
+          ink: "#12131A",
+          "ink-muted": "#5F6470",
           yellow: "#F6C304",
-          "yellow-ink": "#9A7600",
           surface: "#F7F8FF",
+          "surface-subtle": "#F7F8FF",
+          "surface-soft": "#EEF0FF",
+          "surface-strong": "#1510C8",
+          "border-soft": "#D9DCFF",
           // Aliases mantidos para componentes legados.
           turquoise: "#00BEDC",
           navy: "#1510C8",
@@ -79,6 +84,9 @@ const config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        "brand-panel": "1.5rem",
+        "brand-card": "1rem",
+        "brand-control": "0.75rem",
       },
       keyframes: {
         "accordion-down": {

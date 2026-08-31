@@ -23,7 +23,7 @@ const ComboCard = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className={`relative flex flex-col rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${
+      className={`relative flex flex-col rounded-brand-panel overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${
         isPopular
           ? "ring-2 ring-[#F6C304] shadow-2xl md:scale-[1.03]"
           : "shadow-xl"
@@ -71,7 +71,7 @@ const ComboCard = ({
           </div>
 
           {/* GB */}
-          <div className="mt-3 inline-flex items-baseline gap-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-4 py-2">
+          <div className="mt-3 inline-flex items-baseline gap-1 rounded-brand-control border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm">
             <span className="text-[#F6C304] text-2xl font-extrabold leading-none">
               +
             </span>
@@ -95,20 +95,20 @@ const ComboCard = ({
           {plan.bonusData.map((item, i) => (
             <li key={i} className="flex items-start gap-2">
               <FaCheck
-                className="text-[#25D366] mt-1 flex-shrink-0"
+                className="text-[#1510C8] mt-1 flex-shrink-0"
                 size={12}
               />
               <span className="text-sm text-gray-600">{item}</span>
             </li>
           ))}
           <li className="flex items-start gap-2">
-            <FaCheck className="text-[#25D366] mt-1 flex-shrink-0" size={12} />
+            <FaCheck className="text-[#1510C8] mt-1 flex-shrink-0" size={12} />
             <span className="text-sm text-gray-600">
               WhatsApp, Waze e Moovit ilimitados
             </span>
           </li>
           <li className="flex items-start gap-2">
-            <FaCheck className="text-[#25D366] mt-1 flex-shrink-0" size={12} />
+            <FaCheck className="text-[#1510C8] mt-1 flex-shrink-0" size={12} />
             <span className="text-sm text-gray-600">
               WiFi Premium + Chip grátis
             </span>
@@ -120,7 +120,7 @@ const ComboCard = ({
             <span className="text-sm text-gray-400">Por apenas</span>
           </div>
           <div className="flex items-baseline gap-1">
-            <span className="text-4xl font-extrabold text-[#9A7600] font-[family-name:var(--font-heading)]">
+            <span className="text-4xl font-extrabold text-[#12131A] font-[family-name:var(--font-heading)]">
               {plan.price}
             </span>
             <span className="text-gray-500 text-sm">{plan.priceSuffix}</span>
@@ -153,7 +153,7 @@ const MobileCombos = () => {
   return (
     <section
       id="CombosFibraChip"
-      className="relative bg-gradient-to-b from-white via-slate-50 to-white py-20 md:py-24 overflow-hidden"
+      className="relative bg-gradient-to-b from-white via-brand-surface-soft to-white py-20 md:py-24 overflow-hidden"
     >
       {/* decorative blobs */}
       <div className="absolute -top-24 -left-24 w-72 h-72 bg-[#F6C304]/10 rounded-full blur-3xl pointer-events-none" />
@@ -167,9 +167,10 @@ const MobileCombos = () => {
             <BsPhoneVibrate size={12} />
             Internet fixa + Chip móvel
           </div>
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#1510C8] font-[family-name:var(--font-heading)]">
-            Combos <span className="text-[#9A7600]">Fibra + Chip</span>
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#12131A] font-[family-name:var(--font-heading)]">
+            Combos <span>Fibra + Chip</span>
           </h2>
+          <div className="mx-auto mt-4 h-1.5 w-14 rounded-full bg-[#F6C304]" />
           <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
             Leve a internet de casa para a rua. Junte a sua fibra AccessNet com
             um chip cheio de GB, chamadas ilimitadas e apps essenciais — tudo

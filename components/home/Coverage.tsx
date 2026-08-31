@@ -7,14 +7,15 @@ import { WhatsAppCTA } from "@/components/lead/WhatsAppCTA";
 
 const Coverage = ({ id, locale }: { id: string; locale: any }) => {
   return (
-    <section id={id} className="bg-slate-50 py-20 md:py-24">
+    <section id={id} className="bg-brand-surface-soft py-20 md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#1510C8] font-[family-name:var(--font-heading)]">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#12131A] font-[family-name:var(--font-heading)]">
             {locale.title}{" "}
-            <span className="text-[#9A7600]">{locale.titleHighlight}</span>
+            <span>{locale.titleHighlight}</span>
           </h2>
+          <div className="mx-auto mt-4 h-1.5 w-14 rounded-full bg-[#F6C304]" />
           <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
             {locale.description}
           </p>
@@ -37,13 +38,13 @@ const Coverage = ({ id, locale }: { id: string; locale: any }) => {
               transition={{ duration: 0.3, delay: index * 0.05 }}
               className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
                 city.isHQ
-                  ? "bg-[#1510C8] text-white shadow-md"
-                  : "bg-white text-[#1510C8] border border-gray-200 hover:border-[#1510C8] hover:shadow-md"
+                  ? "bg-gradient-to-r from-[#1510C8] to-[#1847E3] text-white shadow-md"
+                  : "bg-white text-[#1510C8] border border-[#1510C8]/15 hover:border-[#1510C8] hover:shadow-md"
               }`}
             >
               <HiLocationMarker
                 size={14}
-                className={city.isHQ ? "text-[#F6C304]" : "text-[#9A7600]"}
+                className={city.isHQ ? "text-[#F6C304]" : "text-[#1510C8]"}
               />
               {city.name}
               {city.isHQ && (

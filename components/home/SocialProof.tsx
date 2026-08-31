@@ -12,7 +12,7 @@ const SocialProof = ({ locale }: { locale: any }) => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, i) => (
             <div key={i} className="text-center">
-              <div className="text-3xl sm:text-4xl font-extrabold text-[#9A7600] font-[family-name:var(--font-heading)]">
+              <div className="text-3xl sm:text-4xl font-extrabold text-[#12131A] font-[family-name:var(--font-heading)]">
                 {stat.number}
               </div>
               <div className="text-sm text-gray-500 mt-1 font-medium">

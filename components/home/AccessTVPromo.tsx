@@ -13,13 +13,13 @@ export default function AccessTVPromo() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#080494] via-[#1510C8] to-[#1847E3] p-8 shadow-xl sm:p-10 lg:p-12"
+          className="relative overflow-hidden rounded-brand-panel bg-gradient-to-r from-[#080494] via-[#1510C8] to-[#1847E3] p-8 shadow-xl sm:p-10 lg:p-12"
         >
           <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-[#F6C304]/20 blur-3xl" />
           <div className="absolute -bottom-20 left-1/3 h-52 w-52 rounded-full bg-[#00BEDC]/20 blur-3xl" />
 
           <div className="relative flex flex-col items-start gap-7 lg:flex-row lg:items-center lg:gap-10">
-            <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-2xl bg-[#F6C304] text-[#080494]">
+            <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-brand-control bg-[#F6C304] text-[#080494]">
               <Tv size={32} />
             </div>
 

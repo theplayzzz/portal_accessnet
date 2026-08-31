@@ -50,7 +50,9 @@ To update copy or add plans/cities/stores, edit these config files — component
 ### Styling
 
 - TailwindCSS 3.4 with `tailwindcss-animate` and NextUI plugin
-- Brand colors defined in `tailwind.config.ts`: primary navy (`#1E3A5F`), accent orange (`#FFA500`), WhatsApp green (`#25D366`)
+- Brand colors defined in `tailwind.config.ts`: royal blue (`#1510C8`), deep blue (`#080494`), surface soft (`#EEF0FF`), surface subtle (`#F7F8FF`), yellow (`#F6C304`), cyan (`#00BEDC`), ink (`#12131A`), and WhatsApp green (`#25D366`)
+- Light-section headings and prices use ink; blue is reserved for brand surfaces, links, icons, and active states; yellow is a controlled accent for badges, short underlines, and dark-background highlights
+- Blue-filled cards must use a complete `on-brand` variant: white headings/prices, white secondary text at 70-80% opacity, and yellow checks or accents. Do not change only the background color.
 - Fonts: Inter (body, `--font-sans`) and Montserrat (headings, `--font-heading`)
 - Shadcn/ui components in `components/ui/` configured via `components.json`
 

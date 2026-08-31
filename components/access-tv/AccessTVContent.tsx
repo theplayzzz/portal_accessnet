@@ -145,7 +145,7 @@ export default function AccessTVContent() {
                   {categories.map((category, index) => (
                     <div
                       key={category}
-                      className={`rounded-2xl border border-white/10 p-4 ${
+                      className={`rounded-brand-card border border-white/10 p-4 ${
                         index === 0
                           ? "bg-[#1847E3]"
                           : index === 1
@@ -164,15 +164,16 @@ export default function AccessTVContent() {
         </div>
       </section>
 
-      <section className="bg-white py-20 md:py-24">
+      <section className="bg-brand-surface-soft py-20 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto mb-12 max-w-3xl text-center">
-            <span className="text-sm font-bold uppercase tracking-[0.16em] text-[#9A7600]">
+            <span className="text-sm font-bold uppercase tracking-[0.16em] text-[#1510C8]">
               Mais conteúdo para sua casa
             </span>
-            <h2 className="mt-3 font-[family-name:var(--font-heading)] text-3xl font-extrabold text-[#1510C8] sm:text-5xl">
+            <h2 className="mt-3 font-[family-name:var(--font-heading)] text-3xl font-extrabold text-[#12131A] sm:text-5xl">
               Internet e entretenimento juntos
             </h2>
+            <div className="mx-auto mt-4 h-1.5 w-14 rounded-full bg-[#F6C304]" />
             <p className="mt-4 text-lg text-slate-500">
               Um benefício pensado para ampliar o que a sua conexão AccessNet
               entrega no dia a dia.
@@ -189,12 +190,12 @@ export default function AccessTVContent() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.08 }}
-                  className="rounded-3xl border border-[#1510C8]/10 bg-[#F7F8FF] p-7"
+                  className="rounded-brand-card border border-[#1510C8]/10 bg-white p-7 shadow-sm"
                 >
-                  <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#1510C8] text-[#F6C304]">
+                  <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-brand-control bg-[#1510C8] text-[#F6C304]">
                     <Icon size={27} />
                   </div>
-                  <h3 className="mb-2 font-[family-name:var(--font-heading)] text-xl font-bold text-[#1510C8]">
+                  <h3 className="mb-2 font-[family-name:var(--font-heading)] text-xl font-bold text-[#12131A]">
                     {benefit.title}
                   </h3>
                   <p className="leading-relaxed text-slate-500">
@@ -207,15 +208,16 @@ export default function AccessTVContent() {
         </div>
       </section>
 
-      <section id="como-funciona" className="bg-[#F7F8FF] py-20 md:py-24">
+      <section id="como-funciona" className="bg-white py-20 md:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
-            <span className="text-sm font-bold uppercase tracking-[0.16em] text-[#9A7600]">
+            <span className="text-sm font-bold uppercase tracking-[0.16em] text-[#1510C8]">
               Próximos passos
             </span>
-            <h2 className="mt-3 font-[family-name:var(--font-heading)] text-3xl font-extrabold text-[#1510C8] sm:text-5xl">
+            <h2 className="mt-3 font-[family-name:var(--font-heading)] text-3xl font-extrabold text-[#12131A] sm:text-5xl">
               Consulte em poucos passos
             </h2>
+            <div className="mx-auto mt-4 h-1.5 w-14 rounded-full bg-[#F6C304]" />
           </div>
 
           <div className="grid gap-5 md:grid-cols-3">
@@ -224,15 +226,15 @@ export default function AccessTVContent() {
               return (
                 <div
                   key={step.title}
-                  className="relative rounded-3xl bg-white p-7 shadow-sm ring-1 ring-[#1510C8]/10"
+                  className="relative rounded-brand-card bg-brand-surface-subtle p-7 shadow-sm ring-1 ring-[#1510C8]/10"
                 >
-                  <span className="absolute right-6 top-5 font-[family-name:var(--font-heading)] text-5xl font-extrabold text-[#1510C8]/10">
+                  <span className="absolute right-6 top-5 font-[family-name:var(--font-heading)] text-5xl font-extrabold text-[#1510C8]/20">
                     0{index + 1}
                   </span>
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#F6C304] text-[#080494]">
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-brand-control bg-[#F6C304] text-[#080494]">
                     <Icon size={23} />
                   </div>
-                  <h3 className="mb-2 font-[family-name:var(--font-heading)] text-xl font-bold text-[#1510C8]">
+                  <h3 className="mb-2 font-[family-name:var(--font-heading)] text-xl font-bold text-[#12131A]">
                     {step.title}
                   </h3>
                   <p className="leading-relaxed text-slate-500">
@@ -250,8 +252,8 @@ export default function AccessTVContent() {
         </div>
       </section>
 
-      <section className="bg-white px-4 py-16 sm:px-6 md:py-20 lg:px-8">
-        <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] bg-gradient-to-r from-[#1510C8] to-[#1847E3] p-8 text-center shadow-xl sm:p-12">
+      <section className="bg-brand-surface-soft px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+        <div className="relative mx-auto max-w-5xl overflow-hidden rounded-brand-panel bg-gradient-to-r from-[#1510C8] to-[#1847E3] p-8 text-center shadow-xl sm:p-12">
           <div className="absolute -left-12 -top-16 h-48 w-48 rounded-full bg-[#00BEDC]/25 blur-3xl" />
           <div className="absolute -bottom-20 -right-12 h-56 w-56 rounded-full bg-[#F6C304]/20 blur-3xl" />
           <div className="relative">

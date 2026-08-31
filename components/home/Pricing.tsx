@@ -16,10 +16,10 @@ const PricingCard = ({ tier, index }: { tier: Tier; index: number }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className={`relative flex flex-col rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
+      className={`relative flex flex-col rounded-brand-panel border p-6 sm:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
         isPopular
-          ? "bg-white ring-2 ring-[#F6C304] shadow-lg scale-[1.02]"
-          : "bg-white shadow-md"
+          ? "border-[#F6C304] bg-gradient-to-br from-[#1510C8] to-[#080494] ring-2 ring-[#F6C304] shadow-xl shadow-[#1510C8]/20 scale-[1.02]"
+          : "border-[#1510C8]/10 bg-white shadow-md"
       }`}
     >
       {isPopular && (
@@ -31,27 +31,44 @@ const PricingCard = ({ tier, index }: { tier: Tier; index: number }) => {
       )}
 
       {/* Plan Name */}
-      <h3 className="text-lg font-bold text-[#1510C8] font-[family-name:var(--font-heading)]">
+      <h3
+        className={`text-lg font-bold font-[family-name:var(--font-heading)] ${
+          isPopular ? "text-white" : "text-[#1510C8]"
+        }`}
+      >
         {tier.title}
       </h3>
 
       {/* Speed */}
-      <p className="text-sm text-gray-500 mt-1">{tier.description}</p>
+      <p className={`mt-1 text-sm ${isPopular ? "text-white/70" : "text-gray-500"}`}>
+        {tier.description}
+      </p>
 
       {/* Price */}
       <div className="mt-4 mb-6">
-        <span className="text-4xl font-extrabold text-[#9A7600] font-[family-name:var(--font-heading)]">
+        <span
+          className={`text-4xl font-extrabold font-[family-name:var(--font-heading)] ${
+            isPopular ? "text-white" : "text-[#12131A]"
+          }`}
+        >
           {tier.price}
         </span>
-        <span className="text-gray-500 text-sm ml-1">{tier.priceSuffix}</span>
+        <span className={`ml-1 text-sm ${isPopular ? "text-white/65" : "text-gray-500"}`}>
+          {tier.priceSuffix}
+        </span>
       </div>
 
       {/* Features */}
       <ul className="space-y-3 mb-8 flex-1">
         {tier.features?.map((feature, i) => (
           <li key={i} className="flex items-start gap-2">
-            <FaCheck className="text-[#25D366] mt-0.5 flex-shrink-0" size={14} />
-            <span className="text-sm text-gray-600">{feature}</span>
+            <FaCheck
+              className={`${isPopular ? "text-[#F6C304]" : "text-[#1510C8]"} mt-0.5 flex-shrink-0`}
+              size={14}
+            />
+            <span className={`text-sm ${isPopular ? "text-white/80" : "text-gray-600"}`}>
+              {feature}
+            </span>
           </li>
         ))}
       </ul>
@@ -87,14 +104,15 @@ const Pricing = ({
   langName?: string;
 }) => {
   return (
-    <section id={id} className="bg-slate-50 py-20 md:py-24">
+    <section id={id} className="bg-brand-surface-soft py-20 md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#1510C8] font-[family-name:var(--font-heading)]">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#12131A] font-[family-name:var(--font-heading)]">
             {locale.title}{" "}
-            <span className="text-[#9A7600]">{locale.titleHighlight}</span>
+            <span>{locale.titleHighlight}</span>
           </h2>
+          <div className="mx-auto mt-4 h-1.5 w-14 rounded-full bg-[#F6C304]" />
           <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
             {locale.description}
           </p>

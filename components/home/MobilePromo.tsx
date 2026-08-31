@@ -6,20 +6,20 @@ import { HiArrowRight } from "react-icons/hi";
 
 const MobilePromo = () => {
   return (
-    <section className="bg-white py-14 md:py-16">
+    <section className="bg-brand-surface-soft py-14 md:py-16">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#1510C8] to-[#1847E3] p-8 sm:p-10 lg:p-12 shadow-xl"
+          className="relative overflow-hidden rounded-brand-panel bg-gradient-to-r from-[#1510C8] to-[#1847E3] p-8 sm:p-10 lg:p-12 shadow-xl"
         >
           <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-[#F6C304]/10 blur-3xl" />
-          <div className="absolute -left-10 -bottom-10 w-40 h-40 rounded-full bg-[#25D366]/10 blur-3xl" />
+          <div className="absolute -left-10 -bottom-10 w-40 h-40 rounded-full bg-[#00BEDC]/15 blur-3xl" />
 
           <div className="relative flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-10">
-            <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-[#F6C304]/20 flex items-center justify-center">
+            <div className="flex-shrink-0 w-16 h-16 rounded-brand-control bg-[#F6C304]/20 flex items-center justify-center">
               <BsPhoneVibrate className="text-[#F6C304]" size={32} />
             </div>
 
