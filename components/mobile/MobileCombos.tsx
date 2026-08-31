@@ -25,35 +25,35 @@ const ComboCard = ({
       transition={{ duration: 0.4, delay: index * 0.1 }}
       className={`relative flex flex-col rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${
         isPopular
-          ? "ring-2 ring-[#FFA500] shadow-2xl md:scale-[1.03]"
+          ? "ring-2 ring-[#F6C304] shadow-2xl md:scale-[1.03]"
           : "shadow-xl"
       }`}
     >
       {isPopular && (
         <div className="absolute top-4 right-4 z-10">
-          <span className="bg-gradient-to-r from-[#FFA500] to-[#FFD700] text-[#1E3A5F] text-[11px] font-extrabold px-3 py-1 rounded-full shadow uppercase tracking-wide">
+          <span className="bg-gradient-to-r from-[#F6C304] to-[#F6C304] text-[#1510C8] text-[11px] font-extrabold px-3 py-1 rounded-full shadow uppercase tracking-wide">
             Mais Vendido
           </span>
         </div>
       )}
 
       {/* Hero — Internet speed + GB */}
-      <div className="relative bg-gradient-to-br from-[#1E3A5F] via-[#162d4a] to-[#0B1828] px-6 pt-10 pb-8 text-white">
-        <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_top_right,_#FFA500_0%,_transparent_55%)]" />
+      <div className="relative bg-gradient-to-br from-[#1510C8] via-[#0D0E7E] to-[#080494] px-6 pt-10 pb-8 text-white">
+        <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_top_right,_#F6C304_0%,_transparent_55%)]" />
         <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_bottom_left,_#00BEDC_0%,_transparent_60%)]" />
 
         <div className="relative">
           {/* Combo badge */}
           <div className="flex items-center gap-2 mb-5">
             <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm border border-white/15 px-3 py-1 rounded-full">
-              <FaWifi className="text-[#FFA500]" size={11} />
+              <FaWifi className="text-[#F6C304]" size={11} />
               <span className="text-[10px] font-bold tracking-wider uppercase text-white/90">
                 Fibra
               </span>
             </div>
-            <HiPlus className="text-[#FFA500]" size={14} />
+            <HiPlus className="text-[#F6C304]" size={14} />
             <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm border border-white/15 px-3 py-1 rounded-full">
-              <BsPhoneVibrate className="text-[#FFA500]" size={11} />
+              <BsPhoneVibrate className="text-[#F6C304]" size={11} />
               <span className="text-[10px] font-bold tracking-wider uppercase text-white/90">
                 Chip
               </span>
@@ -62,17 +62,17 @@ const ComboCard = ({
 
           {/* Speed */}
           <div className="flex items-end gap-1.5">
-            <span className="text-6xl sm:text-7xl font-extrabold leading-none text-[#FFA500] font-[family-name:var(--font-heading)]">
+            <span className="text-6xl sm:text-7xl font-extrabold leading-none text-[#F6C304] font-[family-name:var(--font-heading)]">
               {plan.internetSpeed}
             </span>
-            <span className="text-2xl font-extrabold text-[#FFA500] mb-1.5 tracking-wide">
+            <span className="text-2xl font-extrabold text-[#F6C304] mb-1.5 tracking-wide">
               {plan.internetUnit}
             </span>
           </div>
 
           {/* GB */}
           <div className="mt-3 inline-flex items-baseline gap-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-4 py-2">
-            <span className="text-[#FFA500] text-2xl font-extrabold leading-none">
+            <span className="text-[#F6C304] text-2xl font-extrabold leading-none">
               +
             </span>
             <span className="text-white text-3xl font-extrabold leading-none font-[family-name:var(--font-heading)]">
@@ -86,7 +86,7 @@ const ComboCard = ({
       {/* Body */}
       <div className="flex flex-col flex-1 p-6 bg-white">
         <div className="mb-4">
-          <p className="text-sm font-semibold text-[#1E3A5F]">
+          <p className="text-sm font-semibold text-[#1510C8]">
             {plan.baseData}
           </p>
         </div>
@@ -120,7 +120,7 @@ const ComboCard = ({
             <span className="text-sm text-gray-400">Por apenas</span>
           </div>
           <div className="flex items-baseline gap-1">
-            <span className="text-4xl font-extrabold text-[#FFA500] font-[family-name:var(--font-heading)]">
+            <span className="text-4xl font-extrabold text-[#9A7600] font-[family-name:var(--font-heading)]">
               {plan.price}
             </span>
             <span className="text-gray-500 text-sm">{plan.priceSuffix}</span>
@@ -156,19 +156,19 @@ const MobileCombos = () => {
       className="relative bg-gradient-to-b from-white via-slate-50 to-white py-20 md:py-24 overflow-hidden"
     >
       {/* decorative blobs */}
-      <div className="absolute -top-24 -left-24 w-72 h-72 bg-[#FFA500]/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-[#1E3A5F]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-24 -left-24 w-72 h-72 bg-[#F6C304]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-[#1510C8]/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-[#FFA500]/15 border border-[#FFA500]/30 text-[#1E3A5F] text-xs sm:text-sm font-bold px-4 py-2 rounded-full mb-5">
+          <div className="inline-flex items-center gap-2 bg-[#F6C304]/15 border border-[#F6C304]/30 text-[#1510C8] text-xs sm:text-sm font-bold px-4 py-2 rounded-full mb-5">
             <FaWifi size={12} />
             <HiPlus size={12} />
             <BsPhoneVibrate size={12} />
             Internet fixa + Chip móvel
           </div>
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#1E3A5F] font-[family-name:var(--font-heading)]">
-            Combos <span className="text-[#FFA500]">Fibra + Chip</span>
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#1510C8] font-[family-name:var(--font-heading)]">
+            Combos <span className="text-[#9A7600]">Fibra + Chip</span>
           </h2>
           <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
             Leve a internet de casa para a rua. Junte a sua fibra AccessNet com

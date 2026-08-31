@@ -57,9 +57,9 @@ const AppShowcase = ({ locale }: { locale: any }) => {
             transition={{ duration: 0.5 }}
             className="flex-1 text-center lg:text-left"
           >
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-[#1E3A5F] font-[family-name:var(--font-heading)]">
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-[#1510C8] font-[family-name:var(--font-heading)]">
               {locale.title}{" "}
-              <span className="text-[#FFA500]">{locale.titleHighlight}</span>
+              <span className="text-[#9A7600]">{locale.titleHighlight}</span>
             </h2>
             <p className="mt-4 text-lg text-gray-500 max-w-lg mx-auto lg:mx-0">
               {locale.description}
@@ -71,7 +71,7 @@ const AppShowcase = ({ locale }: { locale: any }) => {
                 href="https://play.google.com/store/apps/details?id=br.com.accessnet.appclientes"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 bg-[#1E3A5F] text-white font-semibold px-6 py-3.5 rounded-xl hover:bg-[#162d4a] transition-colors"
+                className="inline-flex items-center justify-center gap-2.5 bg-[#1510C8] text-white font-semibold px-6 py-3.5 rounded-xl hover:bg-[#0D0E7E] transition-colors"
               >
                 <FaGooglePlay size={20} />
                 Google Play
@@ -80,7 +80,7 @@ const AppShowcase = ({ locale }: { locale: any }) => {
                 href="https://apps.apple.com/br/app/accessnet/id6503640632"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 bg-[#1E3A5F] text-white font-semibold px-6 py-3.5 rounded-xl hover:bg-[#162d4a] transition-colors"
+                className="inline-flex items-center justify-center gap-2.5 bg-[#1510C8] text-white font-semibold px-6 py-3.5 rounded-xl hover:bg-[#0D0E7E] transition-colors"
               >
                 <FaApple size={22} />
                 App Store
@@ -100,7 +100,7 @@ const AppShowcase = ({ locale }: { locale: any }) => {
               {/* Left arrow */}
               <button
                 onClick={() => paginate(-1)}
-                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg border border-gray-100 flex items-center justify-center text-[#1E3A5F] hover:bg-gray-50 hover:shadow-xl transition-all active:scale-95"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg border border-gray-100 flex items-center justify-center text-[#1510C8] hover:bg-gray-50 hover:shadow-xl transition-all active:scale-95"
                 aria-label="Screenshot anterior"
               >
                 <HiChevronLeft size={24} />
@@ -151,7 +151,7 @@ const AppShowcase = ({ locale }: { locale: any }) => {
               {/* Right arrow */}
               <button
                 onClick={() => paginate(1)}
-                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg border border-gray-100 flex items-center justify-center text-[#1E3A5F] hover:bg-gray-50 hover:shadow-xl transition-all active:scale-95"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg border border-gray-100 flex items-center justify-center text-[#1510C8] hover:bg-gray-50 hover:shadow-xl transition-all active:scale-95"
                 aria-label="Próximo screenshot"
               >
                 <HiChevronRight size={24} />
@@ -166,7 +166,7 @@ const AppShowcase = ({ locale }: { locale: any }) => {
                   onClick={() => goToSlide(i)}
                   className={`rounded-full transition-all duration-300 ${
                     i === currentIndex
-                      ? "w-8 h-2.5 bg-[#FFA500]"
+                      ? "w-8 h-2.5 bg-[#F6C304]"
                       : "w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400"
                   }`}
                   aria-label={`Ir para screenshot ${i + 1}`}

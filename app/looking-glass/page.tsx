@@ -35,14 +35,14 @@ const resources = [
 export default function LookingGlassPage() {
   return (
     <>
-      <section className="bg-gradient-to-br from-[#1E3A5F] via-[#162d4a] to-[#0B1828]">
+      <section className="bg-gradient-to-br from-[#1510C8] via-[#0D0E7E] to-[#080494]">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#FFA500]/30 bg-[#FFA500]/20 px-4 py-2 text-xs font-semibold text-[#FFD700] sm:text-sm">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#F6C304]/30 bg-[#F6C304]/20 px-4 py-2 text-xs font-semibold text-[#F6C304] sm:text-sm">
             Ferramenta de rede
           </div>
 
           <h1 className="mb-4 font-[family-name:var(--font-heading)] text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
-            Looking <span className="text-[#FFA500]">Glass</span>
+            Looking <span className="text-[#F6C304]">Glass</span>
           </h1>
 
           <p className="max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg">
@@ -63,8 +63,8 @@ export default function LookingGlassPage() {
                 key={resource.title}
                 className="rounded-2xl border border-gray-200 bg-white p-6"
               >
-                <resource.icon className="mb-3 text-[#FFA500]" size={24} />
-                <h2 className="mb-2 font-[family-name:var(--font-heading)] text-lg font-bold text-[#1E3A5F]">
+                <resource.icon className="mb-3 text-[#9A7600]" size={24} />
+                <h2 className="mb-2 font-[family-name:var(--font-heading)] text-lg font-bold text-[#1510C8]">
                   {resource.title}
                 </h2>
                 <p className="text-sm leading-relaxed text-gray-600">

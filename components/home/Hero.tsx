@@ -18,14 +18,14 @@ const Hero = ({
 }) => {
   const { openLeadModal } = useLeadModal();
   return (
-    <section className="relative bg-gradient-to-br from-[#1E3A5F] via-[#162d4a] to-[#0B1828] overflow-hidden">
+    <section className="relative bg-gradient-to-br from-[#1510C8] via-[#0D0E7E] to-[#080494] overflow-hidden">
       {/* Animated dots shader overlay */}
       <div className="absolute inset-0 opacity-40">
         <DotsShader
           colors={[
-            [50, 100, 180],  // Steel blue
-            [0, 120, 230],   // Blue
-            [0, 190, 220],   // Cyan
+            [21, 16, 200], // Royal blue
+            [24, 71, 227], // Bright blue
+            [0, 190, 220], // Cyan
           ]}
           opacities={[0.4, 0.4, 0.5, 0.5, 0.6, 0.6, 0.7, 0.7, 0.8, 0.9]}
           totalSize={5}
@@ -45,7 +45,7 @@ const Hero = ({
           >
             {/* Badge with shimmer */}
             <div className="mb-3 sm:mb-6">
-              <span className="relative inline-flex items-center overflow-hidden bg-[#FFA500]/20 border border-[#FFA500]/30 text-[#FFD700] text-[10px] sm:text-sm font-semibold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full">
+              <span className="relative inline-flex items-center overflow-hidden bg-[#F6C304]/20 border border-[#F6C304]/30 text-[#F6C304] text-[10px] sm:text-sm font-semibold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full">
                 <span className="relative z-10">✦ 12 anos conectando o Maranhão</span>
                 <span className="absolute inset-0 z-0 animate-shimmer">
                   <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg]" />
@@ -57,8 +57,8 @@ const Hero = ({
             <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-[1.1] tracking-tight mb-3 sm:mb-6 font-[family-name:var(--font-heading)]">
               {locale.title1}{" "}
               <span className="relative inline-block">
-                <span className="relative z-10 text-[#FFA500]">{locale.title2}</span>
-                <span className="absolute bottom-1 left-0 w-full h-3 bg-[#FFA500]/20 rounded-sm" />
+                <span className="relative z-10 text-[#F6C304]">{locale.title2}</span>
+                <span className="absolute bottom-1 left-0 w-full h-3 bg-[#F6C304]/20 rounded-sm" />
               </span>{" "}
               {locale.title3}
             </h1>
@@ -93,15 +93,15 @@ const Hero = ({
             {/* Trust Indicators — hidden on small mobile, visible from sm+ */}
             <div className="hidden sm:flex flex-wrap gap-6 justify-center lg:justify-start">
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-                <HiUsers className="text-[#FFA500]" size={18} />
+                <HiUsers className="text-[#F6C304]" size={18} />
                 <span className="text-white/90 text-sm font-medium">+10.000 clientes</span>
               </div>
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-                <HiLocationMarker className="text-[#FFA500]" size={18} />
+                <HiLocationMarker className="text-[#F6C304]" size={18} />
                 <span className="text-white/90 text-sm font-medium">13 cidades</span>
               </div>
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-                <HiPhone className="text-[#FFA500]" size={18} />
+                <HiPhone className="text-[#F6C304]" size={18} />
                 <span className="text-white/90 text-sm font-medium">Suporte 24h</span>
               </div>
             </div>

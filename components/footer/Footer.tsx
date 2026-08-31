@@ -1,10 +1,11 @@
 import { siteConfig } from "@/config/site";
 import Image from "next/image";
+import Link from "next/link";
 import { FooterSocialLink } from "./FooterSocialLink";
 
 const Footer = async () => {
   return (
-    <footer className="bg-[#0B1828] text-white">
+    <footer className="bg-[#080494] text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Column 1: Brand & Contact */}
@@ -33,14 +34,23 @@ const Footer = async () => {
             <ul className="space-y-3">
               {siteConfig.footerProducts.map((product) => (
                 <li key={product.name}>
-                  <a
-                    href={product.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white/60 hover:text-[#FFA500] transition-colors text-sm"
-                  >
-                    {product.name}
-                  </a>
+                  {product.url.startsWith("/") ? (
+                    <Link
+                      href={product.url}
+                      className="text-white/60 hover:text-[#F6C304] transition-colors text-sm"
+                    >
+                      {product.name}
+                    </Link>
+                  ) : (
+                    <a
+                      href={product.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white/60 hover:text-[#F6C304] transition-colors text-sm"
+                    >
+                      {product.name}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>

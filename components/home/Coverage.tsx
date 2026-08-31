@@ -11,9 +11,9 @@ const Coverage = ({ id, locale }: { id: string; locale: any }) => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#1E3A5F] font-[family-name:var(--font-heading)]">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#1510C8] font-[family-name:var(--font-heading)]">
             {locale.title}{" "}
-            <span className="text-[#FFA500]">{locale.titleHighlight}</span>
+            <span className="text-[#9A7600]">{locale.titleHighlight}</span>
           </h2>
           <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
             {locale.description}
@@ -37,17 +37,17 @@ const Coverage = ({ id, locale }: { id: string; locale: any }) => {
               transition={{ duration: 0.3, delay: index * 0.05 }}
               className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
                 city.isHQ
-                  ? "bg-[#1E3A5F] text-white shadow-md"
-                  : "bg-white text-[#1E3A5F] border border-gray-200 hover:border-[#1E3A5F] hover:shadow-md"
+                  ? "bg-[#1510C8] text-white shadow-md"
+                  : "bg-white text-[#1510C8] border border-gray-200 hover:border-[#1510C8] hover:shadow-md"
               }`}
             >
               <HiLocationMarker
                 size={14}
-                className={city.isHQ ? "text-[#FFA500]" : "text-[#FFA500]"}
+                className={city.isHQ ? "text-[#F6C304]" : "text-[#9A7600]"}
               />
               {city.name}
               {city.isHQ && (
-                <span className="text-[10px] bg-[#FFA500] text-white px-2 py-0.5 rounded-full ml-1">
+                <span className="text-[10px] bg-[#F6C304] text-[#080494] px-2 py-0.5 rounded-full ml-1">
                   SEDE
                 </span>
               )}

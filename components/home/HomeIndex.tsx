@@ -7,6 +7,7 @@ import Pricing from "@/components/home/Pricing";
 import SocialProof from "@/components/home/SocialProof";
 import StoreCarousel from "@/components/home/StoreCarousel";
 import AppShowcase from "@/components/home/AppShowcase";
+import AccessTVPromo from "@/components/home/AccessTVPromo";
 import MobilePromo from "@/components/home/MobilePromo";
 import Testimonials from "@/components/home/Testimonials";
 import { getDictionary } from "@/lib/i18n";
@@ -34,6 +35,9 @@ export default async function HomeIndex({ lang }: { lang: string }) {
 
       {/* App Showcase */}
       <AppShowcase locale={dict.AppShowcase} />
+
+      {/* Access TV cross-promo */}
+      <AccessTVPromo />
 
       {/* Social Proof */}
       <Testimonials id="Depoimentos" locale={dict.Testimonials} />

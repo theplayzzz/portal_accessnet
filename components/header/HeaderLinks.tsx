@@ -11,7 +11,7 @@ const HeaderLinks = () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={link.name}
-          className="text-gray-500 hover:text-[#1E3A5F] transition-colors"
+          className="text-gray-500 hover:text-[#1510C8] transition-colors"
         >
           {React.createElement(link.icon, { className: "w-5 h-5" })}
         </a>

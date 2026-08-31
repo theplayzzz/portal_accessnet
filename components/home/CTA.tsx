@@ -9,13 +9,13 @@ import { useLeadModal } from "@/components/lead/useLeadModal";
 const CTA = ({ locale }: { locale: any; CTALocale?: any }) => {
   const { openLeadModal } = useLeadModal();
   return (
-    <section className="relative bg-gradient-to-br from-[#1E3A5F] to-[#0B1828] overflow-hidden">
+    <section className="relative bg-gradient-to-br from-[#1510C8] to-[#080494] overflow-hidden">
       {/* Animated dots shader */}
       <div className="absolute inset-0 opacity-35">
         <DotsShader
           colors={[
-            [50, 100, 180],
-            [0, 120, 230],
+            [21, 16, 200],
+            [24, 71, 227],
             [0, 190, 220],
           ]}
           opacities={[0.4, 0.4, 0.5, 0.5, 0.6, 0.6, 0.7, 0.7, 0.8, 0.9]}

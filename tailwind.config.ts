@@ -32,7 +32,7 @@ const config = {
         // },
         primary: {
           foreground: "#FFFFFF",
-          DEFAULT: "#1E3A5F",
+          DEFAULT: "#1510C8",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -47,16 +47,23 @@ const config = {
           foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: "#FFA500",
-          foreground: "#FFFFFF",
+          DEFAULT: "#F6C304",
+          foreground: "#080494",
         },
         brand: {
-          blue: "#0066FF",
-          turquoise: "#00BCD4",
-          navy: "#1E3A5F",
-          "navy-dark": "#0B1828",
-          orange: "#FFA500",
-          gold: "#FFD700",
+          primary: "#1510C8",
+          blue: "#1847E3",
+          cyan: "#00BEDC",
+          deep: "#080494",
+          yellow: "#F6C304",
+          "yellow-ink": "#9A7600",
+          surface: "#F7F8FF",
+          // Aliases mantidos para componentes legados.
+          turquoise: "#00BEDC",
+          navy: "#1510C8",
+          "navy-dark": "#080494",
+          orange: "#F6C304",
+          gold: "#F6C304",
           whatsapp: "#25D366",
         },
         popover: {

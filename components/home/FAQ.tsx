@@ -16,9 +16,9 @@ const FAQ = ({
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-14">
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#1E3A5F] font-[family-name:var(--font-heading)]">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#1510C8] font-[family-name:var(--font-heading)]">
             {locale.title}{" "}
-            <span className="text-[#FFA500]">{locale.titleHighlight}</span>
+            <span className="text-[#9A7600]">{locale.titleHighlight}</span>
           </h2>
           <p className="mt-4 text-lg text-gray-500">
             {locale.description}
@@ -31,10 +31,10 @@ const FAQ = ({
           className="gap-4"
           itemClasses={{
             base: "bg-white rounded-xl shadow-sm mb-3 px-6",
-            title: "text-[#1E3A5F] font-semibold text-base",
+            title: "text-[#1510C8] font-semibold text-base",
             content: "text-gray-500 pb-4",
             trigger: "py-5",
-            indicator: "text-[#FFA500]",
+            indicator: "text-[#9A7600]",
           }}
         >
           {FAQS_PT.map((faq, index) => (

@@ -18,20 +18,20 @@ const PricingCard = ({ tier, index }: { tier: Tier; index: number }) => {
       transition={{ duration: 0.4, delay: index * 0.1 }}
       className={`relative flex flex-col rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
         isPopular
-          ? "bg-white ring-2 ring-[#FFA500] shadow-lg scale-[1.02]"
+          ? "bg-white ring-2 ring-[#F6C304] shadow-lg scale-[1.02]"
           : "bg-white shadow-md"
       }`}
     >
       {isPopular && (
         <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-          <span className="bg-gradient-to-r from-[#FFA500] to-[#FFD700] text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-md">
+          <span className="bg-[#F6C304] text-[#080494] text-xs font-bold px-4 py-1.5 rounded-full shadow-md">
             Mais Popular
           </span>
         </div>
       )}
 
       {/* Plan Name */}
-      <h3 className="text-lg font-bold text-[#1E3A5F] font-[family-name:var(--font-heading)]">
+      <h3 className="text-lg font-bold text-[#1510C8] font-[family-name:var(--font-heading)]">
         {tier.title}
       </h3>
 
@@ -40,7 +40,7 @@ const PricingCard = ({ tier, index }: { tier: Tier; index: number }) => {
 
       {/* Price */}
       <div className="mt-4 mb-6">
-        <span className="text-4xl font-extrabold text-[#FFA500] font-[family-name:var(--font-heading)]">
+        <span className="text-4xl font-extrabold text-[#9A7600] font-[family-name:var(--font-heading)]">
           {tier.price}
         </span>
         <span className="text-gray-500 text-sm ml-1">{tier.priceSuffix}</span>
@@ -91,9 +91,9 @@ const Pricing = ({
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#1E3A5F] font-[family-name:var(--font-heading)]">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#1510C8] font-[family-name:var(--font-heading)]">
             {locale.title}{" "}
-            <span className="text-[#FFA500]">{locale.titleHighlight}</span>
+            <span className="text-[#9A7600]">{locale.titleHighlight}</span>
           </h2>
           <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
             {locale.description}

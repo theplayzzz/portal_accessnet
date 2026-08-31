@@ -12,7 +12,7 @@ const baseSiteConfig = {
   creator: "AccessNet",
   whatsappNumber: "5508004491021",
   phone: "0800 449 1021",
-  themeColors: [{ media: "(prefers-color-scheme: light)", color: "#1E3A5F" }],
+  themeColors: [{ media: "(prefers-color-scheme: light)", color: "#1510C8" }],
   nextThemeColor: "light",
   icons: {
     icon: "/favicon.ico",
@@ -34,6 +34,7 @@ const baseSiteConfig = {
     { url: "https://ixc.accessnet.com.br", name: "Central do Assinante" },
     { url: "https://ixc.accessnet.com.br", name: "2a Via de Boleto" },
     { url: "https://velocidade.accessnet.com.br", name: "Teste de Velocidade" },
+    { url: "/access-tv", name: "Access TV" },
     { url: "/looking-glass", name: "Looking Glass" },
     { url: "https://play.google.com/store/apps/details?id=br.com.accessnet.appclientes", name: "App Android" },
     { url: "https://apps.apple.com/br/app/accessnet/id6503640632", name: "App iOS" },

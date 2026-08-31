@@ -8,15 +8,17 @@ Documento de referencia para manter consistencia visual em toda a landing page.
 
 | Token | Hex | Uso |
 |-------|-----|-----|
-| **Navy (principal)** | `#1E3A5F` | Headings, backgrounds hero/CTA, header |
-| **Navy Dark** | `#0B1828` | Footer, gradients escuros |
-| **Orange (accent)** | `#FFA500` | Destaques, precos, icones, highlights |
-| **Gold** | `#FFD700` | Texto badge, gradients premium |
+| **Royal Blue (principal)** | `#1510C8` | Titulos, fundos de destaque e elementos de marca |
+| **Deep Blue** | `#080494` | Footer, gradientes escuros e texto sobre amarelo |
+| **Bright Blue** | `#1847E3` | Gradientes, links e elementos decorativos |
+| **Yellow (accent)** | `#F6C304` | Destaques, precos grandes, icones e badges em fundos azuis |
+| **Yellow Ink** | `#9A7600` | Texto pequeno de destaque sobre fundos claros |
+| **Cyan** | `#00BEDC` | Apoio visual, contornos e detalhes pontuais |
 | **WhatsApp Green** | `#25D366` | Botoes de acao WhatsApp |
-| **Bright Blue** | `#0066FF` | Mascote, elementos decorativos |
-| **Turquoise** | `#00BCD4` | Fachadas, DotsShader |
 | **Branco** | `#FFFFFF` | Texto sobre fundos escuros, cards |
-| **Slate-50** | `#F8FAFC` | Background de secoes alternadas |
+| **Surface** | `#F7F8FF` | Background de secoes alternadas |
+
+Proporcao de uso recomendada: 55% branco/neutros, 30% azuis, 10% amarelo e 5% ciano. O verde fica reservado aos pontos de conversao pelo WhatsApp.
 
 ---
 
@@ -75,7 +77,7 @@ Efeito simples de brilho diagonal percorrendo o elemento.
 Usado em: badge "12 anos conectando o Maranhao".
 
 ```tsx
-<span className="relative inline-flex items-center overflow-hidden bg-[#FFA500]/20 border border-[#FFA500]/30 text-[#FFD700] text-xs sm:text-sm font-semibold px-4 py-2 rounded-full">
+<span className="relative inline-flex items-center overflow-hidden bg-[#F6C304]/20 border border-[#F6C304]/30 text-[#F6C304] text-xs sm:text-sm font-semibold px-4 py-2 rounded-full">
   <span className="relative z-10">Texto</span>
   <span className="absolute inset-0 z-0 animate-shimmer">
     <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg]" />
@@ -89,12 +91,12 @@ Componente WebGL: `components/ui/DotsShader.tsx`
 
 Usado em: Hero, CTA final — sobre fundos navy gradient.
 
-Pontos animados com 3 cores da marca (Navy, Bright Blue, Turquoise) em baixa opacidade.
+Pontos animados com 3 cores da marca (Royal Blue, Bright Blue, Cyan) em baixa opacidade.
 
 ```tsx
 <div className="absolute inset-0 opacity-30">
   <DotsShader
-    colors={[[30, 58, 95], [0, 102, 255], [0, 188, 212]]}
+    colors={[[21, 16, 200], [24, 71, 227], [0, 190, 220]]}
     opacities={[0.3, 0.3, 0.4, 0.4, 0.5, 0.5, 0.6, 0.6, 0.7, 0.8]}
     totalSize={4}
     dotSize={2}
@@ -132,7 +134,7 @@ Padrao de alternancia de fundos para ritmo visual:
 
 | Secao | Background | Classe |
 |-------|-----------|--------|
-| Hero | Gradient navy | `bg-gradient-to-br from-[#1E3A5F] via-[#162d4a] to-[#0B1828]` |
+| Hero | Gradient azul profundo | `bg-gradient-to-br from-[#1510C8] via-[#0D0E7E] to-[#080494]` |
 | SocialProof | Branco | `bg-white` |
 | Pricing | Cinza claro | `bg-slate-50` |
 | Features | Branco | `bg-white` |
@@ -140,8 +142,8 @@ Padrao de alternancia de fundos para ritmo visual:
 | Stores | Branco | `bg-white` |
 | Testimonials | Branco | `bg-white` |
 | FAQ | Cinza claro | `bg-slate-50` |
-| CTA | Gradient navy | `bg-gradient-to-br from-[#1E3A5F] to-[#0B1828]` |
-| Footer | Navy escuro | `bg-[#0B1828]` |
+| CTA | Gradient azul profundo | `bg-gradient-to-br from-[#1510C8] to-[#080494]` |
+| Footer | Azul profundo | `bg-[#080494]` |
 
 ---
 

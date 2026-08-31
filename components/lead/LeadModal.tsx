@@ -335,16 +335,16 @@ export function LeadModal() {
                   data-testid="lead-submit"
                   className={cn(
                     "group relative w-full overflow-hidden rounded-xl px-6 py-3.5 mt-2",
-                    "font-bold text-white text-[15px] tracking-wide",
+                    "font-bold text-[#080494] text-[15px] tracking-wide",
                     "transition-all duration-200",
                     "disabled:opacity-70 disabled:cursor-not-allowed",
-                    "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFA500] focus-visible:ring-offset-2"
+                    "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F6C304] focus-visible:ring-offset-2"
                   )}
                   style={{
                     background:
-                      "linear-gradient(135deg, #FFA500 0%, #FF8A00 50%, #FFA500 100%)",
+                      "linear-gradient(135deg, #F6C304 0%, #FFE16B 50%, #F6C304 100%)",
                     boxShadow:
-                      "0 8px 20px -6px rgba(255,138,0,0.5), 0 2px 4px rgba(30,58,95,0.08)",
+                      "0 8px 20px -6px rgba(246,195,4,0.5), 0 2px 4px rgba(8,4,148,0.12)",
                   }}
                 >
                   {/* shimmer sweep on hover */}
@@ -401,13 +401,13 @@ function FormHeader({
       className="relative px-6 pt-8 pb-6 sm:px-7 sm:pt-9 sm:pb-7 overflow-hidden"
       style={{
         background:
-          "linear-gradient(135deg, #1E3A5F 0%, #142845 55%, #0B1828 100%)",
+          "linear-gradient(135deg, #1510C8 0%, #0D0E7E 55%, #080494 100%)",
       }}
     >
       {/* Decorative glow */}
       <div
         className="pointer-events-none absolute -top-20 -right-10 h-52 w-52 rounded-full opacity-30 blur-3xl"
-        style={{ background: "radial-gradient(circle, #FFA500 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, #F6C304 0%, transparent 70%)" }}
         aria-hidden="true"
       />
       <div
@@ -428,8 +428,8 @@ function FormHeader({
 
       <div className="relative z-10">
         {planLabel && (
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-[#FFA500]/15 border border-[#FFA500]/30 px-2.5 py-1 mb-3">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#FFA500]" />
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-[#F6C304]/15 border border-[#F6C304]/30 px-2.5 py-1 mb-3">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#F6C304]" />
             <span className="text-[11px] font-semibold uppercase tracking-wider text-[#FFD27A]">
               Plano {planLabel}
             </span>
@@ -437,7 +437,7 @@ function FormHeader({
         )}
         <DialogTitle className="text-white font-heading text-[26px] leading-[1.15] tracking-tight mb-2">
           Fale com a gente.
-          <span className="block text-[#FFA500]">Sem complicação.</span>
+          <span className="block text-[#F6C304]">Sem complicação.</span>
         </DialogTitle>
         <DialogDescription className="text-slate-300 text-[14px] leading-relaxed max-w-[90%]">
           Preencha seus dados e nosso time comercial chama no seu WhatsApp em poucos minutos.
@@ -618,15 +618,15 @@ function SuccessPanel({
           {/* Ação requerida */}
           <div className="mt-3.5 flex items-start gap-2.5">
             <span
-              className="flex-shrink-0 inline-flex items-center justify-center h-5 w-5 rounded-full text-[#FF8A00] mt-[1px]"
-              style={{ backgroundColor: "rgba(255,165,0,0.14)" }}
+              className="flex-shrink-0 inline-flex items-center justify-center h-5 w-5 rounded-full text-[#9A7600] mt-[1px]"
+              style={{ backgroundColor: "rgba(246,195,4,0.18)" }}
               aria-hidden="true"
             >
               <span className="text-[11px] font-black leading-none">!</span>
             </span>
             <p className="text-[13px] text-slate-700 leading-relaxed">
               Toque em{" "}
-              <span className="font-bold text-[#1E3A5F]">Sou eu</span> pra
+              <span className="font-bold text-[#1510C8]">Sou eu</span> pra
               confirmar — um consultor te chama em seguida.
             </p>
           </div>
@@ -656,13 +656,13 @@ function SuccessPanel({
             "group relative flex items-center justify-between gap-3 w-full overflow-hidden rounded-xl px-4 py-3.5 transition-all duration-200",
             "text-white shadow-lg",
             "hover:shadow-xl hover:-translate-y-[1px]",
-            "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFA500] focus-visible:ring-offset-2"
+            "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F6C304] focus-visible:ring-offset-2"
           )}
           style={{
             background:
-              "linear-gradient(135deg, #FFA500 0%, #FF8A00 55%, #F77F00 100%)",
+              "linear-gradient(135deg, #25D366 0%, #1FAF55 100%)",
             boxShadow:
-              "0 8px 20px -6px rgba(255,138,0,0.45), 0 2px 4px rgba(30,58,95,0.08)",
+              "0 8px 20px -6px rgba(37,211,102,0.45), 0 2px 4px rgba(8,4,148,0.12)",
           }}
         >
           {/* Shimmer no hover */}

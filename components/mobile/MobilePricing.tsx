@@ -17,26 +17,26 @@ const MobileCard = ({ plan, index }: { plan: MobilePlan; index: number }) => {
       transition={{ duration: 0.4, delay: index * 0.1 }}
       className={`relative flex flex-col rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${
         isPopular
-          ? "ring-2 ring-[#FFA500] shadow-xl scale-[1.02] bg-white"
+          ? "ring-2 ring-[#F6C304] shadow-xl scale-[1.02] bg-white"
           : "shadow-md bg-white"
       }`}
     >
       {isPopular && (
         <div className="absolute top-4 right-4 z-10">
-          <span className="bg-gradient-to-r from-[#FFA500] to-[#FFD700] text-white text-[11px] font-bold px-3 py-1 rounded-full shadow">
+          <span className="bg-[#F6C304] text-[#080494] text-[11px] font-bold px-3 py-1 rounded-full shadow">
             Mais escolhido
           </span>
         </div>
       )}
 
       {/* GB hero block */}
-      <div className="relative bg-gradient-to-br from-[#1E3A5F] to-[#0B1828] px-6 pt-8 pb-6 text-white">
-        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_right,_#FFA500_0%,_transparent_50%)]" />
+      <div className="relative bg-gradient-to-br from-[#1510C8] to-[#080494] px-6 pt-8 pb-6 text-white">
+        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_right,_#F6C304_0%,_transparent_50%)]" />
         <div className="relative flex items-end gap-1">
           <span className="text-7xl font-extrabold leading-none font-[family-name:var(--font-heading)]">
             {plan.gb}
           </span>
-          <span className="text-2xl font-bold text-[#FFA500] mb-1">GB</span>
+          <span className="text-2xl font-bold text-[#F6C304] mb-1">GB</span>
         </div>
         <p className="relative text-white/80 text-sm mt-2">{plan.title}</p>
       </div>
@@ -53,7 +53,7 @@ const MobileCard = ({ plan, index }: { plan: MobilePlan; index: number }) => {
         </div>
 
         <div className="mb-6">
-          <span className="text-4xl font-extrabold text-[#FFA500] font-[family-name:var(--font-heading)]">
+          <span className="text-4xl font-extrabold text-[#9A7600] font-[family-name:var(--font-heading)]">
             {plan.price}
           </span>
           <span className="text-gray-500 text-sm ml-1">{plan.priceSuffix}</span>
@@ -98,9 +98,9 @@ const MobilePricing = () => {
     <section id="PlanosCelular" className="bg-slate-50 py-20 md:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#1E3A5F] font-[family-name:var(--font-heading)]">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#1510C8] font-[family-name:var(--font-heading)]">
             Planos de{" "}
-            <span className="text-[#FFA500]">Celular</span>
+            <span className="text-[#9A7600]">Celular</span>
           </h2>
           <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
             Escolha o plano ideal para você. Todos com chamadas ilimitadas, apps
@@ -115,7 +115,8 @@ const MobilePricing = () => {
         </div>
 
         <p className="text-center text-sm text-gray-400 mt-8">
-          Cobertura nacional 5G na rede Vivo. Bônus de 1GB válido por 7 dias.
+          Cobertura nacional 5G na rede Vivo. O bônus de 1GB válido por 7 dias
+          se aplica ao plano de 20GB.
         </p>
       </div>
     </section>

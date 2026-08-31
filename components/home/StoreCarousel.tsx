@@ -9,9 +9,9 @@ const StoreCarousel = ({ locale }: { locale: any }) => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#1E3A5F] font-[family-name:var(--font-heading)]">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#1510C8] font-[family-name:var(--font-heading)]">
             {locale.title}{" "}
-            <span className="text-[#FFA500]">{locale.titleHighlight}</span>
+            <span className="text-[#9A7600]">{locale.titleHighlight}</span>
           </h2>
           <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
             {locale.description}

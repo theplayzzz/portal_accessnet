@@ -55,7 +55,7 @@ const Header = () => {
                 <Link
                   href={link.href}
                   {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  className="text-sm font-medium text-gray-600 hover:text-[#1E3A5F] transition-colors"
+                  className="text-sm font-medium text-gray-600 hover:text-[#1510C8] transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -67,7 +67,7 @@ const Header = () => {
           <div className="hidden lg:flex items-center gap-4">
             <a
               href={`tel:${siteConfig.phone}`}
-              className="flex items-center gap-2 text-sm font-medium text-[#1E3A5F]"
+              className="flex items-center gap-2 text-sm font-medium text-[#1510C8]"
             >
               <Phone size={16} />
               {siteConfig.phone}
@@ -122,7 +122,7 @@ const Header = () => {
             <div className="mt-4 px-4 space-y-3">
               <a
                 href={`tel:${siteConfig.phone}`}
-                className="flex items-center justify-center gap-2 text-sm font-medium text-[#1E3A5F] py-2"
+                className="flex items-center justify-center gap-2 text-sm font-medium text-[#1510C8] py-2"
               >
                 <Phone size={16} />
                 {siteConfig.phone}

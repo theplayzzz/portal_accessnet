@@ -11,12 +11,12 @@ import { useLeadModal } from "@/components/lead/useLeadModal";
 const MobileHero = () => {
   const { openLeadModal } = useLeadModal();
   return (
-    <section className="relative bg-gradient-to-br from-[#1E3A5F] via-[#162d4a] to-[#0B1828] overflow-hidden">
+    <section className="relative bg-gradient-to-br from-[#1510C8] via-[#0D0E7E] to-[#080494] overflow-hidden">
       <div className="absolute inset-0 opacity-40">
         <DotsShader
           colors={[
-            [50, 100, 180],
-            [0, 120, 230],
+            [21, 16, 200],
+            [24, 71, 227],
             [0, 190, 220],
           ]}
           opacities={[0.4, 0.4, 0.5, 0.5, 0.6, 0.6, 0.7, 0.7, 0.8, 0.9]}
@@ -33,7 +33,7 @@ const MobileHero = () => {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <div className="mb-4 sm:mb-6 inline-flex items-center gap-2 bg-[#FFA500]/20 border border-[#FFA500]/30 text-[#FFD700] text-xs sm:text-sm font-semibold px-4 py-2 rounded-full">
+          <div className="mb-4 sm:mb-6 inline-flex items-center gap-2 bg-[#F6C304]/20 border border-[#F6C304]/30 text-[#F6C304] text-xs sm:text-sm font-semibold px-4 py-2 rounded-full">
             <BsPhoneVibrate size={14} />
             Rede Móvel AccessNet
           </div>
@@ -41,8 +41,8 @@ const MobileHero = () => {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] tracking-tight mb-4 sm:mb-6 font-[family-name:var(--font-heading)]">
             Planos de celular{" "}
             <span className="relative inline-block">
-              <span className="relative z-10 text-[#FFA500]">simples</span>
-              <span className="absolute bottom-1 left-0 w-full h-3 bg-[#FFA500]/20 rounded-sm" />
+              <span className="relative z-10 text-[#F6C304]">simples</span>
+              <span className="absolute bottom-1 left-0 w-full h-3 bg-[#F6C304]/20 rounded-sm" />
             </span>{" "}
             e sem complicação
           </h1>
@@ -71,19 +71,19 @@ const MobileHero = () => {
 
           <div className="flex flex-wrap gap-3 sm:gap-4 justify-center">
             <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 sm:px-4 sm:py-2 rounded-full">
-              <HiSignal className="text-[#FFA500]" size={16} />
+              <HiSignal className="text-[#F6C304]" size={16} />
               <span className="text-white/90 text-xs sm:text-sm font-medium">
                 Cobertura nacional 5G
               </span>
             </div>
             <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 sm:px-4 sm:py-2 rounded-full">
-              <span className="text-[#FFA500] text-base">✓</span>
+              <span className="text-[#F6C304] text-base">✓</span>
               <span className="text-white/90 text-xs sm:text-sm font-medium">
                 Chip grátis
               </span>
             </div>
             <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 sm:px-4 sm:py-2 rounded-full">
-              <span className="text-[#FFA500] text-base">∞</span>
+              <span className="text-[#F6C304] text-base">∞</span>
               <span className="text-white/90 text-xs sm:text-sm font-medium">
                 Chamadas ilimitadas
               </span>
