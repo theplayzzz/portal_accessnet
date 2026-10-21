@@ -1,16 +1,17 @@
 import { SiteConfig } from "@/types/siteConfig";
 import { FaFacebook, FaInstagram, FaYoutube, FaWhatsapp } from "react-icons/fa";
+import { WHATSAPP_NUMBER, WHATSAPP_URL } from "./contact";
 
 const baseSiteConfig = {
   name: "AccessNet - Internet Fibra Óptica",
   description: "Internet fibra óptica de verdade no Maranhão. Planos a partir de R$ 109,90/mês. 13 cidades atendidas. WiFi Premium incluso. Suporte 24h.",
   url: "https://accessnet.com.br",
-  ogImage: "https://accessnet.com.br/og.png",
+  ogImage: "https://accessnet.com.br/og-home-2026-10-21.png",
   metadataBase: new URL("https://accessnet.com.br"),
   keywords: ["internet fibra óptica", "internet maranhão", "accessnet", "fibra óptica pinheiro", "internet rápida", "provedor internet maranhão", "wifi premium"],
   authors: [{ name: "AccessNet Telecomunicações", url: "https://accessnet.com.br" }],
   creator: "AccessNet",
-  whatsappNumber: "5508004491021",
+  whatsappNumber: WHATSAPP_NUMBER,
   phone: "0800 449 1021",
   themeColors: [{ media: "(prefers-color-scheme: light)", color: "#1510C8" }],
   nextThemeColor: "light",
@@ -22,13 +23,13 @@ const baseSiteConfig = {
   headerLinks: [
     { name: "instagram", href: "https://instagram.com/accessnet", icon: FaInstagram },
     { name: "facebook", href: "https://facebook.com/accessnettelecom", icon: FaFacebook },
-    { name: "whatsapp", href: "https://wa.me/5508004491021", icon: FaWhatsapp },
+    { name: "whatsapp", href: WHATSAPP_URL, icon: FaWhatsapp },
   ],
   footerLinks: [
     { name: "instagram", href: "https://instagram.com/accessnet", icon: FaInstagram },
     { name: "facebook", href: "https://facebook.com/accessnettelecom", icon: FaFacebook },
     { name: "youtube", href: "https://youtube.com/@accessnetpho", icon: FaYoutube },
-    { name: "whatsapp", href: "https://wa.me/5508004491021", icon: FaWhatsapp },
+    { name: "whatsapp", href: WHATSAPP_URL, icon: FaWhatsapp },
   ],
   footerProducts: [
     { url: "https://ixc.accessnet.com.br", name: "Central do Assinante" },
@@ -48,7 +49,13 @@ export const siteConfig: SiteConfig = {
     locale: "pt_BR",
     url: baseSiteConfig.url,
     title: baseSiteConfig.name,
-    images: [`${baseSiteConfig.url}/og.png`],
+    images: [{
+      url: baseSiteConfig.ogImage,
+      width: 1200,
+      height: 630,
+      type: "image/png",
+      alt: "Home da AccessNet: internet fibra de verdade para sua casa e mascote Speed",
+    }],
     description: baseSiteConfig.description,
     siteName: baseSiteConfig.name,
   },
@@ -57,7 +64,7 @@ export const siteConfig: SiteConfig = {
     site: baseSiteConfig.url,
     title: baseSiteConfig.name,
     description: baseSiteConfig.description,
-    images: [`${baseSiteConfig.url}/og.png`],
+    images: [baseSiteConfig.ogImage],
     creator: baseSiteConfig.creator,
   },
 };

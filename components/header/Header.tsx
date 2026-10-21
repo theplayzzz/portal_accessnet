@@ -66,13 +66,14 @@ const Header = () => {
 
           {/* Desktop Right */}
           <div className="hidden lg:flex items-center gap-4">
-            <a
-              href={`tel:${siteConfig.phone}`}
+            <WhatsAppCTA
+              source="header-desktop-phone"
+              aria-label="Falar no WhatsApp: 0800 449 1021"
               className="flex items-center gap-2 text-sm font-medium text-[#1510C8]"
             >
               <Phone size={16} />
               {siteConfig.phone}
-            </a>
+            </WhatsAppCTA>
             <WhatsAppCTA
               source="header-desktop"
               data-testid="header-desktop-cta"
@@ -121,13 +122,14 @@ const Header = () => {
               ))}
             </ul>
             <div className="mt-4 px-4 space-y-3">
-              <a
-                href={`tel:${siteConfig.phone}`}
+              <WhatsAppCTA
+                source="header-mobile-phone"
+                aria-label="Falar no WhatsApp: 0800 449 1021"
                 className="flex items-center justify-center gap-2 text-sm font-medium text-[#1510C8] py-2"
               >
                 <Phone size={16} />
                 {siteConfig.phone}
-              </a>
+              </WhatsAppCTA>
               <WhatsAppCTA
                 source="header-mobile-menu"
                 data-testid="header-mobile-menu-cta"

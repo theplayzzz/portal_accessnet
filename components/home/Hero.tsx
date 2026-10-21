@@ -5,8 +5,7 @@ import { motion } from "framer-motion";
 import { FaWhatsapp } from "react-icons/fa";
 import { HiUsers, HiLocationMarker, HiPhone } from "react-icons/hi";
 import DotsShader from "@/components/ui/DotsShader";
-import ShinyButton from "@/components/ui/ShinyBadge";
-import { useLeadModal } from "@/components/lead/useLeadModal";
+import { WhatsAppCTA } from "@/components/lead/WhatsAppCTA";
 
 const Hero = ({
   locale,
@@ -16,7 +15,6 @@ const Hero = ({
   langName?: string;
   CTALocale: any;
 }) => {
-  const { openLeadModal } = useLeadModal();
   return (
     <section className="relative bg-gradient-to-br from-[#1510C8] via-[#0D0E7E] to-[#080494] overflow-hidden">
       {/* Animated dots shader overlay */}
@@ -74,14 +72,15 @@ const Hero = ({
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-4 sm:mb-10">
-              <ShinyButton
-                onClick={() => openLeadModal({ source: "hero-fibra" })}
+              <WhatsAppCTA
+                variant="shiny"
+                source="hero-fibra"
                 data-testid="hero-fibra-cta"
                 className="text-base sm:text-lg px-6 py-3 sm:px-8 sm:py-4"
               >
                 <FaWhatsapp size={22} />
                 Assine Agora pelo WhatsApp
-              </ShinyButton>
+              </WhatsAppCTA>
               <Link
                 href="#Planos"
                 className="hidden sm:inline-flex items-center justify-center text-white border-2 border-white/30 hover:border-white/60 font-semibold text-lg px-8 py-4 rounded-xl transition-all hover:bg-white/10"

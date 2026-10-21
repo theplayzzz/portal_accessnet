@@ -1,56 +1,64 @@
 "use client";
 
 import * as React from "react";
-import { useLeadModal } from "./useLeadModal";
-import type { LeadModalPlanContext } from "./LeadModalProvider";
+import { WHATSAPP_URL } from "@/config/contact";
+import { reportCtaClick } from "@/gtag.js";
+import ShinyButton from "@/components/ui/ShinyBadge";
 import { cn } from "@/lib/utils";
 
 type CommonProps = {
   source: string;
-  planContext?: LeadModalPlanContext;
+  variant?: "default" | "shiny";
   className?: string;
   children: React.ReactNode;
   "data-testid"?: string;
   "aria-label"?: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 };
 
 /**
- * Substitui os antigos <a href="https://wa.me/...">. Ao clicar, abre o modal
- * global de captura de lead em vez de redirecionar pro WhatsApp direto.
- *
- * Sempre passe `source` — identifica onde o clique aconteceu (ex: "floating",
- * "hero-fibra", "pricing-fibra-400mbps"). É gravado no banco e nos logs, útil
- * pra análise de conversão por ponto de CTA.
- *
- * O componente renderiza como <button>, mantendo o estilo original do link
- * original via `className` e `children`.
+ * Link direto para o WhatsApp público com a mensagem de origem do site.
+ * `source` identifica a intenção no Analytics, sem cadastrar ou enviar um lead.
  */
 export function WhatsAppCTA({
   source,
-  planContext,
+  variant = "default",
   className,
   children,
   onClick,
   ...rest
 }: CommonProps) {
-  const { openLeadModal } = useLeadModal();
-
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     onClick?.(e);
     if (e.defaultPrevented) return;
-    openLeadModal({ source, planContext });
+    reportCtaClick({ source });
   };
 
+  if (variant === "shiny") {
+    return (
+      <ShinyButton
+        href={WHATSAPP_URL}
+        onClick={handleClick}
+        className={className}
+        data-lead-cta={source}
+        {...rest}
+      >
+        {children}
+      </ShinyButton>
+    );
+  }
+
   return (
-    <button
-      type="button"
+    <a
+      href={WHATSAPP_URL}
+      target="_blank"
+      rel="noopener noreferrer"
       onClick={handleClick}
       className={cn(className)}
       data-lead-cta={source}
       {...rest}
     >
       {children}
-    </button>
+    </a>
   );
 }

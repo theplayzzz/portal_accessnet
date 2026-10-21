@@ -5,11 +5,9 @@ import { FaWhatsapp } from "react-icons/fa";
 import { HiSignal } from "react-icons/hi2";
 import { BsPhoneVibrate } from "react-icons/bs";
 import DotsShader from "@/components/ui/DotsShader";
-import ShinyButton from "@/components/ui/ShinyBadge";
-import { useLeadModal } from "@/components/lead/useLeadModal";
+import { WhatsAppCTA } from "@/components/lead/WhatsAppCTA";
 
 const MobileHero = () => {
-  const { openLeadModal } = useLeadModal();
   return (
     <section className="relative bg-gradient-to-br from-[#1510C8] via-[#0D0E7E] to-[#080494] overflow-hidden">
       <div className="absolute inset-0 opacity-40">
@@ -53,14 +51,15 @@ const MobileHero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-10">
-            <ShinyButton
-              onClick={() => openLeadModal({ source: "hero-mobile-plans" })}
+            <WhatsAppCTA
+              variant="shiny"
+              source="hero-mobile-plans"
               data-testid="hero-mobile-plans-cta"
               className="text-base sm:text-lg px-6 py-3 sm:px-8 sm:py-4"
             >
               <FaWhatsapp size={22} />
               Falar com consultor
-            </ShinyButton>
+            </WhatsAppCTA>
             <Link
               href="#PlanosCelular"
               className="inline-flex items-center justify-center text-white border-2 border-white/30 hover:border-white/60 font-semibold text-base sm:text-lg px-6 py-3 sm:px-8 sm:py-4 rounded-xl transition-all hover:bg-white/10"

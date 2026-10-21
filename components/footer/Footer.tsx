@@ -2,6 +2,7 @@ import { siteConfig } from "@/config/site";
 import Image from "next/image";
 import Link from "next/link";
 import { FooterSocialLink } from "./FooterSocialLink";
+import { WhatsAppCTA } from "@/components/lead/WhatsAppCTA";
 
 const Footer = async () => {
   return (
@@ -21,7 +22,9 @@ const Footer = async () => {
             <div className="space-y-2 text-white/60 text-sm">
               <p>Av. Castelo Branco, 3176 - Pinheiro/MA</p>
               <p>CEP 65200-000</p>
-              <p className="text-white font-semibold text-base mt-3">{siteConfig.phone}</p>
+              <p className="text-white font-semibold text-base mt-3">
+                <WhatsAppCTA source="footer-phone">{siteConfig.phone}</WhatsAppCTA>
+              </p>
               <p>Seg-Sex: 8h-18h | Sab: 8h-12h e 14h-17h</p>
               <p>Dom: 9h-12h</p>
             </div>

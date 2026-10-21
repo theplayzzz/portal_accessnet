@@ -5,12 +5,11 @@ import * as React from "react";
 export interface ShinyButtonProps {
   children?: React.ReactNode;
   /**
-   * Se passar `onClick`, o componente renderiza como `<button>` (preferido pra
-   * disparar modais/actions client-side sem sair da página). Se passar `href`,
-   * renderiza como `<a>` (target="_blank") — padrão antigo usado pra links externos.
+   * `href` renderiza um link externo; `onClick` pode registrar o clique.
+   * Sem `href`, renderiza um botão para ações na página.
    * Pelo menos um dos dois deve ser fornecido.
    */
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement> | React.MouseEventHandler<HTMLAnchorElement>;
   href?: string;
   className?: string;
   type?: "button" | "submit";
@@ -95,14 +94,13 @@ const ShinyButton = ({
   type = "button",
   ...rest
 }: ShinyButtonProps) => {
-  // Prefer button mode quando onClick é passado
-  if (onClick) {
+  if (!href) {
     return (
       <>
         <style>{sharedKeyframes}</style>
         <button
           type={type}
-          onClick={onClick}
+          onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
           className={`${baseClassName} ${className}`}
           style={sharedStyle}
           {...rest}
@@ -119,6 +117,7 @@ const ShinyButton = ({
       <style>{sharedKeyframes}</style>
       <a
         href={href}
+        onClick={onClick as React.MouseEventHandler<HTMLAnchorElement>}
         target="_blank"
         rel="noopener noreferrer"
         className={`${baseClassName} ${className}`}

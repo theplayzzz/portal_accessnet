@@ -4,12 +4,10 @@ import { Tier } from "@/types/pricing";
 import { FaCheck, FaWhatsapp } from "react-icons/fa";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import ShinyButton from "@/components/ui/ShinyBadge";
-import { useLeadModal } from "@/components/lead/useLeadModal";
+import { WhatsAppCTA } from "@/components/lead/WhatsAppCTA";
 
 const PricingCard = ({ tier, index }: { tier: Tier; index: number }) => {
   const isPopular = tier.mostPopular;
-  const { openLeadModal } = useLeadModal();
 
   return (
     <motion.div
@@ -75,23 +73,15 @@ const PricingCard = ({ tier, index }: { tier: Tier; index: number }) => {
       </ul>
 
       {/* CTA Button */}
-      <ShinyButton
-        onClick={() =>
-          openLeadModal({
-            source: `pricing-fibra-${tier.key}`,
-            planContext: {
-              planName: tier.title,
-              planSpeed: tier.description,
-              planPrice: tier.price,
-            },
-          })
-        }
+      <WhatsAppCTA
+        variant="shiny"
+        source={`pricing-fibra-${tier.key}`}
         data-testid={`pricing-fibra-${tier.key}`}
         className="w-full"
       >
         <FaWhatsapp size={18} />
         {tier.buttonText}
-      </ShinyButton>
+      </WhatsAppCTA>
     </motion.div>
   );
 };

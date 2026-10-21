@@ -3,11 +3,9 @@ import Image from "next/image";
 import { FaWhatsapp } from "react-icons/fa";
 import { motion } from "framer-motion";
 import DotsShader from "@/components/ui/DotsShader";
-import ShinyButton from "@/components/ui/ShinyBadge";
-import { useLeadModal } from "@/components/lead/useLeadModal";
+import { WhatsAppCTA } from "@/components/lead/WhatsAppCTA";
 
 const MobileCTA = () => {
-  const { openLeadModal } = useLeadModal();
   return (
     <section className="relative bg-gradient-to-br from-[#1510C8] to-[#080494] overflow-hidden">
       <div className="absolute inset-0 opacity-35">
@@ -56,16 +54,19 @@ const MobileCTA = () => {
               Fale agora com um consultor pelo WhatsApp e garanta o chip grátis.
               Atendimento rápido e sem burocracia.
             </p>
-            <ShinyButton
-              onClick={() => openLeadModal({ source: "cta-mobile-plans" })}
+            <WhatsAppCTA
+              variant="shiny"
+              source="cta-mobile-plans"
               data-testid="cta-mobile-plans"
               className="text-lg px-10 py-4"
             >
               <FaWhatsapp size={24} />
               Falar com Consultor
-            </ShinyButton>
+            </WhatsAppCTA>
             <p className="text-white/50 text-sm mt-4">
-              0800 449 1021 - Ligação gratuita
+              <WhatsAppCTA source="cta-mobile-phone">
+                0800 449 1021 - Ligação gratuita
+              </WhatsAppCTA>
             </p>
           </motion.div>
         </div>

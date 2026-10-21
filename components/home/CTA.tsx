@@ -3,11 +3,9 @@ import Image from "next/image";
 import { FaWhatsapp } from "react-icons/fa";
 import { motion } from "framer-motion";
 import DotsShader from "@/components/ui/DotsShader";
-import ShinyButton from "@/components/ui/ShinyBadge";
-import { useLeadModal } from "@/components/lead/useLeadModal";
+import { WhatsAppCTA } from "@/components/lead/WhatsAppCTA";
 
 const CTA = ({ locale }: { locale: any; CTALocale?: any }) => {
-  const { openLeadModal } = useLeadModal();
   return (
     <section className="relative bg-gradient-to-br from-[#1510C8] to-[#080494] overflow-hidden">
       {/* Animated dots shader */}
@@ -58,15 +56,18 @@ const CTA = ({ locale }: { locale: any; CTALocale?: any }) => {
             <p className="text-lg text-white/70 max-w-lg mb-8">
               {locale.description}
             </p>
-            <ShinyButton
-              onClick={() => openLeadModal({ source: "cta-fibra" })}
+            <WhatsAppCTA
+              variant="shiny"
+              source="cta-fibra"
               data-testid="cta-fibra"
               className="text-lg px-10 py-4"
             >
               <FaWhatsapp size={24} />
               {locale.button}
-            </ShinyButton>
-            <p className="text-white/50 text-sm mt-4">{locale.phone}</p>
+            </WhatsAppCTA>
+            <p className="text-white/50 text-sm mt-4">
+              <WhatsAppCTA source="cta-fibra-phone">{locale.phone}</WhatsAppCTA>
+            </p>
           </motion.div>
         </div>
       </div>

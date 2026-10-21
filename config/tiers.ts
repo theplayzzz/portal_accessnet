@@ -1,3 +1,4 @@
+import { WHATSAPP_URL } from "./contact";
 import { Tier, TiersEnum } from "@/types/pricing";
 
 export const TIERS_PT: Array<Tier> = [
@@ -6,7 +7,7 @@ export const TIERS_PT: Array<Tier> = [
     title: "START",
     price: "R$ 109,90",
     priceSuffix: "/mês",
-    href: "https://wa.me/5508004491021?text=Quero%20contratar%20o%20plano%20START%20400Mbps",
+    href: WHATSAPP_URL,
     description: "Até 400 Mbps de download e upload",
     features: [
       "400 Mbps simétricos",
@@ -24,7 +25,7 @@ export const TIERS_PT: Array<Tier> = [
     title: "ULTRA",
     price: "R$ 129,90",
     priceSuffix: "/mês",
-    href: "https://wa.me/5508004491021?text=Quero%20contratar%20o%20plano%20ULTRA%20600Mbps",
+    href: WHATSAPP_URL,
     description: "Até 600 Mbps de download e upload",
     features: [
       "600 Mbps simétricos",
@@ -42,7 +43,7 @@ export const TIERS_PT: Array<Tier> = [
     title: "STREAMING",
     price: "R$ 169,90",
     priceSuffix: "/mês",
-    href: "https://wa.me/5508004491021?text=Quero%20contratar%20o%20plano%20STREAMING%20700Mbps",
+    href: WHATSAPP_URL,
     description: "Até 700 Mbps de download e upload",
     mostPopular: true,
     features: [
@@ -61,7 +62,7 @@ export const TIERS_PT: Array<Tier> = [
     title: "GAME",
     price: "R$ 199,90",
     priceSuffix: "/mês",
-    href: "https://wa.me/5508004491021?text=Quero%20contratar%20o%20plano%20GAME%20800Mbps",
+    href: WHATSAPP_URL,
     description: "Até 800 Mbps de download e upload",
     features: [
       "800 Mbps simétricos",

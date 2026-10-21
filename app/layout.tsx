@@ -3,7 +3,6 @@ import { TailwindIndicator } from "@/components/TailwindIndicator";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
-import { LeadModalProvider } from "@/components/lead/LeadModalProvider";
 import WhatsAppFloating from "@/components/home/WhatsAppFloating";
 import { StructuredData } from "@/components/seo/StructuredData";
 
@@ -51,7 +50,7 @@ export const metadata = {
     },
   },
   formatDetection: {
-    telephone: true,
+    telephone: false,
     email: true,
     address: true,
   },
@@ -81,14 +80,12 @@ export default async function RootLayout({
           attribute="class"
           defaultTheme="light"
         >
-          <LeadModalProvider>
-            <Header />
-            <main className="flex flex-col w-full">{children}</main>
-            <Footer />
-            <WhatsAppFloating />
-            <Analytics />
-            <TailwindIndicator />
-          </LeadModalProvider>
+          <Header />
+          <main className="flex flex-col w-full">{children}</main>
+          <Footer />
+          <WhatsAppFloating />
+          <Analytics />
+          <TailwindIndicator />
         </ThemeProvider>
         {process.env.NODE_ENV === "development" ? (
           <></>

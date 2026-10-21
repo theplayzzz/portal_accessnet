@@ -58,7 +58,9 @@ const Coverage = ({ id, locale }: { id: string; locale: any }) => {
 
         {/* Not found CTA */}
         <div className="text-center mt-10">
-          <p className="text-gray-500 mb-4">{locale.notFound}</p>
+          <p className="text-gray-500 mb-4">
+            <WhatsAppCTA source="coverage-phone">{locale.notFound}</WhatsAppCTA>
+          </p>
           <WhatsAppCTA
             source="coverage-check"
             className="inline-flex items-center gap-2 text-[#25D366] hover:text-[#20BD5B] font-semibold transition-colors"

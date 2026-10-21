@@ -1,13 +1,11 @@
 "use client";
 import { motion } from "framer-motion";
 import { FaCheck, FaWhatsapp } from "react-icons/fa";
-import ShinyButton from "@/components/ui/ShinyBadge";
 import { MOBILE_PLANS_PT, MobilePlan } from "@/config/mobile-plans";
-import { useLeadModal } from "@/components/lead/useLeadModal";
+import { WhatsAppCTA } from "@/components/lead/WhatsAppCTA";
 
 const MobileCard = ({ plan, index }: { plan: MobilePlan; index: number }) => {
   const isPopular = plan.mostPopular;
-  const { openLeadModal } = useLeadModal();
 
   return (
     <motion.div
@@ -71,23 +69,15 @@ const MobileCard = ({ plan, index }: { plan: MobilePlan; index: number }) => {
           ))}
         </ul>
 
-        <ShinyButton
-          onClick={() =>
-            openLeadModal({
-              source: `pricing-mobile-${plan.key}`,
-              planContext: {
-                planName: plan.title,
-                planGB: `${plan.gb}GB`,
-                planPrice: plan.price,
-              },
-            })
-          }
+        <WhatsAppCTA
+          variant="shiny"
+          source={`pricing-mobile-${plan.key}`}
           data-testid={`pricing-mobile-${plan.key}`}
           className="w-full"
         >
           <FaWhatsapp size={18} />
           Contratar pelo WhatsApp
-        </ShinyButton>
+        </WhatsAppCTA>
       </div>
     </motion.div>
   );

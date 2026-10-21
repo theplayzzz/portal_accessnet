@@ -3,9 +3,8 @@ import { motion } from "framer-motion";
 import { FaCheck, FaWhatsapp, FaWifi } from "react-icons/fa";
 import { BsPhoneVibrate } from "react-icons/bs";
 import { HiPlus } from "react-icons/hi2";
-import ShinyButton from "@/components/ui/ShinyBadge";
 import { MOBILE_COMBOS_PT, MobileComboPlan } from "@/config/mobile-plans";
-import { useLeadModal } from "@/components/lead/useLeadModal";
+import { WhatsAppCTA } from "@/components/lead/WhatsAppCTA";
 
 const ComboCard = ({
   plan,
@@ -14,7 +13,6 @@ const ComboCard = ({
   plan: MobileComboPlan;
   index: number;
 }) => {
-  const { openLeadModal } = useLeadModal();
   const isPopular = plan.mostPopular;
 
   return (
@@ -127,23 +125,15 @@ const ComboCard = ({
           </div>
         </div>
 
-        <ShinyButton
-          onClick={() =>
-            openLeadModal({
-              source: `combo-mobile-${plan.key}`,
-              planContext: {
-                planName: `${plan.title} — ${plan.internetSpeed} ${plan.internetUnit} + ${plan.gb}`,
-                planGB: plan.gb,
-                planPrice: plan.price,
-              },
-            })
-          }
+        <WhatsAppCTA
+          variant="shiny"
+          source={`combo-mobile-${plan.key}`}
           data-testid={`combo-mobile-${plan.key}`}
           className="w-full"
         >
           <FaWhatsapp size={18} />
           Contratar combo
-        </ShinyButton>
+        </WhatsAppCTA>
       </div>
     </motion.div>
   );

@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 
-import { useLeadModal } from "@/components/lead/useLeadModal";
+import { WhatsAppCTA } from "@/components/lead/WhatsAppCTA";
 
 const categories = ["Filmes", "Esportes", "Notícias", "Infantil"];
 
@@ -59,14 +59,6 @@ const steps = [
 ];
 
 export default function AccessTVContent() {
-  const { openLeadModal } = useLeadModal();
-
-  const openAccessTVLead = (source: string) =>
-    openLeadModal({
-      source,
-      planContext: { planName: "Access TV" },
-    });
-
   return (
     <>
       <section className="relative overflow-hidden bg-gradient-to-br from-[#1510C8] via-[#0D0E7E] to-[#080494] text-white">
@@ -96,14 +88,13 @@ export default function AccessTVContent() {
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <button
-                type="button"
-                onClick={() => openAccessTVLead("access-tv-hero")}
+              <WhatsAppCTA
+                source="access-tv-hero"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-6 py-3.5 font-bold text-white shadow-lg shadow-black/20 transition-all hover:-translate-y-0.5 hover:bg-[#20bd5b]"
               >
                 <FaWhatsapp size={20} />
                 Quero conhecer o Access TV
-              </button>
+              </WhatsAppCTA>
               <a
                 href="#como-funciona"
                 className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/10 px-6 py-3.5 font-semibold text-white transition-colors hover:bg-white/15"
@@ -265,14 +256,13 @@ export default function AccessTVContent() {
               Fale com a nossa equipe para receber as orientações. O benefício
               já está incluso no seu plano, sem custo adicional.
             </p>
-            <button
-              type="button"
-              onClick={() => openAccessTVLead("access-tv-final")}
+            <WhatsAppCTA
+              source="access-tv-final"
               className="mt-7 inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-6 py-3.5 font-bold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-[#20bd5b]"
             >
               <FaWhatsapp size={20} />
               Solicitar acesso ao Access TV
-            </button>
+            </WhatsAppCTA>
           </div>
         </div>
       </section>

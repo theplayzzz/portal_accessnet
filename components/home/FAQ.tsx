@@ -2,6 +2,7 @@
 import { FAQS_PT } from "@/config/faqs";
 import { Accordion, AccordionItem } from "@nextui-org/react";
 import { FaPlus } from "react-icons/fa";
+import { WhatsAppCTA } from "@/components/lead/WhatsAppCTA";
 
 const FAQ = ({
   id,
@@ -45,7 +46,16 @@ const FAQ = ({
               title={faq.title}
               indicator={<FaPlus size={12} />}
             >
-              {faq.content}
+              {faq.content.split("0800 449 1021").map((part, partIndex) => (
+                <span key={partIndex}>
+                  {partIndex > 0 && (
+                    <WhatsAppCTA source="faq-phone" className="underline">
+                      0800 449 1021
+                    </WhatsAppCTA>
+                  )}
+                  {part}
+                </span>
+              ))}
             </AccordionItem>
           ))}
         </Accordion>

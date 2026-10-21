@@ -1,3 +1,4 @@
+import { WHATSAPP_URL } from "./contact";
 export type MobilePlan = {
   key: string;
   gb: string;
@@ -27,7 +28,7 @@ export const MOBILE_PLANS_PT: MobilePlan[] = [
       "Cobertura nacional 5G Vivo",
       "Chip grátis",
     ],
-    href: "https://wa.me/5508004491021?text=Quero%20contratar%20o%20plano%20celular%2020GB",
+    href: WHATSAPP_URL,
   },
   {
     key: "m30",
@@ -44,7 +45,7 @@ export const MOBILE_PLANS_PT: MobilePlan[] = [
       "Cobertura nacional 5G Vivo",
       "Chip grátis",
     ],
-    href: "https://wa.me/5508004491021?text=Quero%20contratar%20o%20plano%20celular%2030GB",
+    href: WHATSAPP_URL,
   },
   {
     key: "m40",
@@ -60,7 +61,7 @@ export const MOBILE_PLANS_PT: MobilePlan[] = [
       "Cobertura nacional 5G Vivo",
       "Chip grátis",
     ],
-    href: "https://wa.me/5508004491021?text=Quero%20contratar%20o%20plano%20celular%2040GB",
+    href: WHATSAPP_URL,
   },
 ];
 
