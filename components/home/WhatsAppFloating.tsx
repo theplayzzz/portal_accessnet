@@ -1,8 +1,12 @@
 "use client";
 import { FaWhatsapp } from "react-icons/fa";
 import { WhatsAppCTA } from "@/components/lead/WhatsAppCTA";
+import { usePathname } from "next/navigation";
 
 const WhatsAppFloating = () => {
+  const pathname = usePathname();
+  // O piloto de suporte tem seu próprio chat; os demais CTAs seguem intactos.
+  if (pathname === "/suporte") return null;
   return (
     <WhatsAppCTA
       source="floating"

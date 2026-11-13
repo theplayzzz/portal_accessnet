@@ -3,7 +3,7 @@ import { defineConfig, devices } from "@playwright/test";
 // Somente conteúdo/navegação. Não carrega credenciais nem a suíte de envios OPA.
 export default defineConfig({
   testDir: "./tests/e2e",
-  testMatch: "site-content.spec.ts",
+  testMatch: ["site-content.spec.ts", "support-webchat.spec.ts"],
   workers: 1,
   retries: 0,
   reporter: "list",

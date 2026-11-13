@@ -6,7 +6,7 @@ module.exports = {
   generateRobotsTxt: true,
   sitemapSize: 7000,
   // /looking-glass e /lg.html sao proxy do Looking Glass (noindex na origem)
-  exclude: ["/api/*", "/api", "/looking-glass", "/lg.html"],
+  exclude: ["/api/*", "/api", "/looking-glass", "/lg.html", "/suporte", "/suporte/*"],
   robotsTxtOptions: {
     policies: [{ userAgent: "*", allow: "/", disallow: ["/api/"] }],
   },

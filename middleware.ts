@@ -3,7 +3,7 @@ import { lookingGlass } from "./config/looking-glass.mjs";
 
 import { NextRequest } from "next/server";
 
-const allowedPaths = ["/rede-movel", "/access-tv", lookingGlass.page];
+const allowedPaths = ["/rede-movel", "/access-tv", "/suporte", "/suporte/chat", lookingGlass.page];
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
