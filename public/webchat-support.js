@@ -7,6 +7,28 @@
   let watchConnection;
   let socket;
 
+  // O iframe já acompanha a área visível do celular. O teclado pode ser
+  // recolhido pelo Android enquanto o campo ainda está focado.
+  const mobileLayout = window.parent.matchMedia("(max-width: 1023px)");
+  let previousWidth = window.innerWidth;
+  let restingHeight = window.innerHeight;
+  function updateComposerSpacing() {
+    const height = window.innerHeight;
+    const width = window.innerWidth;
+    const typing = document.activeElement?.matches(".opa_rodape_input");
+    if (width !== previousWidth || !typing) restingHeight = height;
+    restingHeight = Math.max(restingHeight, height);
+    previousWidth = width;
+    // Desconsidera as pequenas variações da barra de endereço.
+    const keyboardOpen = typing && restingHeight - height > 100;
+    document.body.classList.toggle("composer-raised", mobileLayout.matches && !keyboardOpen);
+  }
+  updateComposerSpacing();
+  window.addEventListener("resize", updateComposerSpacing);
+  mobileLayout.addEventListener("change", updateComposerSpacing);
+  document.addEventListener("focusin", updateComposerSpacing);
+  document.addEventListener("focusout", updateComposerSpacing);
+
   function notify(state) {
     window.parent.postMessage({ type: "accessnet:webchat", state }, window.location.origin);
   }

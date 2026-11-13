@@ -24,6 +24,9 @@ html body .opa_rodape {
     background: white;
     border-top: 1px solid #d9dcff;
 }
+html body.composer-raised .opa_rodape {
+    padding-bottom: calc(max(4px, env(safe-area-inset-bottom)) + 12px);
+}
 html body .opa_rodape_input {
     flex: 1 1 0;
     min-width: 0;
@@ -48,10 +51,17 @@ html body .opa_rodape_send, html body .opa_rodape_menu {
 }
 html body .opa_rodape_send { background-color: #e8eaff; }
 .accessnet-start-hint { max-width: 32ch; margin: 12px 0; color: #5f6470; font-size: 14px; line-height: 1.5; }
-html body .opa_ballon { max-width: 90%; border-radius: 14px; font-size: 14px; line-height: 1.55; overflow-wrap: anywhere; }
+html body .opa_ballon { max-width: 90%; border-radius: 14px; font-size: 15px; line-height: 1.55; overflow-wrap: anywhere; }
 html body .opa_ballon::before, html body .opa_ballon::after { display: none; }
 html body .opa_ballon.recebida { background: #eef0ff; color: #12131a; }
 html body .opa_ballon.enviada { background: #1510c8; color: #fff; }
+html body .opa_ballon .time {
+    margin-top: 4px;
+    font-size: 11px;
+    line-height: 1.35;
+    color: #515770;
+}
+html body .opa_ballon.enviada .time { color: #eeedff; }
 html body .div-logins { width: 100%; padding: 20px 0; }
 html body .sem-login { display: block; padding: 14px 18px; border-radius: 12px; background: #1510c8; color: white; font-size: 14px; font-weight: 600; text-align: center; cursor: pointer; text-decoration: none; }
 html body .div-logins::before { display: block; content: "No primeiro menu, escolha 2 — Suporte para falar sobre sua conexão."; margin-bottom: 16px; text-align: center; font-size: 14px; color: #5f6470; line-height: 1.5; }
