@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
 import WhatsAppFloating from "@/components/home/WhatsAppFloating";
+import SiteChrome from "@/components/layout/SiteChrome";
 import { StructuredData } from "@/components/seo/StructuredData";
 
 import { siteConfig } from "@/config/site";
@@ -80,9 +81,9 @@ export default async function RootLayout({
           attribute="class"
           defaultTheme="light"
         >
-          <Header />
-          <main className="flex flex-col w-full">{children}</main>
-          <Footer />
+          <SiteChrome header={<Header />} footer={<Footer />}>
+            {children}
+          </SiteChrome>
           <WhatsAppFloating />
           <Analytics />
           <TailwindIndicator />
