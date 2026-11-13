@@ -39,9 +39,24 @@
     button(document.querySelector(".opa_close"), "Encerrar atendimento");
     button(document.querySelector(".opa_rodape_send"), "Enviar mensagem");
     button(document.querySelector(".opa_rodape_menu"), "Anexar arquivo");
-    button(document.querySelector(".sem-login"), "Continuar sem efetuar login");
+    const guest = document.querySelector(".sem-login");
+    if (guest && socket?.connected && !guest.dataset.accessnetOpened) {
+      guest.dataset.accessnetOpened = "true";
+      guest.click();
+    }
     document.querySelector(".opa_rodape_input")?.setAttribute("aria-label", "Sua mensagem");
     const log = document.querySelector(".opa_corpo");
+    if (log && document.querySelector(".opa_rodape_input")) {
+      const hint = log.querySelector(".accessnet-start-hint");
+      if (log.querySelector(".opa_ballon")) {
+        hint?.remove();
+      } else if (!hint) {
+        const text = document.createElement("p");
+        text.className = "accessnet-start-hint";
+        text.textContent = "Envie sua primeira mensagem. Quando o menu aparecer, escolha 2 — Suporte.";
+        log.appendChild(text);
+      }
+    }
     if (log && !log.hasAttribute("role")) {
       log.setAttribute("role", "log");
       log.setAttribute("aria-live", "polite");
@@ -76,6 +91,7 @@
         const connected = function () {
           status.hidden = true;
           document.body.dataset.connected = "true";
+          decorate();
           notify("ready");
         };
         socket.on("connect", connected);

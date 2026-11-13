@@ -10,6 +10,25 @@ export default function SupportChat() {
   const frame = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
+    // O teclado pode redimensionar apenas a área visível do documento pai.
+    const viewport = window.visualViewport;
+    const shell = document.getElementById("support-viewport");
+    if (!viewport || !shell) return;
+    function resize() {
+      if (!viewport || !shell || viewport.scale !== 1) return;
+      shell.style.setProperty("--chat-height", viewport.height + "px");
+      shell.style.setProperty("--chat-top", viewport.offsetTop + "px");
+    }
+    resize();
+    viewport.addEventListener("resize", resize);
+    viewport.addEventListener("scroll", resize);
+    return () => {
+      viewport.removeEventListener("resize", resize);
+      viewport.removeEventListener("scroll", resize);
+    };
+  }, []);
+
+  useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
       if (event.origin !== window.location.origin || event.source !== frame.current?.contentWindow) return;
       if (event.data?.type !== "accessnet:webchat") return;

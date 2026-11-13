@@ -19,7 +19,7 @@ export const viewport: Viewport = {
 
 export default function SuportePage() {
   return (
-    <div className="h-dvh overflow-hidden bg-white lg:flex lg:items-center lg:bg-[#F7F8FF] lg:p-8">
+    <div id="support-viewport" className="fixed inset-x-0 top-[var(--chat-top,0px)] h-[var(--chat-height,100dvh)] overflow-hidden bg-white lg:static lg:flex lg:h-dvh lg:items-center lg:bg-[#F7F8FF] lg:p-8">
       <div className="mx-auto grid h-full w-full max-w-6xl items-stretch lg:max-h-[960px] lg:grid-cols-[minmax(260px,0.8fr)_minmax(0,1.2fr)] lg:gap-12">
         <aside aria-label="Informações do suporte" className="hidden flex-col justify-between py-8 pl-4 pr-3 lg:flex">
           <Link href="/" aria-label="AccessNet — voltar ao site" className="w-fit rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1510C8]">
