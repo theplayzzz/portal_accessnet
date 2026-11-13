@@ -1,5 +1,35 @@
 import { expect, test } from "@playwright/test";
 
+test("adapta o rodapé ao recolher o teclado com o campo ainda focado", async ({ page }) => {
+  // Estado de conversa local. As classes do campo e dos horários são as do OPA.
+  await page.route("**/opa.accessnet.com.br/js/opa.js", route => route.fulfill({
+    contentType: "text/javascript",
+    body: `window.opa = {
+      socket: { connected: true, on() {}, disconnect() {} },
+      init() {
+        const launcher = document.createElement("button");
+        launcher.className = "opa_ico";
+        launcher.onclick = () => document.body.insertAdjacentHTML("beforeend",
+          '<div class="opa_chat" style="display:flex;flex-direction:column"><div class="opa_corpo"><div class="opa_ballon enviada">Olá<div class="time">Visitante · 10:15</div></div></div><div class="opa_rodape"><input class="opa_rodape_input"></div></div>');
+        document.body.append(launcher);
+      }
+    };`
+  }));
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/suporte");
+  const widget = page.frameLocator('iframe[src="/suporte/chat"]');
+  const input = widget.getByRole("textbox");
+  const footer = widget.locator(".opa_rodape");
+  await expect(footer).toHaveCSS("padding-bottom", "16px");
+  await expect(widget.locator(".enviada .time")).toHaveCSS("color", "rgb(238, 237, 255)");
+  await input.focus();
+  await page.setViewportSize({ width: 390, height: 392 });
+  await expect(footer).toHaveCSS("padding-bottom", "4px");
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(input).toBeFocused();
+  await expect(footer).toHaveCSS("padding-bottom", "16px");
+});
+
 // Não inicia atendimento nem envia mensagens; a conexão OPA é bloqueada.
 test.beforeEach(async ({ page }) => {
   await page.route("**/opa.accessnet.com.br/**", (route) => route.abort());
